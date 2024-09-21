@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Gourav</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./tailwind.config.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Ovo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
+</head>
+
+<body class="overflow-x-hidden font-Outfit leading-8 dark:bg-darkTheme dark:text-white">
+
+    <div class="fixed top-0 right-0 w-11/12 -z-10 translate-y-[-80%]
+    dark:hidden">
+        <img src="./images/header-bg-color.png" alt="" class="w-full">
+    </div>
+
+
+
+    <nav class="w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50">
+        <img src="icons/gou.png" alt="Logo" class="w-28 cursor-pointer mr-14 dark:hidden">
+        <img src="icons/gouw.png" alt="Logo" class="w-28 cursor-pointer mr-14 hidden dark:block">
+
+        <ul class="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-white shadow-sm bg-opacity-50 font-Ovo
+                dark:border dark:border-white/50 dark:bg-transparent mr-20">
+            <li><a href="#top">Home</a></li>
+            <li><a href="#about">About me</a></li>
+            <li><a href="#work">My Work</a></li>
+            <li><a href="#blog">My Blogs</a></li>
+            <li><a href="#contact">Contact me</a></li>
+        </ul>
+
+        <div class="flex items-center gap-4">
+            <button onclick="toggleTheme()">
+                <img src="./images/moon_icon.png" alt="" class="w-6 dark:hidden">
+                <img src="./images/sun_icon.png" alt="" class="w-6 hidden dark:block">
+            </button>
+
+            <button class="block md:hidden ml-3" onclick="openMenu()">
+                <img src="./images/menu-black.png" alt="" class="w-6 dark:hidden">
+                <img src="./images/menu-white.png" alt="" class="w-6 hidden dark:block">
+            </button>
+        </div>
+        <!-- ----- mobile menu ------  -->
+        <ul id="sideMenu"
+            class="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 font-Ovo dark:bg-darkHover dark:text-white">
+
+            <div class="absolute right-6 top-6" onclick="closeMenu()">
+                <img src="./images/close-black.png" alt="" class="w-5 cursor-pointer dark:hidden">
+
+                <img src="./images/close-white.png" alt="" class="w-5 cursor-pointer hidden dark:block">
+            </div>
+
+            <li><a href="#top" onclick="closeMenu()">Home</a></li>
+            <li><a href="#about" onclick="closeMenu()">About me</a></li>
+            <li><a href="#work" onclick="closeMenu()">My Work</a></li>
+            <li><a href="#blog" onclick="closeMenu()">My Blogs</a></li>
+            <li><a href="#contact" onclick="closeMenu()">Contact me</a></li>
+        </ul>
+
+    </nav>
+
+    <!-- ------ header --------------  -->
+
+    <div class="w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4">
+        <div class="max-w-max mx-auto relative">
+            <img src="profile/blob.png" alt="" class="w-64 sm:w-80 rounded-3xl max-w-none">
+        </div>
+        <h1
+            class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
+            Hi👋, I'm Gourav Lohar
+        </h1>
+                <div class="font-extrabold text-3xl text-center md:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-gray-700 to-gray-800 dark:from-slate-200/60 dark:to-slate-200">
+            Building
+            <span class="text-indigo-500 inline-flex flex-col h-[calc(theme(fontSize.3xl)*theme(lineHeight.tight))] md:h-[calc(theme(fontSize.4xl)*theme(lineHeight.tight))] overflow-hidden">
+                <ul class="block animate-text-slide-4 text-left leading-tight [&_li]:block">
+                    <li>Intelligence</li>
+                    <li>🎯 Solutions</li>
+                    <li>Innovations</li>
+                    <li>Applications</li>
+                    <li aria-hidden="true">Intelligence</li>
+                </ul>
+            </span>
+        </div>
+
+
+
+        <div class="flex flex-col sm:flex-row items-center gap-4 mt-4">
+            <a href="#contact">
+                <button
+                    class="relative inline-flex h-12 active:scale-95 transition overflow-hidden rounded-full p-[1px] focus:outline-none">
+                    <span
+                        class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]">
+                    </span>
+                    <span
+                        class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white text-black px-7 text-sm font-medium backdrop-blur-3xl gap-2 dark:bg-slate-950 dark:text-white">
+                        Contact me
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512"
+                            height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"
+                            class="text-black dark:text-white">
+                            <path
+                                d="M429.6 92.1c4.9-11.9 2.1-25.6-7-34.7s-22.8-11.9-34.7-7l-352 144c-14.2 5.8-22.2 20.8-19.3 35.8s16.1 25.8 31.4 25.8H224V432c0 15.3 10.8 28.4 25.8 31.4s30-5.1 35.8-19.3l144-352z">
+                            </path>
+                        </svg>
+                    </span>
+                </button>
+            </a>
+            <a href="#">
+                <button
+                    class="cursor-pointer border-black justify-center px-3 py-2 rounded-full text-black tracking-wider border border-gray-500 hover:scale-105 duration-500 hover:ring-1 w-[150px] flex items-center gap-1 border-black bg-white dark:text-black">
+                    My Resume
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" class="w-5 h-5 animate-bounce">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3">
+                        </path>
+                    </svg>
+                </button>
+            </a>
+        </div>
+        <div class="flex items-center gap-3 mt-6">
+            <a href="https://github.com/your-username" target="_blank"
+                class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+                <i class="fab fa-github fa-lg"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/your-profile" target="_blank"
+                class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+                <i class="fab fa-linkedin-in fa-lg"></i>
+            </a>
+            <a href="https://www.kaggle.com/your-username" target="_blank"
+                class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+                <i class="fab fa-kaggle fa-lg"></i>
+            </a>
+            <a href="https://twitter.com/your-username" target="_blank"
+                class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+                <i class="fab fa-twitter fa-lg"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- ------------ about me -----------  -->
+    <div id="about" class="w-full px-[12%] py-10 scroll-mt-20">
+        <h4 class="text-center mb-2 text-lg font-Ovo">Introduction</h4>
+        <h2 class="text-center text-5xl font-Ovo">About me</h2>
+
+
+        <div class="flex justify-center items-center flex-col">
+            <div class="flex-1 text-justify">
+                <p class="mb-10 max-w-2xl font-Ovo">
+                    Pursuing B.Tech in Artificial Intelligence and Machine Learning at NSHM Knowledge Campus, graduating
+                    in 2025, with a Machine Learning certification from IIT Kharagpur. Developed projects such as
+                    'Arogyam,' an AI healthcare web application, and 'AttriSense,' a machine learning model for
+                    predicting employee attrition. Proficient in Python, Flask, Django, Machine Learning, and Deep
+                    Learning. Published several Data Science articles on platforms like Analytics Vidhya, Geeks for
+                    Geeks, and Medium.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="flex-1">
+            <h4 class="my-6 text-gray-700 text-center font-Ovo dark:text-white/80">Tools I use</h4>
+            <div class="flex justify-center">
+                <ul class="grid grid-cols-5 sm:grid-cols-5 lg:grid-cols-10 gap-3 sm:gap-5 justify-center mx-auto">
+                    <!-- Languages -->
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-python-plain text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                Python
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-scikitlearn-plain text-2xl sm:text-3xl"></i>
+
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                Scikit-Learn
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-numpy-plain text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                NumPy
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-pandas-plain text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                Pandas
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-matplotlib-plain text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                Matplotlib
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-streamlit-plain text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                Streamlit
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-tensorflow-original text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                Tensorflow
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-keras-plain text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                Keras
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-mysql-original text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                MySQL
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-sqlite-plain text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                SQLite
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-opencv-plain text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                OpenCV
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-flask-original text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                Flask
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-django-plain text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                Django
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-azure-plain text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                Azure
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-git-plain text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                Git
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-github-plain text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                GitHub
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-vscode-plain text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                VSCode
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-pycharm-plain text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                PyCharm
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                    <li
+                        class="relative group flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <i class="devicon-jupyter-plain text-2xl sm:text-3xl"></i>
+                        <div class="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center">
+                            <div
+                                class="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg rounded-md">
+                                Jupyter
+                            </div>
+                            <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ----------- Timeline ---------  -->
+    <div id="timeline" class="w-full px-[12%] py-10 scroll-mt-20">
+        <h4 class="text-center mb-2 text-lg font-Ovo">My Journey</h4>
+        <h2 class="text-center text-5xl font-Ovo">Education and Experience</h2>
+        <p class="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo">A glimpse into my educational background and
+            professional milestones.</p>
+
+        <div class="flex flex-col space-y-6">
+
+            <div class="border rounded-lg dark:border-gray-500 overflow-hidden shadow-md">
+                <div class="bg-gray-200 dark:bg-darkHover px-4 py-3 flex justify-between items-center">
+                    <h3 class="text-xl font-semibold dark:text-white">Education</h3>
+                </div>
+                <div id="educationContent" class="p-4">
+                    <div class="flex items-center mb-2">
+                        <div class="bg-gradient-to-r from-[#b820e6] to-[#da7d20] rounded-full w-4 h-4 mr-4"></div>
+                        <h4 class="font-semibold">B.Tech (Artificial Intelligence and Machine Learning)</h4>
+                    </div>
+                    <p class="text-sm">NSHM Knowledge Campus, Durgapur</p>
+                    <p class="text-sm ">2021 - 2025</p>
+                    <p class="text-sm ">CGPA- 9.0</p>
+                    <div class="flex items-center mt-4">
+                        <div class="bg-gradient-to-r from-[#b820e6] to-[#da7d20] rounded-full w-4 h-4 mr-4"></div>
+                        <h4 class="font-semibold">Higher Secondary</h4>
+                    </div>
+                    <p class="text-sm">West Bengal Council of Higher Secondary Education</p>
+                    <p class="text-sm ">2020 - 2021</p>
+                    <p class="text-sm ">Marks- 76%</p>
+                </div>
+            </div>
+
+            <div class="border dark:border-gray-500 rounded-lg overflow-hidden shadow-md">
+                <div class="bg-gray-200 dark:bg-darkHover px-4 py-3 flex justify-between items-center">
+                    <h3 class="text-xl font-semibold dark:text-white">Experience</h3>
+                </div>
+                <div id="experienceContent" class="p-4">
+                    <div class="flex items-center mb-2">
+                        <div class="bg-gradient-to-r from-[#b820e6] to-[#da7d20] rounded-full w-4 h-4 mr-4"></div>
+                        <h4 class="font-semibold">Cloud AI Intern</h4>
+                    </div>
+                    <p class="text-sm">EBest Solutions Pvt Ltd</p>
+                    <p class="text-sm">Aug'23 - Nov'23</p>
+                    <p class="text-sm">Developed a chat bot using Python, Streamlit, and the Replicate API, based on the
+                        Llama-2 70b chat LLM released by Meta.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- ------------ my work ------------  -->
+
+    <div id="work" class="w-full px-[12%] py-10 scroll-mt-20">
+        <h4 class="text-center mb-2 text-lg font-Ovo">My portfolio</h4>
+        <h2 class="text-center text-5xl font-Ovo">My latest work</h2>
+        <p class="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo">Welcome to my portfolio! Explore a
+            collection of projects.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 my-10 dark:text-black">
+            <!-- Project Card 1 -->
+            <div class="project-card relative overflow-hidden rounded-lg shadow-lg group">
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-100 transition-opacity duration-500">
+                </div>
+                <div class="content-wrapper transition-opacity duration-500 group-hover:opacity-0">
+                    <img src="project/mysql.jpg" alt="Project Image"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between">
+                        <h3 class="font-semibold">Coming Soon</h3>
+                        <div class="flex items-center gap-2">
+                            <img src="icons/Python.png" alt="Tech 1" class="w-5 h-5">
+                            <img src="icons/stramlit.png" alt="Tech 1" class="w-5 h-5">
+                            <img src="icons/langchain.png" alt="Tech 1" class="w-5 h-5">
+                            <img src="icons/azure.png" alt="Tech 1" class="w-5 h-5">
+                            <img src="icons/MySQL.png" alt="Tech 1" class="w-5 h-5">
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="absolute inset-0 p-4 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black dark:bg-black">
+                    <p class="text-sm mb-4 text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora
+                        repellat magni sint rem maxime? Necessitatibus illum, odit molestiae ipsam vitae sequi minus
+                        temporibus. Culpa saepe aliquam eligendi nostrum amet sint.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="https://github.com/Gouravlohar/AI-SQL-Assistant"
+                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
+                            <i class="fa-brands fa-github fa-2x"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
+                            <i class="fas fa-eye fa-2x"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
+                            <i class="fa-brands fa-youtube fa-2x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card relative overflow-hidden rounded-lg shadow-lg group">
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-100 transition-opacity duration-500">
+                </div>
+                <div class="content-wrapper transition-opacity duration-500 group-hover:opacity-0">
+                    <img src="project/arogyam.jpeg" alt="Project Image"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between">
+                        <h3 class="font-semibold">Arogyam</h3>
+                        <div class="flex items-center gap-2">
+                            <img src="icons/Python.png" alt="Tech 1" class="w-5 h-5">
+                            <img src="icons/Flask.png" alt="Tech 1" class="w-5 h-5">
+                            <img src="icons/scikit-learn.png" alt="Tech 1" class="w-5 h-5">
+                            <img src="icons/azure.png" alt="Tech 1" class="w-5 h-5">
+                            <img src="icons/Pandas.png" alt="Tech 1" class="w-5 h-5">
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="absolute inset-0 p-4 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black dark:bg-black">
+                    <p class="text-sm mb-4 text-white">A healthcare web app featuring Diabetes and Heart Disease
+                        prediction modules with 79% and 90% accuracy, respectively. Includes a chatbot powered by the
+                        Gemini API for general health queries and a 'Nutrify' module that analyzes food images for
+                        healthiness.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="https://github.com/Gouravlohar/Arogyam" target="_blank"
+                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
+                            <i class="fa-brands fa-github fa-2x"></i>
+                        </a>
+                        <a href="https://arogyam-bgend5hsfua6axa6.eastus-01.azurewebsites.net/" target="_blank"
+                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
+                            <i class="fa-solid fa-eye fa-2x" style="color: #291663;"></i>
+                        </a>
+                        <a href="https://youtu.be/rORyAD-fFYI" target="_blank"
+                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
+                            <i class="fa-brands fa-youtube fa-2x" style="color: #e10909;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 2 -->
+            <div class="project-card relative overflow-hidden rounded-lg shadow-lg group">
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-100 transition-opacity duration-500">
+                </div>
+                <div class="content-wrapper transition-opacity duration-500 group-hover:opacity-0">
+                    <img src="project/employee.jpeg" alt="Project Image"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between">
+                        <h3 class="font-semibold">Attri Sense</h3>
+                        <div class="flex items-center gap-2">
+                            <img src="icons/stramlit.png" alt="Tech 1" class="w-5 h-5">
+                            <img src="icons/scikit-learn.png" alt="Tech 1" class="w-5 h-5">
+                            <img src="icons/Python.png" alt="Tech 1" class="w-5 h-5">
+                            <img src="icons/Matplotlib.png" alt="Tech 1" class="w-5 h-5">
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="absolute inset-0 p-4 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black dark:bg-black">
+                    <p class="text-sm mb-4 text-white">AttriSense is a machine learning project aimed at predicting
+                        employee attrition. Using Random Forest as the primary model, the project analyzes employee data
+                        to identify patterns and factors that contribute to turnover. Various classification models were
+                        tested, but Random Forest was selected for its performance in identifying high-risk employees,
+                        helping companies implement data-driven retention strategies.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" target="_blank"
+                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
+                            <i class="fa-brands fa-github fa-2x"></i>
+                        </a>
+                        <a href="#" target="_blank"
+                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
+                            <i class="fas fa-eye fa-2x"></i>
+                        </a>
+                        <a href="#" target="_blank"
+                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
+                            <i class="fa-brands fa-youtube fa-2x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 3 -->
+            <div class="project-card relative overflow-hidden rounded-lg shadow-lg group">
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-100 transition-opacity duration-500 ">
+                </div>
+                <div class="content-wrapper transition-opacity duration-500 group-hover:opacity-0">
+                    <img src="project/llama.jpeg" alt="Project Image"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between">
+                        <h3 class="font-semibold">TestBot</h3>
+                        <div class="flex items-center gap-2">
+                            <img src="icons/stramlit.png" alt="Tech 1" class="w-5 h-5">
+                            <img src="icons/Python.png" alt="Tech 1" class="w-5 h-5">
+                            <img src="icons/replicate.png" alt="Tech 1" class="w-5 h-5">
+                            <img src="icons/meta.png" alt="Tech 1" class="w-5 h-5">
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="absolute inset-0 p-4 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black dark:bg-black">
+                    <p class="text-sm mb-4 text-white">Developed a real-time chatbot using Python, Streamlit, and the
+                        Replicate API, based on Meta’s Llama-2 70b model. The chatbot handles a wide range of queries
+                        and provides an intuitive user interface, delivering seamless AI-driven communication. Perfect
+                        for dynamic conversational applications.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="https://github.com/Gouravlohar/Test-Bot" target="_blank"
+                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
+                            <i class="fa-brands fa-github fa-2x"></i>
+                        </a>
+                        <a href="https://testbot.streamlit.app/" target="_blank"
+                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
+                            <i class="fas fa-eye fa-2x"></i>
+                        </a>
+                        <a href="https://youtu.be/FJDODrTTO9g" target="_blank"
+                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
+                            <i class="fa-brands fa-youtube fa-2x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Project Card 4 -->
+        </div>
+    </div>
+    <!-- Blog section -->
+    <div id="blog" class="w-full px-[12%] py-10 scroll-mt-20">
+        <h4 class="text-center mb-2 text-lg font-Ovo">My Blog</h4>
+        <h2 class="text-center text-5xl font-Ovo">Latest Posts</h2>
+        <p class="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo">Welcome to my blog! Here, I share insights,
+            tutorials, and experiences regarding Machine Learning and Data Science.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 my-5 max-w-5xl mx-auto dark:text-black">
+            <a href="https://www.analyticsvidhya.com/blog/2024/09/ai-sql-assistant/" target="_blank class=" block">
+                <div class="rounded-lg relative cursor-pointer group border border-gray-300 dark:border-none">
+                    <img src="blogs/sql.jpg" alt="Blog Post Image 3" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="bg-white p-4 rounded-b-lg ">
+                        <h2 class="font-semibold ">AI SQL Assistant with LangChain</h2>
+                        <p class="text-sm text-gray-700 mt-2 ">Have you ever wished you could simply chat with your
+                            database, asking questions .....</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex items-center gap-2">
+                                <img src="blogs/analytics.jpg" alt="Your Logo"
+                                    class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm text-gray-500">Analytics Vidhya</span>
+                            </div>
+                            <div
+                                class="border rounded-full border-black w-7 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
+                                <img src="./images/send-icon.png" alt="" class="w-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="https://www.analyticsvidhya.com/blog/2024/08/building-a-food-vision-webapp-with-the-gemini-flash-1-5-model/"
+                target="_blank class=" block">
+                <div class="rounded-lg relative cursor-pointer group border border-gray-300 dark:border-none">
+                    <img src="blogs/food.jpg" alt="Blog Post Image 3" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="bg-white p-4 rounded-b-lg ">
+                        <h2 class="font-semibold ">Building a Food Vision WebApp</h2>
+                        <p class="text-sm text-gray-700 mt-2 ">In this fast-changing landscape of AI, efficiency and
+                            scalability .....</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex items-center gap-2">
+                                <img src="blogs/analytics.jpg" alt="Your Logo"
+                                    class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm text-gray-500">Analytics Vidhya</span>
+                            </div>
+                            <div
+                                class="border rounded-full border-black w-7 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
+                                <img src="./images/send-icon.png" alt="" class="w-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://www.geeksforgeeks.org/feedforward-neural-network/?itm_source=auth&itm_medium=contributions&itm_campaign=articles"
+                target="_blank" class="block">
+                <div class="rounded-lg relative cursor-pointer group border border-gray-300 dark:border-none">
+                    <img src="blogs/nn.jpg" alt="Blog Post Image 3" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="bg-white p-4 rounded-b-lg ">
+                        <h2 class="font-semibold">Feedforward neural network</h2>
+                        <p class="text-sm text-gray-700 mt-2 ">Artificial Neural Networks (ANNs) have revolutionized the
+                            field of machine learning....</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex items-center gap-2">
+                                <img src="blogs/gfg.png" alt="Your Logo" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm text-gray-500">Geeks for Geeks</span>
+                            </div>
+                            <div
+                                class="border rounded-full border-black w-7 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
+                                <img src="./images/send-icon.png" alt="" class="w-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+
+        </div>
+        <div id="hiddenBlogPosts"
+            class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 my-0 max-w-5xl mx-auto dark:text-black">
+            <a href="https://www.analyticsvidhya.com/blog/2024/07/chatbot-with-llama-3-1-ollama-and-langchain/"
+                target="_blank" class="block">
+                <div class="rounded-lg relative cursor-pointer group border border-gray-300 dark:border-none">
+                    <img src="blogs/llama3.1.jpeg" alt="Blog Post Image 3"
+                        class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="bg-white p-4 rounded-b-lg ">
+                        <h2 class="font-semibold">Building a Responsive Chatbot</h2>
+                        <p class="text-sm text-gray-700 mt-2 ">In the fast-paced world of AI, crafting a smart,
+                            multilingual chatbot is now within reach..</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex items-center gap-2">
+                                <img src="blogs/analytics.jpg" alt="Your Logo"
+                                    class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm text-gray-500">Analytics Vidhya</span>
+                            </div>
+                            <div
+                                class="border rounded-full border-black w-7 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
+                                <img src="./images/send-icon.png" alt="" class="w-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="https://www.geeksforgeeks.org/multilabel-classification-using-catboost/?itm_source=auth&itm_medium=contributions&itm_campaign=articles"
+                target="_blank" class="block">
+                <div
+                    class="rounded-lg relative cursor-pointer group border border-gray-300 dark:border-none flex flex-col h-full">
+                    <img src="blogs/catboost.jpg" alt="Blog Post Image 3" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="bg-white p-4 rounded-b-lg flex-grow">
+                        <h2 class="font-semibold leading-tight">MultiLabel Classification using CatBoost</h2>
+                        <p class="text-sm text-gray-700 mt-2">Multi-label classification is a powerful machine learning
+                            technique that allows you to assign</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex items-center gap-2">
+                                <img src="blogs/gfg.png" alt="Your Logo" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm text-gray-500">Geeks for Geeks</span>
+                            </div>
+                            <div
+                                class="border rounded-full border-black w-7 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
+                                <img src="./images/send-icon.png" alt="" class="w-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="https://medium.com/@gouravlohar_/implementing-real-time-face-detection-open-cv-step-by-step-guide-for-beginners-ac9b11f6e8ad"
+                target="_blank" class="block">
+                <div
+                    class="rounded-lg relative cursor-pointer group border border-gray-300 dark:border-none flex flex-col h-full">
+                    <img src="blogs/face.jpg" alt="Blog Post Image 3" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="bg-white p-4 rounded-b-lg flex-grow">
+                        <h2 class="font-semibold leading-tight">Implementing Real Time Face-Detection</h2>
+                        <p class="text-sm text-gray-700 mt-2">Have you ever wondered how a surveillance camera can pick
+                            up motion on a busy street...</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex items-center gap-2">
+                                <img src="blogs/medium.png" alt="Your Logo" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm text-gray-500">Medium</span>
+                            </div>
+                            <div
+                                class="border rounded-full border-black w-7 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
+                                <img src="./images/send-icon.png" alt="" class="w-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+
+        <button
+            class="show-more-button w-max flex items-center justify-center gap-2 text-gray-700 border-[0.5px] border-gray-700 rounded-full py-3 px-10 mx-auto my-20 hover:bg-lightHover duration-500 dark:text-white dark:border-white dark:hover:bg-darkHover">
+            Show more
+            <img src="./images/right-arrow-bold.png" alt="" class="w-4 dark:hidden">
+            <img src="./images/right-arrow-bold-dark.png" alt="" class="w-4 hidden dark:block">
+        </button>
+    </div>
+    <!-- ----- contact -------------  -->
+    <div id="contact"
+        class="w-full px-[12%] py-10 scroll-mt-20 bg-[url('./images/footer-bg-color.png')] bg-no-repeat bg-[length:90%_auto] bg-center dark:bg-none">
+        <h4 class="text-center mb-2 text-lg font-Ovo">Connect with me</h4>
+        <h2 class="text-center text-5xl font-Ovo">Get in touch</h2>
+        <p class="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo">I'd love to hear from you! If you have any
+            questions, comments or feedback, please use the form below.</p>
+
+        <form method="POST" action="https://api.web3forms.com/submit" class="max-w-2xl mx-auto">
+            <!------- Enter your web3 form access key below ------------>
+            <input type="hidden" name="access_key" value="47b16c88-0110-481f-98bc-8585b6ac4d1d">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10 mb-8">
+                <input type="text" placeholder="Enter your name"
+                    class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white dark:bg-darkHover/30 dark:border-white/90"
+                    required name="name">
+
+                <input type="email" placeholder="Enter your email"
+                    class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white dark:bg-darkHover/30 dark:border-white/90"
+                    required name="email">
+            </div>
+            <div class="grid grid-cols-1 gap-6 mb-8">
+                <input type="tel" placeholder="Enter your phone number (optional)"
+                    class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white dark:bg-darkHover/30 dark:border-white/90"
+                    name="phone">
+            </div>
+            <textarea rows="6" placeholder="Enter your message"
+                class="w-full p-4 outline-none border-[0.5px] border-gray-400 rounded-md bg-white mb-6 dark:bg-darkHover/30 dark:border-white/90"
+                required name="message"></textarea>
+
+            <button
+                class="py-3 px-8 w-max flex items-center justify-between gap-2 bg-black/80 text-white rounded-full mx-auto hover:bg-black duration-500 dark:bg-transparent dark:border-[0.5px] dark:hover:bg-darkHover">Submit
+                now
+                <img src="./images/right-arrow-white.png" alt="" class="w-4">
+            </button>
+        </form>
+    </div>
+    <!-- ----------- footer ----------->
+    <div class="mt-20">
+        <div class="text-center">
+            <img src="icons/gou.png" alt="" class="w-36 mx-auto mb-2 dark:hidden">
+            <img src="icons/gouw.png" alt="" class="w-36 mx-auto mb-2 hidden dark:block">
+
+
+            <div class="w-max flex items-center gap-2 mx-auto">
+                <img src="./images/mail_icon.png" alt="" class="w-6 dark:hidden">
+                <img src="./images/mail_icon_dark.png" alt="" class="w-6 hidden dark:block">
+
+                <a href="mailto:gouravlohar640@gmail.com">gouravlohar640@gmail.com</a>
+            </div>
+        </div>
+        <div class="text-center sm:flex items-center justify-between border-t border-gray-400 mx-[10%] mt-12 py-6">
+            <p>© 2024 Gourav Lohar. All rights reserved.</p>
+            <ul class="flex items-center gap-10 justify-center mt-4 sm:mt-0">
+                <li><a target="_blank" href="https://github.com/Gouravlohar">GitHub</a></li>
+                <li><a target="_blank" href="https://www.linkedin.com/in/gouravlohar/">LinkedIn</a></li>
+                <li><a target="_blank" href="https://x.com/gouravlohar_">Twitter</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
