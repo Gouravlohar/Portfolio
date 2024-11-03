@@ -39,18 +39,18 @@ function toggleTheme() {
     }
 }
 
-// Show more button functionality
-const showMoreButton = document.querySelector('.show-more-button'); 
-const hiddenBlogPosts = document.getElementById('hiddenBlogPosts');
+// // Show more button functionality
+// const showMoreButton = document.querySelector('.show-more-button'); 
+// const hiddenBlogPosts = document.getElementById('hiddenBlogPosts');
 
-showMoreButton.addEventListener('click', () => {
-    hiddenBlogPosts.classList.toggle('hidden');
+// showMoreButton.addEventListener('click', () => {
+//     hiddenBlogPosts.classList.toggle('hidden');
 
-    if (hiddenBlogPosts.classList.contains('hidden')) {
-        showMoreButton.textContent = 'Show More';
-    } else {
-        showMoreButton.textContent = 'Show Less';
-    }
-});
+//     if (hiddenBlogPosts.classList.contains('hidden')) {
+//         showMoreButton.textContent = 'Show More';
+//     } else {
+//         showMoreButton.textContent = 'Show Less';
+//     }
+// });
 
 

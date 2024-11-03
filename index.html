@@ -127,22 +127,49 @@
                 </button>
             </a>
         </div>
-        <div class="flex items-center gap-3 mt-6">
+        <div class="flex items-center gap-5 mt-6">
+            <!-- GitHub -->
             <a href="https://github.com/Gouravlohar" target="_blank"
-                class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
-                <i class="fab fa-github fa-lg"></i>
+                class="group relative inline-flex items-center justify-center w-12 h-12 
+                bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg 
+                transition-all duration-300 ease-out
+                hover:bg-white dark:hover:bg-gray-800 hover:shadow-lg hover:scale-105">
+                <i class="fab fa-github text-xl text-gray-700 dark:text-gray-300 
+                transition-all duration-300 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                <div class="absolute inset-0 rounded-lg ring-1 ring-black/5 dark:ring-white/5"></div>
             </a>
+    
+            <!-- LinkedIn -->
             <a href="https://www.linkedin.com/in/gouravlohar/" target="_blank"
-                class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
-                <i class="fab fa-linkedin-in fa-lg"></i>
+                class="group relative inline-flex items-center justify-center w-12 h-12 
+                bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg 
+                transition-all duration-300 ease-out
+                hover:bg-white dark:hover:bg-gray-800 hover:shadow-lg hover:scale-105">
+                <i class="fab fa-linkedin-in text-xl text-gray-700 dark:text-gray-300 
+                transition-all duration-300 group-hover:text-[#0A66C2] dark:group-hover:text-[#0A66C2]"></i>
+                <div class="absolute inset-0 rounded-lg ring-1 ring-black/5 dark:ring-white/5"></div>
             </a>
+    
+            <!-- Kaggle -->
             <a href="https://www.kaggle.com/gouravlohar" target="_blank"
-                class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
-                <i class="fab fa-kaggle fa-lg"></i>
+                class="group relative inline-flex items-center justify-center w-12 h-12 
+                bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg 
+                transition-all duration-300 ease-out
+                hover:bg-white dark:hover:bg-gray-800 hover:shadow-lg hover:scale-105">
+                <i class="fab fa-kaggle text-xl text-gray-700 dark:text-gray-300 
+                transition-all duration-300 group-hover:text-[#20BEFF] dark:group-hover:text-[#20BEFF]"></i>
+                <div class="absolute inset-0 rounded-lg ring-1 ring-black/5 dark:ring-white/5"></div>
             </a>
+    
+            <!-- Twitter/X -->
             <a href="https://x.com/gouravlohar_" target="_blank"
-                class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
-                <i class="fab fa-twitter fa-lg"></i>
+                class="group relative inline-flex items-center justify-center w-12 h-12 
+                bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg 
+                transition-all duration-300 ease-out
+                hover:bg-white dark:hover:bg-gray-800 hover:shadow-lg hover:scale-105">
+                <i class="fab fa-twitter text-xl text-gray-700 dark:text-gray-300 
+                transition-all duration-300 group-hover:text-black dark:group-hover:text-white"></i>
+                <div class="absolute inset-0 rounded-lg ring-1 ring-black/5 dark:ring-white/5"></div>
             </a>
         </div>
     </div>
@@ -150,12 +177,14 @@
     <!-- ------------ about me -----------  -->
     <div id="about" class="w-full px-[12%] py-10 scroll-mt-20">
         <h4 class="text-center mb-2 text-lg font-Ovo">Introduction</h4>
-        <h2 class="text-center text-5xl font-Ovo">About me</h2>
+        <h2 class="text-center  mx-auto text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#8B5CF6] via-[#D946EF] to-[#FC76C3] bg-clip-text text-transparent ">
+            About Me 
+        </h2>
 
 
         <div class="flex justify-center items-center flex-col">
             <div class="flex-1 text-justify">
-                <p class="mb-10 max-w-2xl font-Ovo">
+                <p class="mt-3 mb-10 max-w-2xl font-Ovo">
                     Pursuing B.Tech in Artificial Intelligence and Machine Learning at NSHM Knowledge Campus, graduating
                     in 2025, with a Machine Learning certification from IIT Kharagpur. Developed projects such as
                     'Arogyam,' an AI healthcare web application, and 'AttriSense,' a machine learning model for
@@ -387,397 +416,559 @@
         </div>
     </div>
 
-    <!-- ----------- Timeline ---------  -->
-    <div id="timeline" class="w-full px-[12%] py-10 scroll-mt-20">
-        <h4 class="text-center mb-2 text-lg font-Ovo">My Journey</h4>
-        <h2 class="text-center text-5xl font-Ovo">Education and Experience</h2>
-        <p class="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo">A glimpse into my educational background and
-            professional milestones.</p>
+  <!-- Timeline Section -->
+<div class="w-full max-w-6xl mx-auto px-4 py-16 scroll-mt-20" id="timeline">
+    <!-- Header Section -->
+    <div class="text-center space-y-4 mb-16">
+        <h4 class="text-lg text-gray-600 dark:text-gray-400 font-medium">My Journey</h4>
+        <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#b820e6] to-[#da7d20] bg-clip-text text-transparent">
+            Education and Experience
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            A glimpse into my educational background and professional milestones.
+        </p>
+    </div>
 
-        <div class="flex flex-col space-y-6">
+    <!-- Timeline Container -->
+    <div class="relative">
+        <!-- Vertical Line - Desktop Only -->
+        <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[#b820e6] to-[#da7d20] rounded-full"></div>
 
-            <div class="border rounded-lg dark:border-gray-500 overflow-hidden shadow-md">
-                <div class="bg-gray-200 dark:bg-darkHover px-4 py-3 flex justify-between items-center">
-                    <h3 class="text-xl font-semibold dark:text-white">Education</h3>
+        <!-- Education Section -->
+        <div class="relative mb-16">
+            <div class="flex flex-col md:flex-row items-start">
+                <div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-16">
+                    <div class="md:ml-auto">
+                        <h3 class="text-2xl font-bold mb-2 md:text-right">Education</h3>
+                        <div class="space-y-8">
+                            <!-- Education Card 1 -->
+                            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                                <h4 class="font-bold text-lg mb-2">B.Tech (AI & ML)</h4>
+                                <p class="text-gray-600 dark:text-gray-400">NSHM Knowledge Campus, Durgapur</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-500">2021 - 2025</p>
+                                <p class="text-sm font-medium text-[#b820e6]">CGPA- 9.0</p>
+                            </div>
+                            <!-- Education Card 2 -->
+                            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                                <h4 class="font-bold text-lg mb-2">Higher Secondary</h4>
+                                <p class="text-gray-600 dark:text-gray-400">West Bengal Council of Higher Secondary Education</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-500">2020 - 2021</p>
+                                <p class="text-sm font-medium text-[#b820e6]">Marks- 76%</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="educationContent" class="p-4">
-                    <div class="flex items-center mb-2">
-                        <div class="bg-gradient-to-r from-[#b820e6] to-[#da7d20] rounded-full w-4 h-4 mr-4"></div>
-                        <h4 class="font-semibold">B.Tech (Artificial Intelligence and Machine Learning)</h4>
+                
+                <!-- Timeline Marker - Desktop Only -->
+                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-[#b820e6] to-[#da7d20] rounded-full"></div>
+
+                <div class="flex-1 md:pl-12"></div>
+            </div>
+        </div>
+
+        <!-- Experience Section -->
+        <div class="relative">
+            <div class="flex flex-col md:flex-row items-start">
+                <div class="flex-1 md:text-right md:pr-12"></div>
+                
+                <!-- Timeline Marker - Desktop Only -->
+                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-[#b820e6] to-[#da7d20] rounded-full"></div>
+
+                <div class="w-full md:w-1/2 md:pl-12">
+                    <h3 class="text-2xl font-bold mb-2">Experience</h3>
+                    <div class="space-y-8">
+                        <!-- Experience Card -->
+                        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg mb-2">Cloud AI Intern</h4>
+                            <p class="text-gray-600 dark:text-gray-400">EBest Solutions Pvt Ltd</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-500">Aug'23 - Nov'23</p>
+                            <p class="mt-2 text-gray-600 dark:text-gray-400">
+                                Developed a chat bot using Python, Streamlit, and the Replicate API, based on the Llama-2 70b chat LLM released by Meta.
+                            </p>
+                        </div>
                     </div>
-                    <p class="text-sm">NSHM Knowledge Campus, Durgapur</p>
-                    <p class="text-sm ">2021 - 2025</p>
-                    <p class="text-sm ">CGPA- 9.0</p>
-                    <div class="flex items-center mt-4">
-                        <div class="bg-gradient-to-r from-[#b820e6] to-[#da7d20] rounded-full w-4 h-4 mr-4"></div>
-                        <h4 class="font-semibold">Higher Secondary</h4>
-                    </div>
-                    <p class="text-sm">West Bengal Council of Higher Secondary Education</p>
-                    <p class="text-sm ">2020 - 2021</p>
-                    <p class="text-sm ">Marks- 76%</p>
                 </div>
             </div>
-
-            <div class="border dark:border-gray-500 rounded-lg overflow-hidden shadow-md">
-                <div class="bg-gray-200 dark:bg-darkHover px-4 py-3 flex justify-between items-center">
-                    <h3 class="text-xl font-semibold dark:text-white">Experience</h3>
-                </div>
-                <div id="experienceContent" class="p-4">
-                    <div class="flex items-center mb-2">
-                        <div class="bg-gradient-to-r from-[#b820e6] to-[#da7d20] rounded-full w-4 h-4 mr-4"></div>
-                        <h4 class="font-semibold">Cloud AI Intern</h4>
-                    </div>
-                    <p class="text-sm">EBest Solutions Pvt Ltd</p>
-                    <p class="text-sm">Aug'23 - Nov'23</p>
-                    <p class="text-sm">Developed a chat bot using Python, Streamlit, and the Replicate API, based on the
-                        Llama-2 70b chat LLM released by Meta.
-                    </p>
-                </div>
-            </div>
-
         </div>
     </div>
+</div>
+
+
+
+
+
+
+
+
     <!-- ------------ my work ------------  -->
 
-    <div id="work" class="w-full px-[12%] py-10 scroll-mt-20">
-        <h4 class="text-center mb-2 text-lg font-Ovo">My portfolio</h4>
-        <h2 class="text-center text-5xl font-Ovo">My latest work</h2>
-        <p class="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo">Welcome to my portfolio! Explore a
+
+
+
+
+
+    <div id="work" class="min-h-screen w-full px-6 md:px-[12%] py-24 dark:from-gray-900 dark:to-gray-800">
+        <h2 class="text-center mx-auto text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#8B5CF6] via-[#D946EF] to-[#FC76C3] bg-clip-text text-transparent ">
+            My Portfolio
+        </h2>
+        <p class="text-center max-w-2xl mx-auto mt-3 mb-12 font-Ovo">Welcome to my portfolio! Explore a
             collection of projects.</p>
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project Card -->
+            <div class="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg 
+                    hover:shadow-2xl transition-all duration-500 ease-out transform hover:-translate-y-2">
+                <!-- Project Image -->
+                <div class="relative h-64 overflow-hidden">
+                    <img src="project/mysql.jpg" alt="Project Image" class="w-full h-full object-cover transform transition-transform duration-700 
+                           scale-105 group-hover:scale-110">
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 my-10 dark:text-black">
-            <!-- Project Card 1 -->
-            <div class="project-card relative overflow-hidden rounded-lg shadow-lg group">
-                <div
-                    class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-100 transition-opacity duration-500">
-                </div>
-                <div class="content-wrapper transition-opacity duration-500 group-hover:opacity-0">
-                    <img src="project/mysql.jpg" alt="Project Image"
-                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div
-                        class="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between">
-                        <h3 class="font-semibold">Coming Soon</h3>
-                        <div class="flex items-center gap-2">
-                            <img src="icons/Python.png" alt="Tech 1" class="w-5 h-5">
-                            <img src="icons/stramlit.png" alt="Tech 1" class="w-5 h-5">
-                            <img src="icons/langchain.png" alt="Tech 1" class="w-5 h-5">
-                            <img src="icons/azure.png" alt="Tech 1" class="w-5 h-5">
-                            <img src="icons/MySQL.png" alt="Tech 1" class="w-5 h-5">
-                        </div>
+                    <!-- Status Badge -->
+                    <div class="absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium
+                            bg-gradient-to-r from-purple-600 to-blue-600 text-white
+                            opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 
+                            transition-all duration-500">
+                        In Development
                     </div>
                 </div>
-                <div
-                    class="absolute inset-0 p-4 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black dark:bg-black">
-                    <p class="text-sm mb-4 text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora
-                        repellat magni sint rem maxime? Necessitatibus illum, odit molestiae ipsam vitae sequi minus
-                        temporibus. Culpa saepe aliquam eligendi nostrum amet sint.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <a href="https://github.com/Gouravlohar/AI-SQL-Assistant"
-                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
-                            <i class="fa-brands fa-github fa-2x"></i>
+
+                <!-- Project Info Section -->
+                <div class="p-6">
+                    <!-- Title and Description -->
+                    <h3 class="font-bold text-xl mb-3 text-gray-800 dark:text-white 
+                           group-hover:text-purple-600 dark:group-hover:text-purple-400 
+                           transition-colors duration-300">
+                        AI SQL Assistant
+                    </h3>
+
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-6">
+                        An intelligent SQL assistant powered by AI to help write and optimize database queries.
+                    </p>
+
+                    <!-- Tech Stack Row -->
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <div class="bg-gray-100 dark:bg-white/90 backdrop-blur rounded-lg px-2.5 py-1.5 
+                              flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                            <img src="icons/Python.png" alt="Python" class="w-4 h-4">
+                            <span class="text-xs font-medium text-gray-700">Python</span>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-white/90 backdrop-blur rounded-lg px-2.5 py-1.5 
+                              flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                            <img src="icons/stramlit.png" alt="Streamlit" class="w-4 h-4">
+                            <span class="text-xs font-medium text-gray-700">Streamlit</span>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-white/90 backdrop-blur rounded-lg px-2.5 py-1.5 
+                              flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                            <img src="icons/langchain.png" alt="Langchain" class="w-4 h-4">
+                            <span class="text-xs font-medium text-gray-700">Langchain</span>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-white/90 backdrop-blur rounded-lg px-2.5 py-1.5 
+                              flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                            <img src="icons/mysql.png" alt="MySQL" class="w-4 h-4">
+                            <span class="text-xs font-medium text-gray-700">MySQL</span>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-white/90 backdrop-blur rounded-lg px-2.5 py-1.5 
+                              flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                            <img src="icons/meta.png" alt="Llama" class="w-4 h-4">
+                            <span class="text-xs font-medium text-gray-700">Llama 3.1</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Links -->
+                    <div class="flex items-center gap-3">
+                        <a href="https://github.com/Gouravlohar/AI-SQL-Assistant" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/90 backdrop-blur
+                              flex items-center justify-center transition-all duration-300 
+                              hover:scale-110 group/link">
+                            <i class="fa-brands fa-github text-xl text-gray-600
+                                 group-hover/link:text-purple-600"></i>
                         </a>
-                        <a href="#"
-                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
-                            <i class="fas fa-eye fa-2x"></i>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/90 backdrop-blur
+                              flex items-center justify-center transition-all duration-300 
+                              hover:scale-110 group/link">
+                            <i class="fas fa-eye text-xl text-gray-600
+                                 group-hover/link:text-purple-600"></i>
                         </a>
-                        <a href="#"
-                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
-                            <i class="fa-brands fa-youtube fa-2x"></i>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/90 backdrop-blur
+                              flex items-center justify-center transition-all duration-300 
+                              hover:scale-110 group/link">
+                            <i class="fa-brands fa-youtube text-xl text-gray-600
+                                 group-hover/link:text-red-600"></i>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="project-card relative overflow-hidden rounded-lg shadow-lg group">
-                <div
-                    class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-100 transition-opacity duration-500">
-                </div>
-                <div class="content-wrapper transition-opacity duration-500 group-hover:opacity-0">
-                    <img src="project/arogyam.jpeg" alt="Project Image"
-                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div
-                        class="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between">
-                        <h3 class="font-semibold">Arogyam</h3>
-                        <div class="flex items-center gap-2">
-                            <img src="icons/Python.png" alt="Tech 1" class="w-5 h-5">
-                            <img src="icons/Flask.png" alt="Tech 1" class="w-5 h-5">
-                            <img src="icons/scikit-learn.png" alt="Tech 1" class="w-5 h-5">
-                            <img src="icons/azure.png" alt="Tech 1" class="w-5 h-5">
-                            <img src="icons/Pandas.png" alt="Tech 1" class="w-5 h-5">
-                        </div>
+            <div class="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg 
+                    hover:shadow-2xl transition-all duration-500 ease-out transform hover:-translate-y-2">
+                <!-- Project Image -->
+                <div class="relative h-64 overflow-hidden">
+                    <img src="project/arogyam.jpeg" alt="Project Image" class="w-full h-full object-cover transform transition-transform duration-700 
+                           scale-105 group-hover:scale-110">
+
+                    <!-- Status Badge -->
+                    <div class="absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium
+                            bg-gradient-to-r from-green-600 to-blue-600 text-white
+                            opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 
+                            transition-all duration-500">
+                        Completed
                     </div>
                 </div>
-                <div
-                    class="absolute inset-0 p-4 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black dark:bg-black">
-                    <p class="text-sm mb-4 text-white">A healthcare web app featuring Diabetes and Heart Disease
-                        prediction modules with 79% and 90% accuracy, respectively. Includes a chatbot powered by the
-                        Gemini API for general health queries and a 'Nutrify' module that analyzes food images for
-                        healthiness.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <a href="https://github.com/Gouravlohar/Arogyam" target="_blank"
-                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
-                            <i class="fa-brands fa-github fa-2x"></i>
+
+                <!-- Project Info Section -->
+                <div class="p-6">
+                    <!-- Title and Description -->
+                    <h3 class="font-bold text-xl mb-3 text-gray-800 dark:text-white 
+                           group-hover:text-purple-600 dark:group-hover:text-purple-400 
+                           transition-colors duration-300">
+                           Arogyam
+
+                    </h3>
+
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-6">
+                        AI healthcare app with disease prediction, health chatbot, and food analyzer.
+                    </p>
+
+                    <!-- Tech Stack Row -->
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <div class="bg-gray-100 dark:bg-white/90 backdrop-blur rounded-lg px-2.5 py-1.5 
+                              flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                            <img src="icons/Python.png" alt="Python" class="w-4 h-4">
+                            <span class="text-xs font-medium text-gray-700">Python</span>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-white/90 backdrop-blur rounded-lg px-2.5 py-1.5 
+                              flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                            <img src="icons/Flask.png" alt="Flask" class="w-4 h-4">
+                            <span class="text-xs font-medium text-gray-700">Flask</span>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-white/90 backdrop-blur rounded-lg px-2.5 py-1.5 
+                              flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                            <img src="icons/scikit-learn.png" alt="Scikit-Learn" class="w-4 h-4">
+                            <span class="text-xs font-medium text-gray-700">Scikit-Learn</span>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-white/90 backdrop-blur rounded-lg px-2.5 py-1.5 
+                              flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                            <img src="icons/azure.png" alt="Azure" class="w-4 h-4">
+                            <span class="text-xs font-medium text-gray-700">Azure</span>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-white/90 backdrop-blur rounded-lg px-2.5 py-1.5 
+                              flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                            <img src="icons/Pandas.png" alt="Pandas" class="w-4 h-4">
+                            <span class="text-xs font-medium text-gray-700">Pandas</span>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-white/90 backdrop-blur rounded-lg px-2.5 py-1.5 
+                              flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                            <img src="icons/google-cloud.svg" alt="Docker" class="w-4 h-4">
+                            <span class="text-xs font-medium text-gray-700">Vertex AI</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Links -->
+                    <div class="flex items-center gap-3">
+                        <a href="https://github.com/Gouravlohar/Arogyam" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/90 backdrop-blur
+                              flex items-center justify-center transition-all duration-300 
+                              hover:scale-110 group/link">
+                            <i class="fa-brands fa-github text-xl text-gray-600
+                                 group-hover/link:text-purple-600"></i>
                         </a>
-                        <a href="https://arogyam-bgend5hsfua6axa6.eastus-01.azurewebsites.net/" target="_blank"
-                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
-                            <i class="fa-solid fa-eye fa-2x" style="color: #291663;"></i>
+                        <a href="https://arogyam-bgend5hsfua6axa6.eastus-01.azurewebsites.net/" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/90 backdrop-blur
+                              flex items-center justify-center transition-all duration-300 
+                              hover:scale-110 group/link">
+                            <i class="fas fa-eye text-xl text-gray-600
+                                 group-hover/link:text-purple-600"></i>
                         </a>
-                        <a href="https://youtu.be/rORyAD-fFYI" target="_blank"
-                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
-                            <i class="fa-brands fa-youtube fa-2x" style="color: #e10909;"></i>
+                        <a href="https://youtu.be/rORyAD-fFYI" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/90 backdrop-blur
+                              flex items-center justify-center transition-all duration-300 
+                              hover:scale-110 group/link">
+                            <i class="fa-brands fa-youtube text-xl text-gray-600
+                                 group-hover/link:text-red-600"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg 
+                    hover:shadow-2xl transition-all duration-500 ease-out transform hover:-translate-y-2">
+                <!-- Project Image -->
+                <div class="relative h-64 overflow-hidden">
+                    <img src="project/attrisense.jpeg" alt="Project Image" class="w-full h-full object-cover transform transition-transform duration-700 
+                           scale-105 group-hover:scale-110">
+
+                    <!-- Status Badge -->
+                    <div class="absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium
+                            bg-gradient-to-r from-green-600 to-blue-600 text-white
+                            opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 
+                            transition-all duration-500">
+                        Completed
+                    </div>
+                </div>
+
+                <!-- Project Info Section -->
+                <div class="p-6">
+                    <!-- Title and Description -->
+                    <h3 class="font-bold text-xl mb-3 text-gray-800 dark:text-white 
+                           group-hover:text-purple-600 dark:group-hover:text-purple-400 
+                           transition-colors duration-300">
+                           Attrisense
+                    </h3>
+
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-6">
+                        AttriSense is a machine learning project aimed at predicting employee attrition.
+                    </p>
+
+                    <!-- Tech Stack Row -->
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <div class="bg-gray-100 dark:bg-white/90 backdrop-blur rounded-lg px-2.5 py-1.5 
+                              flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                            <img src="icons/Python.png" alt="Python" class="w-4 h-4">
+                            <span class="text-xs font-medium text-gray-700">Python</span>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-white/90 backdrop-blur rounded-lg px-2.5 py-1.5 
+                              flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                            <img src="icons/stramlit.png" alt="Streamlit" class="w-4 h-4">
+                            <span class="text-xs font-medium text-gray-700">Streamlit</span>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-white/90 backdrop-blur rounded-lg px-2.5 py-1.5 
+                              flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                            <img src="icons/render.png" alt="Render" class="w-4 h-4">
+                            <span class="text-xs font-medium text-gray-700">Render</span>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-white/90 backdrop-blur rounded-lg px-2.5 py-1.5 
+                              flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                            <img src="icons/scikit-learn.png" alt="Scikit-Learn" class="w-4 h-4">
+                            <span class="text-xs font-medium text-gray-700">Scikit-Learn</span>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-white/90 backdrop-blur rounded-lg px-2.5 py-1.5 
+                              flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+                            <img src="icons/Matplotlib.png" alt="Matplotlib" class="w-4 h-4">
+                            <span class="text-xs font-medium text-gray-700">Matplotlib</span>
+                        </div>
+                    
+                    </div>
+
+                    <!-- Action Links -->
+                    <div class="flex items-center gap-3">
+                        <a href="https://github.com/Gouravlohar/AttriSense" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/90 backdrop-blur
+                              flex items-center justify-center transition-all duration-300 
+                              hover:scale-110 group/link">
+                            <i class="fa-brands fa-github text-xl text-gray-600
+                                 group-hover/link:text-purple-600"></i>
+                        </a>
+                        <a href="https://attrisense.onrender.com/" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/90 backdrop-blur
+                              flex items-center justify-center transition-all duration-300 
+                              hover:scale-110 group/link">
+                            <i class="fas fa-eye text-xl text-gray-600
+                                 group-hover/link:text-purple-600"></i>
+                        </a>
+                        <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/90 backdrop-blur
+                              flex items-center justify-center transition-all duration-300 
+                              hover:scale-110 group/link">
+                            <i class="fa-brands fa-youtube text-xl text-gray-600
+                                 group-hover/link:text-red-600"></i>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Project Card 2 -->
-            <div class="project-card relative overflow-hidden rounded-lg shadow-lg group">
-                <div
-                    class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-100 transition-opacity duration-500">
-                </div>
-                <div class="content-wrapper transition-opacity duration-500 group-hover:opacity-0">
-                    <img src="project/employee.jpeg" alt="Project Image"
-                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div
-                        class="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between">
-                        <h3 class="font-semibold">Attri Sense</h3>
-                        <div class="flex items-center gap-2">
-                            <img src="icons/stramlit.png" alt="Tech 1" class="w-5 h-5">
-                            <img src="icons/scikit-learn.png" alt="Tech 1" class="w-5 h-5">
-                            <img src="icons/Python.png" alt="Tech 1" class="w-5 h-5">
-                            <img src="icons/Matplotlib.png" alt="Tech 1" class="w-5 h-5">
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="absolute inset-0 p-4 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black dark:bg-black">
-                    <p class="text-sm mb-4 text-white">AttriSense is a machine learning project aimed at predicting
-                        employee attrition. Using Random Forest as the primary model, the project analyzes employee data
-                        to identify patterns and factors that contribute to turnover. Various classification models were
-                        tested, but Random Forest was selected for its performance in identifying high-risk employees,
-                        helping companies implement data-driven retention strategies.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <a href="#" target="_blank"
-                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
-                            <i class="fa-brands fa-github fa-2x"></i>
-                        </a>
-                        <a href="#" target="_blank"
-                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
-                            <i class="fas fa-eye fa-2x"></i>
-                        </a>
-                        <a href="#" target="_blank"
-                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
-                            <i class="fa-brands fa-youtube fa-2x"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Project Card 3 -->
-            <div class="project-card relative overflow-hidden rounded-lg shadow-lg group">
-                <div
-                    class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-100 transition-opacity duration-500 ">
-                </div>
-                <div class="content-wrapper transition-opacity duration-500 group-hover:opacity-0">
-                    <img src="project/llama.jpeg" alt="Project Image"
-                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div
-                        class="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between">
-                        <h3 class="font-semibold">TestBot</h3>
-                        <div class="flex items-center gap-2">
-                            <img src="icons/stramlit.png" alt="Tech 1" class="w-5 h-5">
-                            <img src="icons/Python.png" alt="Tech 1" class="w-5 h-5">
-                            <img src="icons/replicate.png" alt="Tech 1" class="w-5 h-5">
-                            <img src="icons/meta.png" alt="Tech 1" class="w-5 h-5">
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="absolute inset-0 p-4 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black dark:bg-black">
-                    <p class="text-sm mb-4 text-white">Developed a real-time chatbot using Python, Streamlit, and the
-                        Replicate API, based on Meta’s Llama-2 70b model. The chatbot handles a wide range of queries
-                        and provides an intuitive user interface, delivering seamless AI-driven communication. Perfect
-                        for dynamic conversational applications.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <a href="https://github.com/Gouravlohar/Test-Bot" target="_blank"
-                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
-                            <i class="fa-brands fa-github fa-2x"></i>
-                        </a>
-                        <a href="https://testbot.streamlit.app/" target="_blank"
-                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
-                            <i class="fas fa-eye fa-2x"></i>
-                        </a>
-                        <a href="https://youtu.be/FJDODrTTO9g" target="_blank"
-                            class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full text-xs transition-colors duration-300">
-                            <i class="fa-brands fa-youtube fa-2x"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- Project Card 4 -->
+            <!-- Add more project cards following the same structure -->
         </div>
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Blog section -->
     <div id="blog" class="w-full px-[12%] py-10 scroll-mt-20">
         <h4 class="text-center mb-2 text-lg font-Ovo">My Blog</h4>
-        <h2 class="text-center text-5xl font-Ovo">Latest Posts</h2>
-        <p class="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo">Welcome to my blog! Here, I share insights,
+        <h2 class="text-center mx-auto text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#b820e6] to-[#da7d20] bg-clip-text text-transparent">
+            My Latest Posts
+        </h2>
+        <p class="text-center max-w-2xl mx-auto mt-3 mb-12 font-Ovo">Welcome to my blog! Here, I share insights,
             tutorials, and experiences regarding Machine Learning and Data Science.</p>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 my-5 max-w-5xl mx-auto dark:text-black">
-            <a href="https://www.analyticsvidhya.com/blog/2024/09/ai-sql-assistant/" target="_blank class=" block">
-                <div class="rounded-lg relative cursor-pointer group border border-gray-300 dark:border-none">
-                    <img src="blogs/sql.jpg" alt="Blog Post Image 3" class="w-full h-48 object-cover rounded-t-lg">
-                    <div class="bg-white p-4 rounded-b-lg ">
-                        <h2 class="font-semibold ">AI SQL Assistant with LangChain</h2>
-                        <p class="text-sm text-gray-700 mt-2 ">Have you ever wished you could simply chat with your
-                            database, asking questions .....</p>
-                        <div class="flex items-center justify-between mt-4">
-                            <div class="flex items-center gap-2">
-                                <img src="blogs/analytics.jpg" alt="Your Logo"
-                                    class="w-8 h-8 rounded-full object-cover">
-                                <span class="text-sm text-gray-500">Analytics Vidhya</span>
-                            </div>
+            <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 my-5">
+                <!-- Blog Card Template -->
+                    <a href="https://www.analyticsvidhya.com/blog/2024/10/image-generator-with-bria-2-3-model/" target="_blank"
+                    class="group hover:-translate-y-2 transition-all duration-300">
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
+                        <div class="relative overflow-hidden">
+                            <img src="blogs/bria2.3.jpeg" alt="Blog Post Image"
+                                class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
                             <div
-                                class="border rounded-full border-black w-7 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                                <img src="./images/send-icon.png" alt="" class="w-4">
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             </div>
                         </div>
-                    </div>
-                </div>
-            </a>
-            <a href="https://www.analyticsvidhya.com/blog/2024/08/building-a-food-vision-webapp-with-the-gemini-flash-1-5-model/"
-                target="_blank class=" block">
-                <div class="rounded-lg relative cursor-pointer group border border-gray-300 dark:border-none">
-                    <img src="blogs/food.jpg" alt="Blog Post Image 3" class="w-full h-48 object-cover rounded-t-lg">
-                    <div class="bg-white p-4 rounded-b-lg ">
-                        <h2 class="font-semibold ">Building a Food Vision WebApp</h2>
-                        <p class="text-sm text-gray-700 mt-2 ">In this fast-changing landscape of AI, efficiency and
-                            scalability .....</p>
-                        <div class="flex items-center justify-between mt-4">
-                            <div class="flex items-center gap-2">
-                                <img src="blogs/analytics.jpg" alt="Your Logo"
-                                    class="w-8 h-8 rounded-full object-cover">
-                                <span class="text-sm text-gray-500">Analytics Vidhya</span>
-                            </div>
-                            <div
-                                class="border rounded-full border-black w-7 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                                <img src="./images/send-icon.png" alt="" class="w-4">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
 
-            <a href="https://www.geeksforgeeks.org/feedforward-neural-network/?itm_source=auth&itm_medium=contributions&itm_campaign=articles"
-                target="_blank" class="block">
-                <div class="rounded-lg relative cursor-pointer group border border-gray-300 dark:border-none">
-                    <img src="blogs/nn.jpg" alt="Blog Post Image 3" class="w-full h-48 object-cover rounded-t-lg">
-                    <div class="bg-white p-4 rounded-b-lg ">
-                        <h2 class="font-semibold">Feedforward neural network</h2>
-                        <p class="text-sm text-gray-700 mt-2 ">Artificial Neural Networks (ANNs) have revolutionized the
-                            field of machine learning....</p>
-                        <div class="flex items-center justify-between mt-4">
-                            <div class="flex items-center gap-2">
-                                <img src="blogs/gfg.png" alt="Your Logo" class="w-8 h-8 rounded-full object-cover">
-                                <span class="text-sm text-gray-500">Geeks for Geeks</span>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-4">
+                                <img src="blogs/analytics.jpg" alt="Publisher Logo"
+                                    class="w-8 h-8 rounded-full ring-2 ring-purple-500">
+                                <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
                             </div>
-                            <div
-                                class="border rounded-full border-black w-7 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                                <img src="./images/send-icon.png" alt="" class="w-4">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
 
+                            <h3
+                                class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
+                                AI Image Generator with Bria 2.3 Model
+                            </h3>
 
-        </div>
-        <div id="hiddenBlogPosts"
-            class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 my-0 max-w-5xl mx-auto dark:text-black">
-            <a href="https://www.analyticsvidhya.com/blog/2024/07/chatbot-with-llama-3-1-ollama-and-langchain/"
-                target="_blank" class="block">
-                <div class="rounded-lg relative cursor-pointer group border border-gray-300 dark:border-none">
-                    <img src="blogs/llama3.1.jpeg" alt="Blog Post Image 3"
-                        class="w-full h-48 object-cover rounded-t-lg">
-                    <div class="bg-white p-4 rounded-b-lg ">
-                        <h2 class="font-semibold">Building a Responsive Chatbot</h2>
-                        <p class="text-sm text-gray-700 mt-2 ">In the fast-paced world of AI, crafting a smart,
-                            multilingual chatbot is now within reach..</p>
-                        <div class="flex items-center justify-between mt-4">
-                            <div class="flex items-center gap-2">
-                                <img src="blogs/analytics.jpg" alt="Your Logo"
-                                    class="w-8 h-8 rounded-full object-cover">
-                                <span class="text-sm text-gray-500">Analytics Vidhya</span>
-                            </div>
-                            <div
-                                class="border rounded-full border-black w-7 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                                <img src="./images/send-icon.png" alt="" class="w-4">
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
+                                Bria AI is a generative AI platform for the production of professional-grade visual content.....
+                            </p>
+
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-500 dark:text-gray-400">8 min read</span>
+                                <div
+                                    class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
+                                    Read More
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </a>
-            <a href="https://www.geeksforgeeks.org/multilabel-classification-using-catboost/?itm_source=auth&itm_medium=contributions&itm_campaign=articles"
-                target="_blank" class="block">
-                <div
-                    class="rounded-lg relative cursor-pointer group border border-gray-300 dark:border-none flex flex-col h-full">
-                    <img src="blogs/catboost.jpg" alt="Blog Post Image 3" class="w-full h-48 object-cover rounded-t-lg">
-                    <div class="bg-white p-4 rounded-b-lg flex-grow">
-                        <h2 class="font-semibold leading-tight">MultiLabel Classification using CatBoost</h2>
-                        <p class="text-sm text-gray-700 mt-2">Multi-label classification is a powerful machine learning
-                            technique that allows you to assign</p>
-                        <div class="flex items-center justify-between mt-4">
-                            <div class="flex items-center gap-2">
-                                <img src="blogs/gfg.png" alt="Your Logo" class="w-8 h-8 rounded-full object-cover">
-                                <span class="text-sm text-gray-500">Geeks for Geeks</span>
-                            </div>
+                </a>
+                <a href="https://www.analyticsvidhya.com/blog/2024/10/nvidia-nim/" target="_blank"
+                    class="group hover:-translate-y-2 transition-all duration-300">
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
+                        <div class="relative overflow-hidden">
+                            <img src="blogs/nvidia.jpg" alt="Blog Post Image"
+                                class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
                             <div
-                                class="border rounded-full border-black w-7 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                                <img src="./images/send-icon.png" alt="" class="w-4">
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            </div>
+                        </div>
+    
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-4">
+                                <img src="blogs/analytics.jpg" alt="Publisher Logo"
+                                    class="w-8 h-8 rounded-full ring-2 ring-purple-500">
+                                <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
+                            </div>
+    
+                            <h3
+                                class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
+                                NVIDIA NIM: The Future of Inferencing
+                            </h3>
+    
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
+                                AI is rapidly changing industries around the world, including healthcare, autonomous vehicles.....
+                            </p>
+    
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-500 dark:text-gray-400">5 min read</span>
+                                <div
+                                    class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
+                                    Read More
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </a>
-            <a href="https://medium.com/@gouravlohar_/implementing-real-time-face-detection-open-cv-step-by-step-guide-for-beginners-ac9b11f6e8ad"
-                target="_blank" class="block">
-                <div
-                    class="rounded-lg relative cursor-pointer group border border-gray-300 dark:border-none flex flex-col h-full">
-                    <img src="blogs/face.jpg" alt="Blog Post Image 3" class="w-full h-48 object-cover rounded-t-lg">
-                    <div class="bg-white p-4 rounded-b-lg flex-grow">
-                        <h2 class="font-semibold leading-tight">Implementing Real Time Face-Detection</h2>
-                        <p class="text-sm text-gray-700 mt-2">Have you ever wondered how a surveillance camera can pick
-                            up motion on a busy street...</p>
-                        <div class="flex items-center justify-between mt-4">
-                            <div class="flex items-center gap-2">
-                                <img src="blogs/medium.png" alt="Your Logo" class="w-8 h-8 rounded-full object-cover">
-                                <span class="text-sm text-gray-500">Medium</span>
-                            </div>
+                </a>
+                <a href="https://www.analyticsvidhya.com/blog/2024/10/methods-to-run-llama-3-2/" target="_blank"
+                    class="group hover:-translate-y-2 transition-all duration-300">
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
+                        <div class="relative overflow-hidden">
+                            <img src="blogs/llama3.2.jpg" alt="Blog Post Image"
+                                class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
                             <div
-                                class="border rounded-full border-black w-7 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                                <img src="./images/send-icon.png" alt="" class="w-4">
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            </div>
+                        </div>
+    
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-4">
+                                <img src="blogs/analytics.jpg" alt="Publisher Logo"
+                                    class="w-8 h-8 rounded-full ring-2 ring-purple-500">
+                                <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
+                            </div>
+    
+                            <h3
+                                class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
+                                3 Ways to Run Llama 3.2 on Your Device
+                            </h3>
+    
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
+                                Meta recently launched Llama 3.2, its latest multimodal model. This version.....
+                            </p>
+    
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-500 dark:text-gray-400">7 min read</span>
+                                <div
+                                    class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
+                                    Read More
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            
         </div>
 
 
 
-        <button
-            class="show-more-button w-max flex items-center justify-center gap-2 text-gray-700 border-[0.5px] border-gray-700 rounded-full py-3 px-10 mx-auto my-20 hover:bg-lightHover duration-500 dark:text-white dark:border-white dark:hover:bg-darkHover">
-            Show more
-            <img src="./images/right-arrow-bold.png" alt="" class="w-4 dark:hidden">
-            <img src="./images/right-arrow-bold-dark.png" alt="" class="w-4 hidden dark:block">
-        </button>
+            <a href="blogs.html" class="show-more-button w-max flex items-center justify-center gap-2 text-gray-700 border-[0.5px] border-gray-700 rounded-full py-3 px-10 mx-auto my-20 hover:bg-lightHover duration-500 dark:text-white dark:border-white dark:hover:bg-darkHover">
+                Show more
+                <img src="./images/right-arrow-bold.png" alt="" class="w-4 dark:hidden">
+                <img src="./images/right-arrow-bold-dark.png" alt="" class="w-4 hidden dark:block">
+            </a>
     </div>
     <!-- ----- contact -------------  -->
     <div id="contact"
         class="w-full px-[12%] py-10 scroll-mt-20 bg-[url('./images/footer-bg-color.png')] bg-no-repeat bg-[length:90%_auto] bg-center dark:bg-none">
         <h4 class="text-center mb-2 text-lg font-Ovo">Connect with me</h4>
-        <h2 class="text-center text-5xl font-Ovo">Get in touch</h2>
-        <p class="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo">I'd love to hear from you! If you have any
+        <h2 class="text-center mx-auto text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#8B5CF6] via-[#D946EF] to-[#FC76C3] bg-clip-text text-transparent ">
+            Get in Touch
+        </h2>
+        <p class="text-center max-w-2xl mx-auto mt-3 mb-12 font-Ovo">I'd love to hear from you! If you have any
             questions, comments or feedback, please use the form below.</p>
 
         <form method="POST" action="https://api.web3forms.com/submit" class="max-w-2xl mx-auto">

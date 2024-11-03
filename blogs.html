@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs - Gourav</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./tailwind.config.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Ovo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
+</head>
+
+<body class="overflow-x-hidden font-Outfit leading-8 dark:bg-darkTheme dark:text-white">
+
+    <div class="fixed top-0 right-0 w-11/12 -z-10 translate-y-[-80%]
+    dark:hidden">
+        <img src="./images/header-bg-color.png" alt="" class="w-full">
+    </div>
+
+
+
+    <nav class="w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50">
+        <a href="index.html">
+            <img src="icons/gou.png" alt="Logo" class="w-28 cursor-pointer mr-14 dark:hidden">
+            <img src="icons/gouw.png" alt="Logo" class="w-28 cursor-pointer mr-14 hidden dark:block">
+        </a>
+
+        <ul class="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-white shadow-sm bg-opacity-50 font-Ovo
+                dark:border dark:border-white/50 dark:bg-transparent mr-20">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About me</a></li>
+            <li><a href="index.html#work">My Work</a></li>
+            <li><a href="index.html#blog">My Blogs</a></li>
+            <li><a href="index.html#contact">Contact me</a></li>
+        </ul>
+
+        <div class="flex items-center gap-4">
+            <button onclick="toggleTheme()">
+                <img src="./images/moon_icon.png" alt="" class="w-6 dark:hidden">
+                <img src="./images/sun_icon.png" alt="" class="w-6 hidden dark:block">
+            </button>
+
+            <button class="block md:hidden ml-3" onclick="openMenu()">
+                <img src="./images/menu-black.png" alt="" class="w-6 dark:hidden">
+                <img src="./images/menu-white.png" alt="" class="w-6 hidden dark:block">
+            </button>
+        </div>
+        <!-- ----- mobile menu ------  -->
+        <ul id="sideMenu"
+            class="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 font-Ovo dark:bg-darkHover dark:text-white">
+
+            <div class="absolute right-6 top-6" onclick="closeMenu()">
+                <img src="./images/close-black.png" alt="" class="w-5 cursor-pointer dark:hidden">
+
+                <img src="./images/close-white.png" alt="" class="w-5 cursor-pointer hidden dark:block">
+            </div>
+
+            <li><a href="#top" onclick="closeMenu()">Home</a></li>
+            <li><a href="index.html#about" onclick="closeMenu()">About me</a></li>
+            <li><a href="index.html" onclick="closeMenu()">My Work</a></li>
+            <li><a href="#blog" onclick="closeMenu()">My Blogs</a></li>
+            <li><a href="#contact" onclick="closeMenu()">Contact me</a></li>
+        </ul>
+
+    </nav>
+    <!-- Blog section -->
+    <!-- Blog section -->
+    <div id="blog" class="w-full px-[10%] py-16 pt-32 scroll-mt-20">
+        <h2 class="text-center text-5xl font-Ovo mb-12 relative">
+            Latest Posts
+            <div class="absolute w-20 h-1 bg-purple-500 bottom-0 left-1/2 transform -translate-x-1/2 mt-4"></div>
+        </h2>
+
+        <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 my-5">
+            <!-- Blog Card Template -->
+            <a href="https://www.analyticsvidhya.com/blog/2024/10/image-generator-with-bria-2-3-model/" target="_blank"
+            class="group hover:-translate-y-2 transition-all duration-300">
+            <div
+                class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
+                <div class="relative overflow-hidden">
+                    <img src="blogs/bria2.3.jpeg" alt="Blog Post Image"
+                        class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="blogs/analytics.jpg" alt="Publisher Logo"
+                            class="w-8 h-8 rounded-full ring-2 ring-purple-500">
+                        <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
+                    </div>
+
+                    <h3
+                        class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
+                        AI Image Generator with Bria 2.3 Model
+                    </h3>
+
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
+                        Bria AI is a generative AI platform for the production of professional-grade visual content.....
+                    </p>
+
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-gray-500 dark:text-gray-400">8 min read</span>
+                        <div
+                            class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
+                            Read More
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+            <a href="https://www.analyticsvidhya.com/blog/2024/10/nvidia-nim/" target="_blank"
+                class="group hover:-translate-y-2 transition-all duration-300">
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
+                    <div class="relative overflow-hidden">
+                        <img src="blogs/nvidia.jpg" alt="Blog Post Image"
+                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
+                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
+                        </div>
+
+                        <h3
+                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
+                            NVIDIA NIM: The Future of Inferencing
+                        </h3>
+
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
+                            AI is rapidly changing industries around the world, including healthcare, autonomous vehicles.....
+                        </p>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500 dark:text-gray-400">5 min read</span>
+                            <div
+                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
+                                Read More
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="https://www.analyticsvidhya.com/blog/2024/10/methods-to-run-llama-3-2/" target="_blank"
+                class="group hover:-translate-y-2 transition-all duration-300">
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
+                    <div class="relative overflow-hidden">
+                        <img src="blogs/llama3.2.jpg" alt="Blog Post Image"
+                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
+                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
+                        </div>
+
+                        <h3
+                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
+                            3 Ways to Run Llama 3.2 on Your Device
+                        </h3>
+
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
+                            Meta recently launched Llama 3.2, its latest multimodal model. This version.....
+                        </p>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500 dark:text-gray-400">7 min read</span>
+                            <div
+                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
+                                Read More
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="https://www.analyticsvidhya.com/blog/2024/09/ai-sql-assistant/" target="_blank"
+                class="group hover:-translate-y-2 transition-all duration-300">
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
+                    <div class="relative overflow-hidden">
+                        <img src="blogs/sql.jpg" alt="Blog Post Image"
+                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
+                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
+                        </div>
+
+                        <h3
+                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
+                            AI SQL Assistant with LangChain
+                        </h3>
+
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
+                            Have you ever wished you could simply chat with your database, asking the.....
+                        </p>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500 dark:text-gray-400">5 min read</span>
+                            <div
+                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
+                                Read More
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Repeat the card structure for other blog posts -->
+            <a href="https://www.analyticsvidhya.com/blog/2024/08/building-a-food-vision-webapp-with-the-gemini-flash-1-5-model/"
+                target="_blank" class="group hover:-translate-y-2 transition-all duration-300">
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
+                    <div class="relative overflow-hidden">
+                        <img src="blogs/food.jpg" alt="Blog Post Image"
+                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
+                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
+                        </div>
+
+                        <h3
+                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
+                            Building a Food Vision WebApp
+                        </h3>
+
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
+                            In this fast-changing landscape of AI, efficiency and scalability become paramount.
+                        </p>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500 dark:text-gray-400">4 min read</span>
+                            <div
+                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
+                                Read More
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="https://www.geeksforgeeks.org/feedforward-neural-network/?itm_source=auth&itm_medium=contributions&itm_campaign=articles" target="_blank"
+                    class="group hover:-translate-y-2 transition-all duration-300">
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
+                        <div class="relative overflow-hidden">
+                            <img src="blogs/nn.jpg" alt="Blog Post Image"
+                                class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            </div>
+                        </div>
+    
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-4">
+                                <img src="blogs/gfg.png" alt="Publisher Logo"
+                                    class="w-8 h-8 rounded-full ring-2 ring-green-500">
+                                <span class="text-sm text-gray-600 dark:text-gray-400">Geeks for Geeks                                  
+                                    </span>
+                            </div>
+    
+                            <h3
+                                class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
+                                Feedforward neural network
+                            </h3>
+    
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
+                                Artificial Neural Networks (ANNs) have revolutionized the field of machine learning....
+                            </p>
+    
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-500 dark:text-gray-400">5 min read</span>
+                                <div
+                                    class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
+                                    Read More
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.analyticsvidhya.com/blog/2024/07/chatbot-with-llama-3-1-ollama-and-langchain/" target="_blank"
+                    class="group hover:-translate-y-2 transition-all duration-300">
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
+                        <div class="relative overflow-hidden">
+                            <img src="blogs/llama3.1.jpeg" alt="Blog Post Image"
+                                class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            </div>
+                        </div>
+    
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-4">
+                                <img src="blogs/analytics.jpg" alt="Publisher Logo"
+                                    class="w-8 h-8 rounded-full ring-2 ring-purple-500">
+                                <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
+                            </div>
+    
+                            <h3
+                                class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
+                                Building a Responsive Chatbot
+                            </h3>
+    
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
+                                In the fast-paced world of AI, crafting a smart, multilingual chatbot is now within reach..
+                            </p>
+    
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-500 dark:text-gray-400">5 min read</span>
+                                <div
+                                    class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
+                                    Read More
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.geeksforgeeks.org/multilabel-classification-using-catboost/?itm_source=auth&itm_medium=contributions&itm_campaign=articles" target="_blank"
+                    class="group hover:-translate-y-2 transition-all duration-300">
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
+                        <div class="relative overflow-hidden">
+                            <img src="blogs/catboost.jpg" alt="Blog Post Image"
+                                class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            </div>
+                        </div>
+    
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-4">
+                                <img src="blogs/gfg.png" alt="Publisher Logo"
+                                    class="w-8 h-8 rounded-full ring-2 ring-green-500">
+                                <span class="text-sm text-gray-600 dark:text-gray-400">Geeks for Geeks</span>
+                            </div>
+    
+                            <h3
+                                class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
+                                MultiLabel Classification using CatBoost
+                            </h3>
+    
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
+                                Multi-label classification is a powerful machine learning technique that allows you to assign..
+                            </p>
+    
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-500 dark:text-gray-400">6 min read</span>
+                                <div
+                                    class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
+                                    Read More
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://medium.com/@gouravlohar_/implementing-real-time-face-detection-open-cv-step-by-step-guide-for-beginners-ac9b11f6e8ad" target="_blank"
+                    class="group hover:-translate-y-2 transition-all duration-300">
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
+                        <div class="relative overflow-hidden">
+                            <img src="blogs/face.jpg" alt="Blog Post Image"
+                                class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            </div>
+                        </div>
+    
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-4">
+                                <img src="blogs/medium.png" alt="Publisher Logo"
+                                    class="w-8 h-8 rounded-full ring-2 ring-gray-500">
+                                <span class="text-sm text-gray-600 dark:text-gray-400">Medium</span>
+                            </div>
+    
+                            <h3
+                                class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
+                                Implementing Real Time Face-Detection
+                            </h3>
+    
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
+                                Have you ever wondered how a surveillance camera can pickup motion on a busy street...
+                            </p>
+    
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-500 dark:text-gray-400">7 min read</span>
+                                <div
+                                    class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
+                                    Read More
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+        </div>
+    </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
