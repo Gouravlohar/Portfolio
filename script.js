@@ -52,5 +52,3 @@ function toggleTheme() {
 //         showMoreButton.textContent = 'Show Less';
 //     }
 // });
-
-

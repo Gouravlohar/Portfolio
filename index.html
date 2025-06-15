@@ -38,9 +38,7 @@
             <li><a href="#work">My Work</a></li>
             <li><a href="#blog">My Blogs</a></li>
             <li><a href="#contact">Contact me</a></li>
-        </ul>
-
-        <div class="flex items-center gap-4">
+        </ul>        <div class="flex items-center gap-4">
             <button onclick="toggleTheme()">
                 <img src="./images/moon_icon.png" alt="" class="w-6 dark:hidden">
                 <img src="./images/sun_icon.png" alt="" class="w-6 hidden dark:block">
@@ -59,9 +57,7 @@
                 <img src="./images/close-black.png" alt="" class="w-5 cursor-pointer dark:hidden">
 
                 <img src="./images/close-white.png" alt="" class="w-5 cursor-pointer hidden dark:block">
-            </div>
-
-            <li><a href="#top" onclick="closeMenu()">Home</a></li>
+            </div>            <li><a href="#top" onclick="closeMenu()">Home</a></li>
             <li><a href="#about" onclick="closeMenu()">About me</a></li>
             <li><a href="#work" onclick="closeMenu()">My Work</a></li>
             <li><a href="#blog" onclick="closeMenu()">My Blogs</a></li>
@@ -406,95 +402,167 @@
             </div>
         </div>
     </div>
+<!-- Replace the entire Timeline Section with this code -->
 
-    <!-- Timeline Section -->
-    <div class="w-full max-w-6xl mx-auto px-4 py-16 scroll-mt-20" id="timeline">
-        <!-- Header Section -->
-        <div class="text-center space-y-4 mb-16">
-            <h4 class="text-lg text-gray-600 dark:text-gray-400 font-medium">My Journey</h4>
-            <h2
-                class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#b820e6] to-[#da7d20] bg-clip-text text-transparent">
-                Education and Experience
-            </h2>
-            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                A glimpse into my educational background and professional milestones.
-            </p>
+<!-- Timeline Section with Cards and Arrows -->
+<div class="w-full max-w-6xl mx-auto px-4 py-16 scroll-mt-20" id="timeline">
+    <!-- Header Section -->
+    <div class="text-center space-y-4 mb-16">
+        <h4 class="text-lg text-gray-600 dark:text-gray-400 font-medium">My Journey</h4>
+        <h2
+            class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#b820e6] to-[#da7d20] bg-clip-text text-transparent">
+            Education and Experience
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            A glimpse into my educational background and professional milestones.
+        </p>
+    </div>
+
+    <!-- Education Section -->
+    <div class="mb-20"> 
+        <!-- Section Title with Decorative Elements - Centered -->
+        <div class="flex flex-col items-center justify-center mb-12">
+            <div class="px-10 py-3 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full border border-purple-500/20 mx-auto">
+                <h3 class="text-2xl font-bold text-purple-600 dark:text-purple-400 text-center">Education</h3>
+            </div>
+            <div class="flex items-center w-full max-w-3xl mt-4">
+                <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent to-purple-500"></div>
+                <div class="h-[1px] flex-1 bg-gradient-to-r from-purple-500 to-transparent"></div>
+            </div>
         </div>
 
-        <!-- Timeline Container -->
+        <!-- Cards with Arrows -->
         <div class="relative">
-            <!-- Vertical Line - Desktop Only -->
-            <div
-                class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[#b820e6] to-[#da7d20] rounded-full">
-            </div>
-
-            <!-- Education Section -->
-            <div class="relative mb-16">
-                <div class="flex flex-col md:flex-row items-start">
-                    <div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-16">
-                        <div class="md:ml-auto">
-                            <h3 class="text-2xl font-bold mb-2 md:text-right">Education</h3>
-                            <div class="space-y-8">
-                                <!-- Education Card 1 -->
-                                <div
-                                    class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                                    <h4 class="font-bold text-lg mb-2">B.Tech (AI & ML)</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">NSHM Knowledge Campus, Durgapur</p>
-                                    <p class="text-sm text-gray-500 dark:text-gray-500">2021 - 2025</p>
-                                    <p class="text-sm font-medium text-[#b820e6]">CGPA- 9.0</p>
-                                </div>
-                                <!-- Education Card 2 -->
-                                <div
-                                    class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                                    <h4 class="font-bold text-lg mb-2">Higher Secondary</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">West Bengal Council of Higher Secondary
-                                        Education</p>
-                                    <p class="text-sm text-gray-500 dark:text-gray-500">2020 - 2021</p>
-                                    <p class="text-sm font-medium text-[#b820e6]">Marks- 76%</p>
-                                </div>
+            <!-- Connected Cards Layout -->
+            <div class="flex flex-col md:flex-row items-start justify-center gap-8 md:gap-12">
+                <!-- Education Card 1 -->
+                <div class="group w-full md:w-5/12 relative z-10">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
+                        <!-- Card Header with Icon -->
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="bg-gradient-to-r from-purple-500 to-pink-500 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                                <i class="fas fa-university text-white text-lg"></i>
                             </div>
+                            <span class="text-sm font-medium text-purple-600 bg-purple-100 dark:bg-purple-900/30 dark:text-purple-300 px-3 py-1 rounded-full">CGPA: 9.0</span>
+                        </div>
+                        
+                        <!-- Card Content -->
+                        <h4 class="font-bold text-xl text-gray-800 dark:text-white mb-2">B.Tech (AI & ML)</h4>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">NSHM Knowledge Campus, Durgapur</p>
+                        <div class="flex items-center gap-2 mt-3">
+                            <div class="bg-gradient-to-r from-purple-500 to-pink-500 w-5 h-5 rounded-full flex items-center justify-center">
+                                <i class="fas fa-calendar-alt text-white text-xs"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">2021 - 2025</span>
                         </div>
                     </div>
 
-                    <!-- Timeline Marker - Desktop Only -->
-                    <div
-                        class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-[#b820e6] to-[#da7d20] rounded-full">
+                    <!-- Arrow on desktop -->
+                    <div class="hidden md:block absolute top-1/2 -right-16 transform -translate-y-1/2 w-16">
+                        <div class="relative w-full h-4">
+                            <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500"></div>
+                            <div class="absolute top-1/2 right-0 transform -translate-y-1/2 rotate-45 w-3 h-0.5 bg-pink-500"></div>
+                            <div class="absolute top-1/2 right-0 transform -translate-y-1/2 -rotate-45 w-3 h-0.5 bg-pink-500"></div>
+                        </div>
                     </div>
-
-                    <div class="flex-1 md:pl-12"></div>
+                    
+                    <!-- Vertical arrow on mobile -->
+                    <div class="flex md:hidden justify-center my-4">
+                        <div class="w-0.5 h-8 bg-gradient-to-b from-purple-500 to-pink-500 relative">
+                            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 rotate-45 w-0.5 h-3 bg-pink-500"></div>
+                            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 -rotate-45 w-0.5 h-3 bg-pink-500"></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Experience Section -->
-            <div class="relative">
-                <div class="flex flex-col md:flex-row items-start">
-                    <div class="flex-1 md:text-right md:pr-12"></div>
-
-                    <!-- Timeline Marker - Desktop Only -->
-                    <div
-                        class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-[#b820e6] to-[#da7d20] rounded-full">
-                    </div>
-
-                    <div class="w-full md:w-1/2 md:pl-12">
-                        <h3 class="text-2xl font-bold mb-2">Experience</h3>
-                        <div class="space-y-8">
-                            <!-- Experience Card -->
-                            <div
-                                class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                                <h4 class="font-bold text-lg mb-2">Cloud AI Intern</h4>
-                                <p class="text-gray-600 dark:text-gray-400">EBest Solutions Pvt Ltd</p>
-                                <p class="text-sm text-gray-500 dark:text-gray-500">Aug'23 - Nov'23</p>
-                                <p class="mt-2 text-gray-600 dark:text-gray-400">
-                                    Developed a chat bot using Python, Streamlit, and the Replicate API, based on the
-                                    Llama-2 70b chat LLM released by Meta.
-                                </p>
+                <!-- Education Card 2 -->
+                <div class="group w-full md:w-5/12 relative z-10">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
+                        <!-- Card Header with Icon -->
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="bg-gradient-to-r from-pink-500 to-orange-500 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                                <i class="fas fa-school text-white text-lg"></i>
                             </div>
+                            <span class="text-sm font-medium text-pink-600 bg-pink-100 dark:bg-pink-900/30 dark:text-pink-300 px-3 py-1 rounded-full">Marks: 76%</span>
+                        </div>
+                        
+                        <!-- Card Content -->
+                        <h4 class="font-bold text-xl text-gray-800 dark:text-white mb-2">Higher Secondary</h4>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">West Bengal Council of Higher Secondary Education</p>
+                        <div class="flex items-center gap-2 mt-3">
+                            <div class="bg-gradient-to-r from-pink-500 to-orange-500 w-5 h-5 rounded-full flex items-center justify-center">
+                                <i class="fas fa-calendar-alt text-white text-xs"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">2020 - 2021</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Decorative Separator -->
+    <div class="flex items-center justify-center my-16">
+        <div class="w-3 h-3 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 animate-pulse"></div>
+        <div class="h-[1px] w-16 bg-gradient-to-r from-purple-500 to-transparent mx-1"></div>
+        <div class="w-2 h-2 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 animate-pulse"></div>
+        <div class="h-[1px] w-16 bg-gradient-to-r from-transparent to-orange-500 mx-1"></div>
+        <div class="w-3 h-3 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 animate-pulse"></div>
+    </div>
+
+    <!-- Experience Section -->
+    <div>
+        
+        <!-- Section Title with Decorative Elements - Centered -->
+        <div class="flex flex-col items-center justify-center mb-12">
+            <div class="px-10 py-3 bg-gradient-to-r from-orange-500/10 to-amber-500/10 rounded-full border border-orange-500/20 mx-auto">
+                <h3 class="text-2xl font-bold text-orange-500 dark:text-orange-400 text-center">Experience</h3>
+            </div>
+            <div class="flex items-center w-full max-w-3xl mt-4">
+                <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent to-orange-500"></div>
+                <div class="h-[1px] flex-1 bg-gradient-to-r from-orange-500 to-transparent"></div>
+            </div>
+        </div>
+
+        <!-- Experience Card -->
+        <div class="max-w-lg mx-auto">
+            <div class="group relative z-10">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
+                    <!-- Card Header with Icon -->
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="bg-gradient-to-r from-orange-500 to-amber-500 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-cloud text-white text-lg"></i>
+                        </div>
+                        <span class="text-sm font-medium text-orange-600 bg-orange-100 dark:bg-orange-900/30 dark:text-orange-300 px-3 py-1 rounded-full">3 months</span>
+                    </div>
+                    
+                    <!-- Card Content -->
+                    <h4 class="font-bold text-xl text-gray-800 dark:text-white mb-2">Cloud AI Intern</h4>
+                    <p class="text-gray-600 dark:text-gray-400 mb-1">EBest Solutions Pvt Ltd</p>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="bg-gradient-to-r from-orange-500 to-amber-500 w-5 h-5 rounded-full flex items-center justify-center">
+                            <i class="fas fa-calendar-alt text-white text-xs"></i>
+                        </div>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">Aug'23 - Nov'23</span>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
+                        Developed a chat bot using Python, Streamlit, and the Replicate API, based on the
+                        Llama-2 70b chat LLM released by Meta.
+                    </p>
+                    
+                    <!-- Skills tags -->
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="text-xs bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-300 px-2 py-1 rounded-full">Python</span>
+                        <span class="text-xs bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-300 px-2 py-1 rounded-full">Streamlit</span>
+                        <span class="text-xs bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-300 px-2 py-1 rounded-full">LLama-2</span>
+                        <span class="text-xs bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-300 px-2 py-1 rounded-full">APIs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -1005,30 +1073,157 @@
             </button>
         </form>
     </div>
-    <!-- ----------- footer ----------->
-    <div class="mt-20">
-        <div class="text-center">
-            <img src="icons/gou.png" alt="" class="w-36 mx-auto mb-2 dark:hidden">
-            <img src="icons/gouw.png" alt="" class="w-36 mx-auto mb-2 hidden dark:block">
 
 
-            <div class="w-max flex items-center gap-2 mx-auto">
-                <img src="./images/mail_icon.png" alt="" class="w-6 dark:hidden">
-                <img src="./images/mail_icon_dark.png" alt="" class="w-6 hidden dark:block">
 
-                <a href="mailto:gouravlohar640@gmail.com">gouravlohar640@gmail.com</a>
+
+
+
+
+
+
+
+        <!-- ----------- footer ----------->
+        <div class="mt-20 relative overflow-hidden dark:bg-darkTheme">
+            <!-- Background gradient overlay -->
+            <!-- <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/10 to-pink-900/20 dark:from-purple-900/40 dark:via-blue-900/20 dark:to-pink-900/40"></div> -->
+            
+            <!-- Animated background elements
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-purple-300/10 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-300/10 rounded-full blur-3xl animate-pulse delay-1000"></div> -->
+            
+                        <div class="relative z-10 bg-white/80 dark:bg-darkTheme backdrop-blur-lg border-t border-gray-200/50 dark:border-gray-700/50">
+                <div class="max-w-6xl mx-auto px-8 py-16">
+                    <!-- Main footer content -->
+                    <div class="text-center space-y-8">
+                        <!-- Logo with enhanced styling -->
+                        <div class="group">
+                            <img src="icons/gou.png" alt="Gourav Lohar Logo" 
+                                 class="w-40 mx-auto mb-4 dark:hidden transition-transform duration-300 group-hover:scale-105 drop-shadow-lg">
+                            <img src="icons/gouw.png" alt="Gourav Lohar Logo" 
+                                 class="w-40 mx-auto mb-4 hidden dark:block transition-transform duration-300 group-hover:scale-105 drop-shadow-lg">
+                        </div>
+    
+                        <!-- Professional tagline -->
+                        <div class="space-y-2">
+                            <h3 class="text-2xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-pink-600 bg-clip-text text-transparent">
+                                Let's Build Something Amazing Together
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+                                AI & ML Engineer passionate about creating intelligent solutions
+                            </p>
+                        </div>
+    
+                        <!-- Enhanced contact info -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                            <div class="group flex items-center gap-3 px-6 py-3 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-full border border-gray-200/50 dark:border-gray-700/50 hover:shadow-lg hover:scale-105 transition-all duration-300">
+                                <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+                                    <img src="./images/mail_icon.png" alt="Email" class="w-5 dark:hidden">
+                                    <img src="./images/mail_icon_dark.png" alt="Email" class="w-5 hidden dark:block">
+                                </div>
+                                <a href="mailto:gouravlohar640@gmail.com" 
+                                   class="font-medium text-gray-700 dark:text-gray-300 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                                    gouravlohar640@gmail.com
+                                </a>
+                            </div>
+                            
+                            <div class="group flex items-center gap-3 px-6 py-3 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-full border border-gray-200/50 dark:border-gray-700/50 hover:shadow-lg hover:scale-105 transition-all duration-300">
+                                <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-white text-sm"></i>
+                                </div>
+                                <span class="font-medium text-gray-700 dark:text-gray-300">West Bengal, India</span>
+                            </div>
+                        </div>
+    
+                        <!-- Enhanced social links -->
+                        <div class="space-y-4">
+                            <h4 class="text-lg font-semibold text-gray-700 dark:text-gray-300">Connect with me</h4>
+                            <div class="flex items-center justify-center gap-4">
+                                <!-- GitHub -->
+                                <a href="https://github.com/Gouravlohar" target="_blank"
+                                   class="group relative w-14 h-14 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 rounded-2xl flex items-center justify-center hover:shadow-xl hover:scale-110 transition-all duration-300 overflow-hidden">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-gray-600 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <i class="fab fa-github text-2xl text-gray-700 dark:text-gray-300 group-hover:text-white transition-colors duration-300 relative z-10"></i>
+                                </a>
+    
+                                <!-- LinkedIn -->
+                                <a href="https://www.linkedin.com/in/gouravlohar/" target="_blank"
+                                   class="group relative w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 rounded-2xl flex items-center justify-center hover:shadow-xl hover:scale-110 transition-all duration-300 overflow-hidden">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-[#0A66C2] to-[#004182] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <i class="fab fa-linkedin-in text-2xl text-blue-700 dark:text-blue-300 group-hover:text-white transition-colors duration-300 relative z-10"></i>
+                                </a>
+    
+                                <!-- Kaggle -->
+                                <a href="https://www.kaggle.com/gouravlohar" target="_blank"
+                                   class="group relative w-14 h-14 bg-gradient-to-br from-cyan-100 to-cyan-200 dark:from-cyan-900 dark:to-cyan-800 rounded-2xl flex items-center justify-center hover:shadow-xl hover:scale-110 transition-all duration-300 overflow-hidden">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-[#20BEFF] to-[#1A9BD7] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <i class="fab fa-kaggle text-2xl text-cyan-700 dark:text-cyan-300 group-hover:text-white transition-colors duration-300 relative z-10"></i>
+                                </a>
+    
+                                <!-- Twitter/X -->
+                                <a href="https://x.com/gouravlohar_" target="_blank"
+                                   class="group relative w-14 h-14 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 rounded-2xl flex items-center justify-center hover:shadow-xl hover:scale-110 transition-all duration-300 overflow-hidden">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-black to-gray-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <i class="fab fa-twitter text-2xl text-gray-700 dark:text-gray-300 group-hover:text-white transition-colors duration-300 relative z-10"></i>
+                                </a>
+    
+                                <!-- Medium/Blog -->
+                                <a href="https://medium.com/@gouravlohar_" target="_blank"
+                                   class="group relative w-14 h-14 bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900 dark:to-green-800 rounded-2xl flex items-center justify-center hover:shadow-xl hover:scale-110 transition-all duration-300 overflow-hidden">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-[#00AB6C] to-[#008A5A] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <i class="fab fa-medium text-2xl text-green-700 dark:text-green-300 group-hover:text-white transition-colors duration-300 relative z-10"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Separator line with gradient -->
+                    <div class="mt-12 mb-8">
+                        <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+                    </div>
+    
+                    <!-- Enhanced footer bottom -->
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+                        <!-- Copyright with enhanced styling -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full animate-pulse"></div>
+                            <p class="text-gray-600 dark:text-gray-400 font-medium">
+                                © 2024 <span class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent font-bold">Gourav Lohar</span>. All rights reserved.
+                            </p>
+                        </div>
+    
+                        <!-- Quick links with modern styling -->
+                        <div class="flex items-center gap-1">
+                            <a href="#about" 
+                               class="px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg transition-all duration-300">
+                                About
+                            </a>
+                            <a href="#work" 
+                               class="px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg transition-all duration-300">
+                                Work
+                            </a>
+                            <a href="#blog" 
+                               class="px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg transition-all duration-300">
+                                Blog
+                            </a>
+                            <a href="#contact" 
+                               class="px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg transition-all duration-300">
+                                Contact
+                            </a>
+                        </div>
+                    </div>
+    
+                    <!-- Back to top button -->
+                    <div class="mt-8 text-center">
+                        <a href="#top" 
+                           class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 group">
+                            <span class="text-sm font-medium">Back to Top</span>
+                            <i class="fas fa-arrow-up text-sm group-hover:-translate-y-1 transition-transform duration-300"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="text-center sm:flex items-center justify-between border-t border-gray-400 mx-[10%] mt-12 py-6">
-            <p>© 2024 Gourav Lohar. All rights reserved.</p>
-            <ul class="flex items-center gap-10 justify-center mt-4 sm:mt-0">
-                <li><a target="_blank" href="https://github.com/Gouravlohar">GitHub</a></li>
-                <li><a target="_blank" href="https://www.linkedin.com/in/gouravlohar/">LinkedIn</a></li>
-                <li><a target="_blank" href="https://x.com/gouravlohar_">Twitter</a></li>
-            </ul>
-        </div>
-
-    </div>
 
 
     <script src="./script.js"></script>
