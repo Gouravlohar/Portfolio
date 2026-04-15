@@ -16,8 +16,33 @@ tailwind.config = {
                 'text-slide-6': 'text-slide-6 15s cubic-bezier(0.83, 0, 0.17, 1) infinite',
                 'text-slide-7': 'text-slide-7 17.5s cubic-bezier(0.83, 0, 0.17, 1) infinite',
                 'text-slide-8': 'text-slide-8 20s cubic-bezier(0.83, 0, 0.17, 1) infinite',
+                'marquee': 'marquee 30s linear infinite',
+                'marquee-reverse': 'marquee-reverse 30s linear infinite',
+                'fadeIn': 'fadeIn 2s ease-out forwards',
+                'translateUp': 'translateUp 1s ease-out forwards',
+                'translateDown': 'translateDown 2s infinite ease-in-out'
             },
             keyframes: {
+                fadeIn: {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' }
+                },
+                translateUp: {
+                    '0%': { transform: 'translateY(20px)', opacity: '0' },
+                    '100%': { transform: 'translateY(0)', opacity: '1' }
+                },
+                translateDown: {
+                    '0%, 100%': { transform: 'translateY(-100%)' },
+                    '50%': { transform: 'translateY(100%)' }
+                },
+                marquee: {
+                    '0%': { transform: 'translateX(0%)' },
+                    '100%': { transform: 'translateX(-100%)' },
+                },
+                'marquee-reverse': {
+                    '0%': { transform: 'translateX(-100%)' },
+                    '100%': { transform: 'translateX(0%)' },
+                },
                 'text-slide-2': {
                     '0%, 40%': {
                         transform: 'translateY(0%)',

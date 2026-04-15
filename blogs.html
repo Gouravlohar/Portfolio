@@ -15,6 +15,13 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <!-- Lenis Smooth Scroll CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.9/dist/lenis.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
 
 </head>
 
@@ -27,831 +34,279 @@
 
 
 
-    <nav class="w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50">
-        <a href="index.html">
-            <img src="icons/gou.png" alt="Logo" class="w-28 cursor-pointer mr-14 dark:hidden">
-            <img src="icons/gouw.png" alt="Logo" class="w-28 cursor-pointer mr-14 hidden dark:block">
-        </a>
+    <nav id="dynamic-navbar" class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-4xl rounded-full border border-gray-200/50 dark:border-white/10 bg-white/70 dark:bg-[#030014]/60 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(255,255,255,0.02)] z-50 flex items-center justify-between px-6 py-3 transition-all duration-500 mix-blend-normal">
+        <div class="flex items-center">
+            <a href="index.html" class="font-black text-xl tracking-tighter hover:scale-105 transition-transform dark:text-white">
+                GL<span class="text-fuchsia-500">.</span>
+            </a>
+        </div>
 
-        <ul class="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-white shadow-sm bg-opacity-50 font-Ovo
-                dark:border dark:border-white/50 dark:bg-transparent mr-20">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#about">About me</a></li>
-            <li><a href="index.html#work">My Work</a></li>
-            <li><a href="index.html#blog">My Blogs</a></li>
-            <li><a href="index.html#contact">Contact me</a></li>
+        <!-- Desktop Menu with Magnetic Hover Pill -->
+        <ul id="nav-links-container" class="hidden md:flex items-center relative group">
+            <!-- Magic hover pill -->
+            <div id="nav-hover-pill" class="absolute h-8 bg-gray-900/5 dark:bg-white/10 rounded-full transition-all duration-300 ease-out opacity-0 pointer-events-none"></div>
+            
+            <li class="px-4 py-1 relative z-10"><a href="index.html" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Home</a></li>
+            <li class="px-4 py-1 relative z-10"><a href="index.html#about" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">About</a></li>
+            <li class="px-4 py-1 relative z-10"><a href="index.html#work" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Work</a></li>
+            <li class="px-4 py-1 relative z-10"><a href="index.html#blog" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Blogs</a></li>
+            <li class="px-4 py-1 relative z-10"><a href="index.html#contact" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Contact</a></li>
         </ul>
 
-        <div class="flex items-center gap-4">
-            <button onclick="toggleTheme()">
-                <img src="./images/moon_icon.png" alt="" class="w-6 dark:hidden">
-                <img src="./images/sun_icon.png" alt="" class="w-6 hidden dark:block">
+        <!-- Controls -->
+        <div class="flex items-center gap-3">
+            <a href="index.html#contact" class="hidden sm:flex items-center gap-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-[11px] uppercase tracking-wider font-bold px-5 py-2 rounded-full hover:scale-105 transition-transform shadow-[0_0_20px_-5px_rgba(139,92,246,0.3)] dark:shadow-[0_0_20px_-5px_rgba(255,255,255,0.2)]">
+                Let's Connect
+            </a>
+
+            <button onclick="toggleTheme()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
+                <i class="fas fa-sun text-yellow-500 hidden dark:block text-sm"></i>
+                <i class="fas fa-moon text-indigo-500 dark:hidden text-sm"></i>
             </button>
 
-            <button class="block md:hidden ml-3" onclick="openMenu()">
-                <img src="./images/menu-black.png" alt="" class="w-6 dark:hidden">
-                <img src="./images/menu-white.png" alt="" class="w-6 hidden dark:block">
+            <button class="block md:hidden hover:bg-gray-100 dark:hover:bg-white/10 p-2 rounded-full transition-colors" onclick="openMenu()">
+                <div class="space-y-1">
+                    <span class="block w-4 h-[2px] bg-gray-900 dark:bg-white rounded-full"></span>
+                    <span class="block w-4 h-[2px] bg-gray-900 dark:bg-white rounded-full translate-x-1"></span>
+                </div>
             </button>
         </div>
+        
         <!-- ----- mobile menu ------  -->
         <ul id="sideMenu"
-            class="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 font-Ovo dark:bg-darkHover dark:text-white">
+            class="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-white/95 dark:bg-[#030014]/95 backdrop-blur-2xl shadow-2xl border-l border-white/20 transition-all duration-500 font-Ovo dark:text-white">
 
-            <div class="absolute right-6 top-6" onclick="closeMenu()">
-                <img src="./images/close-black.png" alt="" class="w-5 cursor-pointer dark:hidden">
-
-                <img src="./images/close-white.png" alt="" class="w-5 cursor-pointer hidden dark:block">
-            </div>
-
-            <li><a href="#top" onclick="closeMenu()">Home</a></li>
-            <li><a href="index.html#about" onclick="closeMenu()">About me</a></li>
-            <li><a href="index.html" onclick="closeMenu()">My Work</a></li>
-            <li><a href="#blog" onclick="closeMenu()">My Blogs</a></li>
-            <li><a href="#contact" onclick="closeMenu()">Contact me</a></li>
+            <div class="absolute right-6 top-6 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-white/10" onclick="closeMenu()">
+                <i class="fas fa-times text-gray-900 dark:text-white text-sm cursor-pointer"></i>
+            </div>            
+            <li><a href="index.html" onclick="closeMenu()" class="text-xl font-bold tracking-wide">Home</a></li>
+            <li><a href="index.html#about" onclick="closeMenu()" class="text-xl font-bold tracking-wide">About</a></li>
+            <li><a href="index.html#work" onclick="closeMenu()" class="text-xl font-bold tracking-wide">Work</a></li>
+            <li><a href="index.html#blog" onclick="closeMenu()" class="text-xl font-bold tracking-wide">Blogs</a></li>
+            <li><a href="index.html#contact" onclick="closeMenu()" class="text-xl font-bold tracking-wide">Contact</a></li>
         </ul>
-
     </nav>
-    <!-- Blog section -->
-    <!-- Blog section -->
-    <div id="blog" class="w-full px-[10%] py-16 pt-32 scroll-mt-20">
-        <h2 class="text-center text-5xl font-Ovo mb-12 relative">
-            Latest Posts
-            <div class="absolute w-20 h-1 bg-purple-500 bottom-0 left-1/2 transform -translate-x-1/2 mt-4"></div>
-        </h2>
+        <div id="blog" class="w-full px-[5%] lg:px-[8%] py-32 pt-40 scroll-mt-20 relative bg-gray-50 dark:bg-[#0a0a0a]">
+        
+        <div class="flex flex-col md:flex-row justify-between items-end mb-24 relative z-10">
+            <div>
+                <h4 class="text-lg md:text-xl font-Ovo tracking-widest text-gray-500 dark:text-gray-400 uppercase mb-4">My Complete Knowledge Base</h4>
+                <h2 class="text-6xl md:text-7xl lg:text-8xl font-black text-gray-900 dark:text-white tracking-tighter leading-none" style="position: relative; perspective: 1000px;">
+                    All <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 inline-block" style="transform-style: preserve-3d; text-shadow: 0 10px 30px rgba(168,85,247,0.3);">Articles</span>
+                </h2>
+            </div>
+            <a href="index.html" class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 mt-8 md:mt-0 font-bold text-white bg-gray-950 dark:bg-white dark:text-gray-900 rounded-full overflow-hidden transition-transform hover:scale-105 duration-500">
+                <div class="w-8 h-8 rounded-full bg-white/20 dark:bg-black/10 flex items-center justify-center group-hover:-translate-x-2 transition-transform duration-300 relative z-10 rotate-180">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <span class="relative z-10">Back to Home</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </a>
+        </div>
 
-        <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 my-5">
-            <!-- Blog Card Template -->
-            <a href="https://www.analyticsvidhya.com/blog/2025/03/building-a-custom-website-chatbot-using-qwen-2-5-32b/" target="_blank" class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/webs.jpg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 perspective-1000">
+            <!-- Blog 1 -->
+            <a href="https://www.analyticsvidhya.com/blog/2025/03/building-a-custom-website-chatbot-using-qwen-2-5-32b/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-0 lg:translate-y-0 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
+                <img src="blogs/webs.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
+                
+                <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
+                    <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            Build a Custom Website Chatbot
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            Learn how to build a custom chatbot using Qwen-2.5-32b, LangChain, and FAISS, that can give .....
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">7 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
+                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">Build a Custom Website Chatbot</h3>
+                    <div class="flex items-center justify-between opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-200">
+                        <p class="text-sm text-gray-300 font-medium">7 min read</p>
+                        <i class="fas fa-arrow-right text-xl text-pink-400 group-hover:translate-x-2 transition-transform duration-300"></i>
                     </div>
                 </div>
             </a>
-            <a href="https://www.analyticsvidhya.com/blog/2025/03/negotiation-agent-using-deepseek-r1/" target="_blank" class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/nego.jpg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
+            <!-- Blog 2 -->
+            <a href="https://www.analyticsvidhya.com/blog/2025/03/negotiation-agent-using-deepseek-r1/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-12 lg:translate-y-24 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
+                <img src="blogs/nego.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
+                
+                <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
+                    <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            Build a Negotiation Agent
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            Build a smart Negotiation Agent using DeepSeek-R1 to generate AI-driven solutions easily .....
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">7 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
+                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">Build a Negotiation Agent</h3>
+                    <div class="flex items-center justify-between opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-200">
+                        <p class="text-sm text-gray-300 font-medium">7 min read</p>
+                        <i class="fas fa-arrow-right text-xl text-pink-400 group-hover:translate-x-2 transition-transform duration-300"></i>
                     </div>
                 </div>
             </a>
-            <a href="https://www.analyticsvidhya.com/blog/2025/03/writing-assistant/" target="_blank" class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/write.jpg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
+            <!-- Blog 3 -->
+            <a href="https://www.analyticsvidhya.com/blog/2025/03/writing-assistant/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-0 lg:translate-y-12 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
+                <img src="blogs/write.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
+                
+                <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
+                    <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            Build a Writing Assistant
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            Building a writing assistant using the powerful Qwen 2.5 32B model and LangChain for .....
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">8 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
+                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">Build a Writing Assistant</h3>
+                    <div class="flex items-center justify-between opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-200">
+                        <p class="text-sm text-gray-300 font-medium">8 min read</p>
+                        <i class="fas fa-arrow-right text-xl text-pink-400 group-hover:translate-x-2 transition-transform duration-300"></i>
                     </div>
                 </div>
             </a>
-            <a href="https://www.analyticsvidhya.com/blog/2025/02/nvidia-cosmos-1-0-diffusion/" target="_blank" class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/cosmos.jpg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
+            <!-- Blog 4 -->
+            <a href="https://www.analyticsvidhya.com/blog/2025/02/nvidia-cosmos-1-0-diffusion/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-0 lg:translate-y-0 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
+                <img src="blogs/cosmos.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
+                
+                <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
+                    <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            Generate Videos with NVIDIA
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            Learn how to access NVIDIA's Cosmos-1.0-Diffusion models and use it for generating .....
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">8 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
+                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">Generate Videos with NVIDIA</h3>
+                    <div class="flex items-center justify-between opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-200">
+                        <p class="text-sm text-gray-300 font-medium">8 min read</p>
+                        <i class="fas fa-arrow-right text-xl text-pink-400 group-hover:translate-x-2 transition-transform duration-300"></i>
                     </div>
                 </div>
             </a>
-            <a href="https://www.analyticsvidhya.com/blog/2025/02/running-olmo-2-locally-with-gradio-and-langchain/" target="_blank" class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/ollmo.jpg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
+            <!-- Blog 5 -->
+            <a href="https://www.analyticsvidhya.com/blog/2025/02/running-olmo-2-locally-with-gradio-and-langchain/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-12 lg:translate-y-24 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
+                <img src="blogs/ollmo.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
+                
+                <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
+                    <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            Running OLMo-2 Locally 
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            Learn how to set up and run OLMo-2 for chatbot development using Gradio and LangChain .....
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">8 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
+                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">Running OLMo-2 Locally</h3>
+                    <div class="flex items-center justify-between opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-200">
+                        <p class="text-sm text-gray-300 font-medium">8 min read</p>
+                        <i class="fas fa-arrow-right text-xl text-pink-400 group-hover:translate-x-2 transition-transform duration-300"></i>
                     </div>
                 </div>
             </a>
-            <a href="https://www.analyticsvidhya.com/blog/2025/01/medical-chatbot-with-gemini-2-0-flask-and-vector-embedding/" target="_blank" class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/med.jpg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
+            <!-- Blog 6 -->
+            <a href="https://www.analyticsvidhya.com/blog/2025/01/medical-chatbot-with-gemini-2-0-flask-and-vector-embedding/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-0 lg:translate-y-12 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
+                <img src="blogs/med.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
+                
+                <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
+                    <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            Build a Medical AI Chatbot 
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            Build a powerful Medical Chatbot with Gemini 2.0 for accurate results with langchain .....
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">8 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
+                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">Build a Medical AI Chatbot</h3>
+                    <div class="flex items-center justify-between opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-200">
+                        <p class="text-sm text-gray-300 font-medium">8 min read</p>
+                        <i class="fas fa-arrow-right text-xl text-pink-400 group-hover:translate-x-2 transition-transform duration-300"></i>
                     </div>
                 </div>
             </a>
-            <a href="https://www.analyticsvidhya.com/blog/2024/12/building-a-web-searching-agent/" target="_blank" class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/Web.jpeg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
+            <!-- Blog 7 -->
+            <a href="https://www.analyticsvidhya.com/blog/2024/12/building-a-web-searching-agent/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-0 lg:translate-y-0 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
+                <img src="blogs/Web.jpeg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
+                
+                <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
+                    <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            Search Web with LangChain
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            Create a powerful Web-Searching Agent with LangChain for efficient, scalable data retrieval .....
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">8 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
+                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">Search Web with LangChain</h3>
+                    <div class="flex items-center justify-between opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-200">
+                        <p class="text-sm text-gray-300 font-medium">8 min read</p>
+                        <i class="fas fa-arrow-right text-xl text-pink-400 group-hover:translate-x-2 transition-transform duration-300"></i>
                     </div>
                 </div>
             </a>
-            <a href="https://www.analyticsvidhya.com/blog/2024/11/math-problem-solver-chat-app-with-langchain/"
-                target="_blank" class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/math.jpeg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
+            <!-- Blog 8 -->
+            <a href="https://www.analyticsvidhya.com/blog/2024/11/build-your-own-yt-and-web-summarizer/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-12 lg:translate-y-24 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
+                <img src="blogs/Yt.jpeg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
+                
+                <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
+                    <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            Build a Math Problem Solver Chat App
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            Ever wished you had a personal tutor to help you solve tricky math problems .....
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">10 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
+                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">Your Own YT and Web Summarizer</h3>
+                    <div class="flex items-center justify-between opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-200">
+                        <p class="text-sm text-gray-300 font-medium">7 min read</p>
+                        <i class="fas fa-arrow-right text-xl text-pink-400 group-hover:translate-x-2 transition-transform duration-300"></i>
                     </div>
                 </div>
             </a>
-            <a href="https://www.analyticsvidhya.com/blog/2024/11/build-your-own-yt-and-web-summarizer/" target="_blank"
-                class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/Yt.jpeg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
+            <!-- Blog 9 -->
+            <a href="https://www.analyticsvidhya.com/blog/2024/10/image-generator-with-bria-2-3-model/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-0 lg:translate-y-12 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
+                <img src="blogs/bria2.3.jpeg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
+                
+                <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
+                    <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            Your Own YT and Web Summarizer
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            In the age of information overload, it’s easy to get lost in the large amount of
-                            content.....
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">7 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
+                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">AI Image Generator with Bria 2.3 Model</h3>
+                    <div class="flex items-center justify-between opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-200">
+                        <p class="text-sm text-gray-300 font-medium">8 min read</p>
+                        <i class="fas fa-arrow-right text-xl text-pink-400 group-hover:translate-x-2 transition-transform duration-300"></i>
                     </div>
                 </div>
             </a>
-            <a href="https://www.analyticsvidhya.com/blog/2024/10/image-generator-with-bria-2-3-model/" target="_blank"
-                class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/bria2.3.jpeg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
+            <!-- Blog 10 -->
+            <a href="https://www.analyticsvidhya.com/blog/2024/10/nvidia-nim/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-0 lg:translate-y-0 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
+                <img src="blogs/nvidia.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
+                
+                <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
+                    <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            AI Image Generator with Bria 2.3 Model
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            Bria AI is a generative AI platform for the production of professional-grade visual
-                            content.....
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">8 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
+                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">NVIDIA NIM: The Future of Inferencing</h3>
+                    <div class="flex items-center justify-between opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-200">
+                        <p class="text-sm text-gray-300 font-medium">5 min read</p>
+                        <i class="fas fa-arrow-right text-xl text-pink-400 group-hover:translate-x-2 transition-transform duration-300"></i>
                     </div>
                 </div>
             </a>
-            <a href="https://www.analyticsvidhya.com/blog/2024/10/nvidia-nim/" target="_blank"
-                class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/nvidia.jpg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
+            <!-- Blog 11 -->
+            <a href="https://www.analyticsvidhya.com/blog/2024/10/methods-to-run-llama-3-2/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-12 lg:translate-y-24 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
+                <img src="blogs/llama3.2.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
+                
+                <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
+                    <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            NVIDIA NIM: The Future of Inferencing
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            AI is rapidly changing industries around the world, including healthcare, autonomous
-                            vehicles.....
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">5 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
+                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">3 Ways to Run Llama 3.2 on Your Device</h3>
+                    <div class="flex items-center justify-between opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-200">
+                        <p class="text-sm text-gray-300 font-medium">7 min read</p>
+                        <i class="fas fa-arrow-right text-xl text-pink-400 group-hover:translate-x-2 transition-transform duration-300"></i>
                     </div>
                 </div>
             </a>
-            <a href="https://www.analyticsvidhya.com/blog/2024/10/methods-to-run-llama-3-2/" target="_blank"
-                class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/llama3.2.jpg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
+            <!-- Blog 12 -->
+            <a href="https://www.analyticsvidhya.com/blog/2024/09/ai-sql-assistant/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-0 lg:translate-y-12 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
+                <img src="blogs/sql.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
+                
+                <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
+                    <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            3 Ways to Run Llama 3.2 on Your Device
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            Meta recently launched Llama 3.2, its latest multimodal model. This version.....
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">7 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="https://www.analyticsvidhya.com/blog/2024/09/ai-sql-assistant/" target="_blank"
-                class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/sql.jpg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
-                    </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            AI SQL Assistant with LangChain
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            Have you ever wished you could simply chat with your database, asking the.....
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">5 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Repeat the card structure for other blog posts -->
-            <a href="https://www.analyticsvidhya.com/blog/2024/08/building-a-food-vision-webapp-with-the-gemini-flash-1-5-model/"
-                target="_blank" class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/food.jpg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
-                    </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            Building a Food Vision WebApp
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            In this fast-changing landscape of AI, efficiency and scalability become paramount.
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">4 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="https://www.geeksforgeeks.org/feedforward-neural-network/?itm_source=auth&itm_medium=contributions&itm_campaign=articles"
-                target="_blank" class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/nn.jpg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
-                    </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/gfg.png" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-green-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Geeks for Geeks
-                            </span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            Feedforward neural network
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            Artificial Neural Networks (ANNs) have revolutionized the field of machine learning....
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">5 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="https://www.analyticsvidhya.com/blog/2024/07/chatbot-with-llama-3-1-ollama-and-langchain/"
-                target="_blank" class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/llama3.1.jpeg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
-                    </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/analytics.jpg" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-purple-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Analytics Vidhya</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            Building a Responsive Chatbot
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            In the fast-paced world of AI, crafting a smart, multilingual chatbot is now within reach..
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">5 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="https://www.geeksforgeeks.org/multilabel-classification-using-catboost/?itm_source=auth&itm_medium=contributions&itm_campaign=articles"
-                target="_blank" class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/catboost.jpg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
-                    </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/gfg.png" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-green-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Geeks for Geeks</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            MultiLabel Classification using CatBoost
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            Multi-label classification is a powerful machine learning technique that allows you to
-                            assign..
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">6 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="https://medium.com/@gouravlohar_/implementing-real-time-face-detection-open-cv-step-by-step-guide-for-beginners-ac9b11f6e8ad"
-                target="_blank" class="group hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 dark:bg-gray-800">
-                    <div class="relative overflow-hidden">
-                        <img src="blogs/face.jpg" alt="Blog Post Image"
-                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        </div>
-                    </div>
-
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <img src="blogs/medium.png" alt="Publisher Logo"
-                                class="w-8 h-8 rounded-full ring-2 ring-gray-500">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Medium</span>
-                        </div>
-
-                        <h3
-                            class="font-semibold text-xl mb-3 group-hover:text-purple-600 transition-colors duration-300 dark:text-white">
-                            Implementing Real Time Face-Detection
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 dark:text-gray-400">
-                            Have you ever wondered how a surveillance camera can pickup motion on a busy street...
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-500 dark:text-gray-400">7 min read</span>
-                            <div
-                                class="flex items-center gap-2 text-purple-600 font-medium text-sm group-hover:gap-3 transition-all duration-300">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
+                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">AI SQL Assistant with LangChain</h3>
+                    <div class="flex items-center justify-between opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-200">
+                        <p class="text-sm text-gray-300 font-medium">5 min read</p>
+                        <i class="fas fa-arrow-right text-xl text-pink-400 group-hover:translate-x-2 transition-transform duration-300"></i>
                     </div>
                 </div>
             </a>
@@ -859,5 +314,4 @@
     </div>
     <script src="script.js"></script>
 </body>
-
 </html>
