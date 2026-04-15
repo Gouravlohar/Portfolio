@@ -258,6 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const heroDeco = document.querySelector('#hero-deco');
         const heroContainer = document.querySelector('.hero-text-container');
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const isMobileView = window.matchMedia('(max-width: 767px)').matches;
         const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
         let heroNameChars = [];
@@ -268,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
             gsap.set(heroNameChars, { display: 'inline-block', willChange: 'transform, color, filter' });
         }
 
-        if (reduceMotion) {
+        if (reduceMotion || isMobileView) {
             gsap.set([firstNameEl, lastNameEl, '#hero-subtitle', '#hero-dock'], { autoAlpha: 1, y: 0, clearProps: 'all' });
             gsap.set([heroLine, heroDeco], { autoAlpha: 1, scaleX: 1, x: 0 });
         } else {
