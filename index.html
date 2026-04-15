@@ -25,6 +25,261 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
 
+    <style>
+        @media (max-width: 767px) {
+            #dynamic-navbar {
+                width: calc(100% - 1rem);
+                top: 0.5rem;
+                padding: 0.65rem 0.9rem;
+            }
+
+            #top {
+                min-height: 92svh;
+                padding-top: 5.5rem;
+                padding-bottom: 2rem;
+            }
+
+            #top > .absolute.top-\[20\%\],
+            #top > .absolute.bottom-\[10\%\] {
+                display: none;
+            }
+
+            #top > .absolute.top-\[40\%\] {
+                width: 68vw;
+                height: 68vw;
+                left: 50%;
+                top: 32%;
+                transform: translateX(-50%);
+                filter: blur(64px);
+                opacity: 0.2;
+            }
+
+            .hero-text-container {
+                margin-bottom: 0.35rem;
+            }
+
+            #hero-name-first,
+            #hero-name-last {
+                font-size: clamp(2.8rem, 15vw, 4.2rem) !important;
+                line-height: 0.9 !important;
+            }
+
+            #hero-subtitle {
+                margin-top: 0.75rem !important;
+                font-size: 0.98rem;
+                line-height: 1.65;
+                padding-inline: 0.35rem;
+            }
+
+            #hero-dock {
+                margin-top: 1.5rem !important;
+                gap: 1rem;
+            }
+
+            #hero-dock > div:first-child,
+            #hero-dock > div:last-child {
+                width: 100%;
+            }
+
+            #hero-dock a[href="#contact"],
+            #hero-dock a[href="cv/resume.pdf"] {
+                width: 100% !important;
+                max-width: 320px;
+                height: 3.35rem;
+            }
+
+            #about,
+            #timeline,
+            #work,
+            #blog,
+            #contact {
+                padding-top: 4.75rem !important;
+                padding-bottom: 4.75rem !important;
+            }
+
+            #about {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            #about .border-l-\[3px\] {
+                padding-left: 1rem;
+            }
+
+            #about .w-64,
+            #about .sm\:w-72,
+            #about .lg\:w-80 {
+                width: min(86vw, 300px);
+            }
+
+            #about ul.animate-marquee,
+            #about ul.animate-marquee-reverse {
+                gap: 0.85rem !important;
+            }
+
+            #about li.group\/tooltip {
+                width: 3.3rem !important;
+                height: 3.3rem !important;
+            }
+
+            #about li.group\/tooltip i {
+                font-size: 1.25rem !important;
+            }
+
+            #timeline {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            #timeline h2 {
+                font-size: 2rem !important;
+                line-height: 1.05;
+            }
+
+            #timeline .pl-8 {
+                padding-left: 1rem !important;
+            }
+
+            #timeline .ml-6 {
+                margin-left: 0.55rem !important;
+            }
+
+            #timeline .p-8 {
+                padding: 1.1rem !important;
+            }
+
+            #timeline h3.text-3xl,
+            #timeline h4.text-2xl {
+                font-size: 1.3rem !important;
+                line-height: 1.25;
+            }
+
+            #timeline .-left-\[45px\] {
+                left: -1.6rem !important;
+            }
+
+            #work {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            #work-header,
+            #work-cards-container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            #work .work-title {
+                font-size: 2.35rem !important;
+                line-height: 0.95 !important;
+            }
+
+            #work-cards-container {
+                margin-top: 2rem !important;
+            }
+
+            #work .work-card {
+                position: relative !important;
+                top: auto !important;
+                height: auto !important;
+                min-height: 0 !important;
+                margin-bottom: 1rem !important;
+                border-radius: 1.35rem !important;
+                overflow: hidden;
+            }
+
+            #work .work-card > div:first-child {
+                width: 100% !important;
+                height: auto !important;
+                padding: 1.15rem !important;
+            }
+
+            #work .work-card > div:last-child {
+                width: 100% !important;
+                height: 230px !important;
+            }
+
+            #work .work-card h3 {
+                font-size: 2rem !important;
+                line-height: 1 !important;
+                margin-bottom: 0.75rem !important;
+            }
+
+            #work .work-card p {
+                margin-bottom: 0.95rem !important;
+                max-width: none !important;
+            }
+
+            #blog {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            #blog h2 {
+                font-size: 2.35rem !important;
+                line-height: 0.95 !important;
+            }
+
+            #blog .container {
+                gap: 0.9rem !important;
+            }
+
+            #blog .blog-card {
+                height: 370px !important;
+                border-radius: 1.35rem !important;
+                transform: translateY(0) !important;
+            }
+
+            #blog .blog-card h3 {
+                font-size: 1.6rem !important;
+                line-height: 1.12 !important;
+            }
+
+            #blog .blog-card .p-8,
+            #blog .blog-card .md\:p-10 {
+                padding: 1rem !important;
+            }
+
+            #contact {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            #contact h2 {
+                font-size: 2.2rem !important;
+                line-height: 1.05;
+            }
+
+            #contact .max-w-4xl {
+                border-radius: 1.35rem;
+                padding: 1.15rem !important;
+            }
+
+            #contact .grid.grid-cols-1.md\:grid-cols-2 {
+                gap: 1rem;
+            }
+
+            #contact textarea {
+                min-height: 120px;
+            }
+
+            footer,
+            .mt-20.relative.overflow-hidden.dark\:bg-darkTheme {
+                margin-top: 2.5rem !important;
+            }
+
+            .mt-20.relative.overflow-hidden.dark\:bg-darkTheme .px-8 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            .mt-20.relative.overflow-hidden.dark\:bg-darkTheme .py-16 {
+                padding-top: 2.5rem !important;
+                padding-bottom: 2.5rem !important;
+            }
+        }
+    </style>
+
 </head>
 
 <body class="overflow-x-hidden font-Outfit leading-8 dark:bg-darkTheme dark:text-white">
