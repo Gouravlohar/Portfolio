@@ -11,17 +11,39 @@ function closeMenu(){
 }
 
 // -------- 2026 Navbar Dynamic Scroll Logic -----------
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
 window.addEventListener('scroll', () => {
-    if (!navBar) return;
-    if (window.scrollY > 50) {
-        navBar.classList.add('shadow-lg', 'bg-white/80', 'dark:bg-[#030014]/80');
-        navBar.classList.remove('bg-white/70', 'dark:bg-[#030014]/60');
-    } else {
-        navBar.classList.remove('shadow-lg', 'bg-white/80', 'dark:bg-[#030014]/80');
-        navBar.classList.add('bg-white/70', 'dark:bg-[#030014]/60');
+    if (navBar) {
+        if (window.scrollY > 50) {
+            navBar.classList.add('shadow-lg', 'bg-white/80', 'dark:bg-[#030014]/80');
+            navBar.classList.remove('bg-white/70', 'dark:bg-[#030014]/60');
+        } else {
+            navBar.classList.remove('shadow-lg', 'bg-white/80', 'dark:bg-[#030014]/80');
+            navBar.classList.add('bg-white/70', 'dark:bg-[#030014]/60');
+        }
+        navBar.style.transform = 'translate(-50%, 0)'; // Keep shown at all times
     }
-    navBar.style.transform = 'translate(-50%, 0)'; // Keep shown at all times
+
+    if (scrollToTopBtn) {
+        if (window.scrollY > 500) {
+            scrollToTopBtn.classList.remove('opacity-0', 'translate-y-20', 'pointer-events-none');
+            scrollToTopBtn.classList.add('opacity-100', 'translate-y-0');
+        } else {
+            scrollToTopBtn.classList.add('opacity-0', 'translate-y-20', 'pointer-events-none');
+            scrollToTopBtn.classList.remove('opacity-100', 'translate-y-0');
+        }
+    }
 });
+
+if (scrollToTopBtn) {
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
 
 // -------- Magnetic Hover Pill logic for Desktop Nav -----------
 const navContainer = document.getElementById('nav-links-container');
@@ -176,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Lenis Smooth Scroll Initialization
     let lenis = null;
+
     if (typeof Lenis !== 'undefined') {
         lenis = new Lenis({
             lerp: 0.05, 
@@ -269,14 +292,14 @@ document.addEventListener('DOMContentLoaded', () => {
             gsap.set(heroNameChars, { display: 'inline-block', willChange: 'transform, color, filter' });
         }
 
-        if (reduceMotion || isMobileView) {
+        if (reduceMotion) {
             gsap.set([firstNameEl, lastNameEl, '#hero-subtitle', '#hero-dock'], { autoAlpha: 1, y: 0, clearProps: 'all' });
             gsap.set([heroLine, heroDeco], { autoAlpha: 1, scaleX: 1, x: 0 });
         } else {
             const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
             gsap.set([firstNameEl, lastNameEl], {
-                y: 80,
+                y: isMobileView ? 20 : 80,
                 autoAlpha: 0,
                 filter: 'blur(10px)',
                 willChange: 'transform, opacity, filter'
