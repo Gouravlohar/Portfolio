@@ -15,14 +15,8 @@ const scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
 window.addEventListener('scroll', () => {
     if (navBar) {
-        if (window.scrollY > 50) {
-            navBar.classList.add('shadow-lg', 'bg-white/80', 'dark:bg-[#030014]/80');
-            navBar.classList.remove('bg-white/70', 'dark:bg-[#030014]/60');
-        } else {
-            navBar.classList.remove('shadow-lg', 'bg-white/80', 'dark:bg-[#030014]/80');
-            navBar.classList.add('bg-white/70', 'dark:bg-[#030014]/60');
-        }
-        navBar.style.transform = 'translate(-50%, 0)'; // Keep shown at all times
+        navBar.classList.toggle('shadow-[0_10px_30px_rgba(0,0,0,0.08)]', window.scrollY > 50);
+        navBar.classList.toggle('dark:shadow-[0_10px_30px_rgba(0,0,0,0.25)]', window.scrollY > 50);
     }
 
     if (scrollToTopBtn) {
@@ -69,31 +63,14 @@ if (navContainer && navHoverPill) {
 
 // -------- light mode and dark mode -----------
 
-// Check the theme in localStorage or the user's system preference
-try {
-    if (localStorage.theme === 'dark') {
-        document.documentElement.classList.add('dark');
-    } else {
-        document.documentElement.classList.remove('dark');
-    }
-} catch (error) {
-    // localStorage can be blocked in some browser/privacy modes.
-    document.documentElement.classList.remove('dark');
-}
+// Always start in the portfolio's light theme. Visitors can still switch themes
+// for their current visit using the toggle below.
+document.documentElement.classList.remove('dark');
 
 // Function to toggle the theme
 function toggleTheme() {
     document.documentElement.classList.toggle('dark');
 
-    try {
-        if (document.documentElement.classList.contains('dark')) {
-            localStorage.theme = 'dark';
-        } else {
-            localStorage.theme = 'light';
-        }
-    } catch (error) {
-        // Ignore storage writes when storage is unavailable.
-    }
 }
 
 // -------- Drag to Scroll functionality -----------
@@ -134,65 +111,7 @@ dragScrollContainers.forEach(container => {
     });
 });
 
-// -------- About Me Text Reveal Scrub Effect (2026 Trend) -----------
-document.addEventListener('DOMContentLoaded', () => {
-    const aboutText = document.getElementById('about-text');
-    
-    if (aboutText) {
-        // Split text into individual words
-        const textContent = aboutText.textContent.trim();
-        const words = textContent.split(/\s+/);
-        aboutText.innerHTML = '';
-        
-        // Wrap each word in a span with initial low opacity
-        words.forEach((word) => {
-            const span = document.createElement('span');
-            // Adding a small padding margin trick for spaces without layout shifts
-            span.innerHTML = word + '&nbsp;';
-            span.className = 'opacity-10 dark:opacity-20 text-gray-900 dark:text-white transition-opacity duration-300 inline-block';
-            aboutText.appendChild(span);
-        });
-
-        const textSpans = aboutText.querySelectorAll('span');
-
-        function updateReveal() {
-            if(!aboutText) return;
-            
-            const rect = aboutText.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            
-            // Adjust the reveal trigger zones
-            // Start revealing when the element enters the bottom 80% of the viewport
-            const startReveal = windowHeight * 0.85; 
-            // the distance required to fully reveal the text
-            const distanceToReveal = rect.height + windowHeight * 0.3;
-            
-            // Calculate progress (0 to 1) based on scroll position
-            let progress = (startReveal - rect.top) / distanceToReveal;
-            progress = Math.max(0, Math.min(1, progress));
-            
-            // Calculate how many words should be fully visible
-            const wordsToReveal = Math.floor(progress * textSpans.length);
-            
-            textSpans.forEach((span, index) => {
-                if (index < wordsToReveal) {
-                    span.classList.remove('opacity-10', 'dark:opacity-20');
-                    span.classList.add('opacity-100');
-                    // Add subtle glow or highlight if you want:
-                    // span.style.textShadow = "0 0 20px rgba(139, 92, 246, 0.4)";
-                } else {
-                    span.classList.remove('opacity-100');
-                    span.classList.add('opacity-10', 'dark:opacity-20');
-                    // span.style.textShadow = "none";
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', updateReveal);
-        window.addEventListener('resize', updateReveal);
-        updateReveal(); // Trigger immediately to check initial state
-    }
-});
+// About section animations will be initialized via GSAP ScrollTrigger below.
 
 // -------- Initialize Lenis Smooth Scroll & GSAP 3D Hero Animations -----------
 document.addEventListener('DOMContentLoaded', () => {
@@ -221,22 +140,22 @@ document.addEventListener('DOMContentLoaded', () => {
             lenis.on('scroll', ScrollTrigger.update);
         }
 
-        // Setup Project Cards Stack Animation
-        const workCards = document.querySelectorAll('.work-card');
-        workCards.forEach((card, index) => {
-            gsap.to(card, {
+        // Project card reveal
+        const workCards = document.querySelectorAll('.project-card');
+        if (workCards.length > 0) {
+            gsap.from(workCards, {
                 scrollTrigger: {
-                    trigger: card,
-                    start: `top ${15 + (index * 5)}vh`,
-                    end: "bottom top",
-                    scrub: true,
-                    invalidateOnRefresh: true,
+                    trigger: '#work-cards-container',
+                    start: 'top 78%',
+                    toggleActions: 'play none none reverse'
                 },
-                scale: 0.95, // compress slightly as the next one stacks over it
-                opacity: 0.5,
-                transformOrigin: "top center"
+                y: 42,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.12,
+                ease: 'power3.out'
             });
-        });
+        }
 
         // Project Title Reveal
         if (document.querySelector('.work-title') && document.querySelector('#work-header')) {
@@ -253,9 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Blog Section Animation
-        const blogCards = document.querySelectorAll('.blog-card');
+        const blogCards = document.querySelectorAll('.article-card');
         if(blogCards.length > 0) {
-            gsap.from('.blog-card', {
+            gsap.from('.article-card', {
                 scrollTrigger: {
                     trigger: '#blog',
                     start: 'top 70%',
@@ -270,126 +189,246 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // About Me Section Scroll Reveal Animation
+        if (document.querySelector('#about') && document.querySelector('#about-info-col')) {
+            gsap.fromTo('#about-info-col', 
+                { y: 45, opacity: 0 },
+                {
+                    scrollTrigger: {
+                        trigger: '#about',
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.0,
+                    ease: 'power3.out'
+                }
+            );
+
+            const portrait = document.querySelector('#about .group');
+            if (portrait) {
+                gsap.fromTo(portrait,
+                    { y: 55, opacity: 0, scale: 0.95 },
+                    {
+                        scrollTrigger: {
+                            trigger: '#about',
+                            start: 'top 75%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        y: 0,
+                        opacity: 1,
+                        scale: 1,
+                        duration: 1.1,
+                        ease: 'power3.out'
+                    }
+                );
+            }
+        }
+
+        // Timeline Section (Experience & Education) Scroll Reveal Animation
+        if (document.querySelector('#timeline') && document.querySelector('#experience-col') && document.querySelector('#education-col')) {
+            gsap.fromTo(['#experience-col', '#education-col'],
+                { y: 45, opacity: 0 },
+                {
+                    scrollTrigger: {
+                        trigger: '#timeline',
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.0,
+                    stagger: 0.2,
+                    ease: 'power3.out'
+                }
+            );
+        }
+
+        // Word-by-word reveals make the supporting copy feel responsive to scroll
+        // without affecting controls, links, or the independently animated hero.
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduceMotion && typeof SplitType !== 'undefined') {
+            const textSelector = [
+                '#about h2', '#about h3', '#about h4', '#about p',
+                '#timeline h2', '#timeline h3', '#timeline h4', '#timeline h5', '#timeline p',
+                '#work h2', '#work h3', '#work h4', '#work p',
+                '#blog h2', '#blog h3', '#blog h4', '#blog p',
+                '#contact h2', '#contact h3', '#contact h4', '#contact p',
+                'footer p'
+            ].join(', ');
+
+            document.querySelectorAll(textSelector).forEach((element) => {
+                if (element.closest('[aria-hidden="true"]')) return;
+
+                const split = new SplitType(element, { types: 'words', tagName: 'span' });
+                gsap.set(split.words, { yPercent: 110, autoAlpha: 0, willChange: 'transform, opacity' });
+                gsap.to(split.words, {
+                    scrollTrigger: { trigger: element, start: 'top 88%', once: true },
+                    yPercent: 0,
+                    autoAlpha: 1,
+                    duration: 0.62,
+                    stagger: 0.014,
+                    ease: 'power3.out',
+                    onComplete: () => gsap.set(split.words, { willChange: 'auto' })
+                });
+            });
+        }
+
         ScrollTrigger.refresh();
     }
 
-    // 3. Fluid Hero Text Animation (smooth + lightweight)
-    if (typeof gsap !== 'undefined' && document.querySelector('#hero-name-first') && document.querySelector('#hero-name-last')) {
-        const firstNameEl = document.querySelector('#hero-name-first');
-        const lastNameEl = document.querySelector('#hero-name-last');
-        const heroLine = document.querySelector('#hero-line');
-        const heroDeco = document.querySelector('#hero-deco');
-        const heroContainer = document.querySelector('.hero-text-container');
+    // 3. Signal / Systems hero entrance
+    if (typeof gsap !== 'undefined' && document.querySelector('#hero-statement')) {
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const isMobileView = window.matchMedia('(max-width: 767px)').matches;
-        const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-        let heroNameChars = [];
-        if (typeof SplitType !== 'undefined') {
-            const firstNameSplit = new SplitType(firstNameEl, { types: 'chars' });
-            const lastNameSplit = new SplitType(lastNameEl, { types: 'chars' });
-            heroNameChars = [...firstNameSplit.chars, ...lastNameSplit.chars];
-            gsap.set(heroNameChars, { display: 'inline-block', willChange: 'transform, color, filter' });
-        }
+        const heroTargets = ['#hero-eyebrow', '#hero-identity', '#hero-description', '#hero-actions', '#hero-meta'];
+        const heroLines = gsap.utils.toArray('#hero-statement .hero-line > span');
 
         if (reduceMotion) {
-            gsap.set([firstNameEl, lastNameEl, '#hero-subtitle', '#hero-dock'], { autoAlpha: 1, y: 0, clearProps: 'all' });
-            gsap.set([heroLine, heroDeco], { autoAlpha: 1, scaleX: 1, x: 0 });
+            gsap.set([...heroTargets, ...heroLines], { autoAlpha: 1, y: 0, clearProps: 'all' });
         } else {
-            const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+            const heroTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
-            gsap.set([firstNameEl, lastNameEl], {
-                y: isMobileView ? 20 : 80,
+            gsap.set(heroTargets, {
+                y: 28,
                 autoAlpha: 0,
-                filter: 'blur(10px)',
+                filter: 'blur(6px)',
                 willChange: 'transform, opacity, filter'
             });
-            gsap.set('#hero-subtitle', { y: 24, autoAlpha: 0 });
-            gsap.set('#hero-dock', { y: 24, autoAlpha: 0 });
-            gsap.set(heroLine, { scaleX: 0, transformOrigin: 'left center' });
-            gsap.set(heroDeco, { x: -16, autoAlpha: 0 });
+            gsap.set(heroLines, { yPercent: 115, willChange: 'transform' });
 
             heroTl
-                .to(firstNameEl, { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.9 })
-                .to(heroLine, { scaleX: 1, duration: 0.7, ease: 'expo.out' }, '-=0.5')
-                .to(lastNameEl, { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.9 }, '-=0.55')
-                .to(heroDeco, { x: 0, autoAlpha: 1, duration: 0.5 }, '-=0.4')
-                .to(['#hero-subtitle', '#hero-dock'], { y: 0, autoAlpha: 1, duration: 0.8, stagger: 0.12 }, '-=0.45')
+                .to('#hero-eyebrow', { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.55 })
+                .to('#hero-identity', { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.65 }, '-=0.25')
+                .to(heroLines, { yPercent: 0, duration: 0.9, stagger: 0.11 }, '-=0.38')
+                .to(['#hero-description', '#hero-actions', '#hero-meta'], { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.65, stagger: 0.08 }, '-=0.35')
                 .add(() => {
-                    gsap.set([firstNameEl, lastNameEl], { willChange: 'auto' });
+                    gsap.set(heroTargets, { willChange: 'auto' });
+                    gsap.set(heroLines, { willChange: 'auto' });
                 });
-
-            // Subtle floating drift keeps the hero alive without causing overlap.
-            gsap.to([firstNameEl, lastNameEl], {
-                y: -3,
-                duration: 3.8,
-                ease: 'sine.inOut',
-                yoyo: true,
-                repeat: -1,
-                stagger: 0.2
-            });
-
-            // Fluid per-character hover motion for hero name text.
-            if (supportsHover && heroNameChars.length > 0) {
-                heroNameChars.forEach((char) => {
-                    const baseColor = window.getComputedStyle(char).color;
-
-                    char.addEventListener('mouseenter', () => {
-                        gsap.to(char, {
-                            y: -12,
-                            scale: 1.08,
-                            rotationZ: (Math.random() - 0.5) * 6,
-                            color: '#f97316',
-                            duration: 0.28,
-                            ease: 'power2.out',
-                            overwrite: 'auto'
-                        });
-                    });
-
-                    char.addEventListener('mouseleave', () => {
-                        gsap.to(char, {
-                            y: 0,
-                            scale: 1,
-                            rotationZ: 0,
-                            color: baseColor,
-                            duration: 0.45,
-                            ease: 'power3.out',
-                            overwrite: 'auto'
-                        });
-                    });
-                });
-            }
-
-            // Smooth pointer response with quickTo.
-            if (heroContainer && supportsHover) {
-                const xTo = gsap.quickTo(heroContainer, 'x', { duration: 0.5, ease: 'power3.out' });
-                const yTo = gsap.quickTo(heroContainer, 'y', { duration: 0.5, ease: 'power3.out' });
-                const rotateXTo = gsap.quickTo(heroContainer, 'rotationX', { duration: 0.5, ease: 'power3.out' });
-                const rotateYTo = gsap.quickTo(heroContainer, 'rotationY', { duration: 0.5, ease: 'power3.out' });
-
-                heroContainer.addEventListener('pointermove', (event) => {
-                    const rect = heroContainer.getBoundingClientRect();
-                    const x = (event.clientX - rect.left) / rect.width;
-                    const y = (event.clientY - rect.top) / rect.height;
-                    const centerX = (x - 0.5) * 2;
-                    const centerY = (y - 0.5) * 2;
-
-                    xTo(centerX * 8);
-                    yTo(centerY * 4);
-                    rotateYTo(centerX * 6);
-                    rotateXTo(-centerY * 4);
-                });
-
-                heroContainer.addEventListener('pointerleave', () => {
-                    xTo(0);
-                    yTo(0);
-                    rotateXTo(0);
-                    rotateYTo(0);
-                });
-            }
         }
     }
 });
+
+// -------- Dev Terminal Simulation Engine -----------
+let isTerminalTyping = false;
+
+function runTerminalCmd(cmdName) {
+    if (isTerminalTyping) return; // Prevent overlapping command runs
+    
+    const typedCmdEl = document.getElementById('terminal-typed-cmd');
+    const screenEl = document.getElementById('terminal-screen');
+    const inputLineEl = document.getElementById('terminal-input-line');
+    
+    if (!typedCmdEl || !screenEl || !inputLineEl) return;
+    
+    isTerminalTyping = true;
+    typedCmdEl.textContent = '';
+    
+    // Command mapping and output content
+    const commands = {
+        profile: {
+            text: './profile.sh',
+            output: `
+<span class="text-gray-500">-----------------------------------------------</span>
+<span class="text-fuchsia-400 font-bold">Gourav Lohar - AI/ML & Python Developer</span>
+<span class="text-gray-500">-----------------------------------------------</span>
+<span class="text-indigo-400">Education:</span> B.Tech in AI & Machine Learning (Grad: 2025)
+<span class="text-indigo-400">Institute:</span> NSHM Knowledge Campus
+<span class="text-indigo-400">Focus Area:</span> Deep Learning, PyTorch, Scalable Backend Systems
+<span class="text-indigo-400">Bio:</span> Building the future of intelligent web applications.
+`
+        },
+        skills: {
+            text: './skills.py',
+            output: `
+<span class="text-emerald-400 font-bold">Tech Stack Metrics & Skill Assessment:</span>
+Python       [████████████████████] 100%
+ML/DL        [██████████████████░░] 90%
+Flask/Django [████████████████░░░░] 80%
+MySQL/SQL    [██████████████░░░░░░] 70%
+DevOps/Azure [████████████░░░░░░░░] 60%
+`
+        },
+        certifications: {
+            text: './certs.txt',
+            output: `
+<span class="text-yellow-400 font-bold">Certifications & Achievements:</span>
+[✓] Machine Learning - IIT Kharagpur
+[✓] Published Data Science Writer:
+    - Analytics Vidhya
+    - Geeks for Geeks
+    - Medium / Towards AI
+[✓] NPTEL Python & Data Analytics Certification
+`
+        },
+        clear: {
+            text: 'clear',
+            output: null
+        }
+    };
+    
+    const selectedCmd = commands[cmdName];
+    if (!selectedCmd) {
+        isTerminalTyping = false;
+        return;
+    }
+    
+    // Typing simulation
+    let charIndex = 0;
+    const commandText = selectedCmd.text;
+    
+    const typingInterval = setInterval(() => {
+        if (charIndex < commandText.length) {
+            typedCmdEl.textContent += commandText.charAt(charIndex);
+            charIndex++;
+            // Scroll screen to keep input in view
+            screenEl.scrollTop = screenEl.scrollHeight;
+        } else {
+            clearInterval(typingInterval);
+            
+            setTimeout(() => {
+                if (cmdName === 'clear') {
+                    // Clear all logs except welcome message and input line
+                    screenEl.innerHTML = `
+                        <div>
+                            <span class="text-purple-400">gourav@portfolio</span>:<span class="text-indigo-400">~</span>$ ./welcome.sh
+                        </div>
+                        <div class="text-gray-400">
+                            Welcome to Gourav's interactive portfolio terminal v1.2.0.<br>
+                            Select a shortcut button below to run a command.
+                        </div>
+                    `;
+                    screenEl.appendChild(inputLineEl);
+                    typedCmdEl.textContent = '';
+                } else {
+                    // Print command result
+                    const outputDiv = document.createElement('div');
+                    outputDiv.className = 'text-gray-300 dark:text-gray-300 font-mono mt-1 leading-relaxed';
+                    outputDiv.innerHTML = selectedCmd.output.trim().replace(/\n/g, '<br>');
+                    
+                    // Create wrapper with prompt history
+                    const historyDiv = document.createElement('div');
+                    historyDiv.innerHTML = `<div><span class="text-purple-400">gourav@portfolio</span>:<span class="text-indigo-400">~</span>$ ${selectedCmd.text}</div>`;
+                    
+                    // Append elements to terminal before input line
+                    screenEl.insertBefore(historyDiv, inputLineEl);
+                    screenEl.insertBefore(outputDiv, inputLineEl);
+                    
+                    // Clean input line
+                    typedCmdEl.textContent = '';
+                }
+                
+                isTerminalTyping = false;
+                // Scroll to bottom
+                screenEl.scrollTop = screenEl.scrollHeight;
+            }, 250);
+        }
+    }, 50);
+}
+
+// Bind to window object to guarantee global accessibility for HTML onclick attributes
+window.runTerminalCmd = runTerminalCmd;
 // const showMoreButton = document.querySelector('.show-more-button'); 
 // const hiddenBlogPosts = document.getElementById('hiddenBlogPosts');
 
