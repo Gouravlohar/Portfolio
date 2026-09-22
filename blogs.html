@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blogs - Gourav</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="./tailwind.config.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Ovo&display=swap" rel="stylesheet">
@@ -15,19 +13,14 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-    <!-- Lenis Smooth Scroll CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.9/dist/lenis.css">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/split-type"></script>
-    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
 
+    <link rel="stylesheet" href="./styles/utilities.css">
     <style>
         @media (max-width: 767px) {
             #dynamic-navbar {
-                width: calc(100% - 1rem);
-                top: 0.5rem;
+                width: 100%;
+                top: 0;
                 padding: 0.65rem 0.9rem;
             }
 
@@ -69,63 +62,47 @@
         }
     </style>
 
+    <link rel="stylesheet" href="./site.css">
+    <link rel="stylesheet" href="./intro.css">
+    <script src="./intro.js"></script>
 </head>
 
 <body class="overflow-x-hidden font-Outfit leading-8 dark:bg-darkTheme dark:text-white">
 
     <div class="fixed top-0 right-0 w-11/12 -z-10 translate-y-[-80%]
     dark:hidden">
-        <img src="./images/header-bg-color.png" alt="" class="w-full">
+        <img loading="lazy" decoding="async" src="./images/header-bg-color.png" alt="" class="w-full">
     </div>
 
 
 
-    <nav id="dynamic-navbar" class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-4xl rounded-full border border-gray-200/50 dark:border-white/10 bg-white/70 dark:bg-[#030014]/60 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(255,255,255,0.02)] z-50 flex items-center justify-between px-6 py-3 transition-all duration-500 mix-blend-normal">
-        <div class="flex items-center">
-            <a href="index.html" class="font-black text-xl tracking-tighter hover:scale-105 transition-transform dark:text-white">
-                GL<span class="text-fuchsia-500">.</span>
-            </a>
-        </div>
+    <nav id="dynamic-navbar" class="fixed top-0 left-0 z-50 flex w-full items-center justify-between border-b border-black/10 bg-[#f5f4ef]/85 px-6 py-4 text-[#151713] backdrop-blur-xl transition-all duration-500 dark:border-white/10 dark:bg-[#151713]/85 dark:text-[#f5f4ef] md:px-[6%]">
+        <a href="index.html#top" class="group flex items-center gap-3 font-black tracking-[-.06em] transition-opacity hover:opacity-65">
+            <span class="text-2xl">GL<span class="text-[#a18b3f]">.</span></span><span class="hidden border-l border-current/20 pl-3 text-[10px] font-bold uppercase tracking-[.18em] opacity-55 lg:block">Portfolio 2026</span>
+        </a>
 
-        <!-- Desktop Menu with Magnetic Hover Pill -->
-        <ul id="nav-links-container" class="hidden md:flex items-center relative group">
-            <!-- Magic hover pill -->
-            <div id="nav-hover-pill" class="absolute h-8 bg-gray-900/5 dark:bg-white/10 rounded-full transition-all duration-300 ease-out opacity-0 pointer-events-none"></div>
-            
-            <li class="px-4 py-1 relative z-10"><a href="index.html" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Home</a></li>
-            <li class="px-4 py-1 relative z-10"><a href="index.html#about" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">About</a></li>
-            <li class="px-4 py-1 relative z-10"><a href="index.html#work" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Work</a></li>
-            <li class="px-4 py-1 relative z-10"><a href="index.html#blog" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Blogs</a></li>
-            <li class="px-4 py-1 relative z-10"><a href="index.html#contact" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Contact</a></li>
+        <ul id="nav-links-container" class="hidden items-center gap-7 lg:flex">
+            <li><a href="index.html#about" class="text-[11px] font-bold uppercase tracking-[.14em] opacity-60 transition hover:opacity-100">About</a></li>
+            <li><a href="index.html#work" class="text-[11px] font-bold uppercase tracking-[.14em] opacity-60 transition hover:opacity-100">Work</a></li>
+            <li><a href="index.html#blog" class="text-[11px] font-bold uppercase tracking-[.14em] opacity-60 transition hover:opacity-100">Journal</a></li>
+            <li><a href="index.html#contact" class="text-[11px] font-bold uppercase tracking-[.14em] opacity-60 transition hover:opacity-100">Contact</a></li>
         </ul>
 
-        <!-- Controls -->
         <div class="flex items-center gap-3">
-            <a href="index.html#contact" class="hidden sm:flex items-center gap-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-[11px] uppercase tracking-wider font-bold px-5 py-2 rounded-full hover:scale-105 transition-transform shadow-[0_0_20px_-5px_rgba(139,92,246,0.3)] dark:shadow-[0_0_20px_-5px_rgba(255,255,255,0.2)]">
-                Let's Connect
-            </a>
-
-            <button onclick="toggleTheme()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
-                <i class="fas fa-sun text-yellow-500 hidden dark:block text-sm"></i>
-                <i class="fas fa-moon text-indigo-500 dark:hidden text-sm"></i>
+            <a href="cv/resume.pdf" class="hidden text-[11px] font-bold uppercase tracking-[.14em] opacity-60 transition hover:opacity-100 sm:block">Résumé ↓</a>
+            <a href="index.html#contact" class="hidden items-center gap-2 bg-[#151713] px-4 py-2.5 text-[10px] font-bold uppercase tracking-[.14em] text-[#f5f4ef] transition hover:bg-[#a18b3f] hover:text-[#151713] dark:bg-[#f5f4ef] dark:text-[#151713] md:flex">Start a project <i class="fas fa-arrow-up-right-from-square text-[9px]"></i></a>
+            <button onclick="toggleTheme()" aria-pressed="false" aria-label="Toggle theme" class="flex h-9 w-9 items-center justify-center border border-current/15 transition hover:border-[#a18b3f] hover:text-[#a18b3f]">
+                <i class="fas fa-sun hidden text-xs dark:block"></i><i class="fas fa-moon text-xs dark:hidden"></i>
             </button>
-
-            <button class="block md:hidden hover:bg-gray-100 dark:hover:bg-white/10 p-2 rounded-full transition-colors" onclick="openMenu()">
-                <div class="space-y-1">
-                    <span class="block w-4 h-[2px] bg-gray-900 dark:bg-white rounded-full"></span>
-                    <span class="block w-4 h-[2px] bg-gray-900 dark:bg-white rounded-full translate-x-1"></span>
-                </div>
-            </button>
+            <button class="flex h-9 w-9 items-center justify-center border border-current/15 transition hover:border-[#a18b3f] hover:text-[#a18b3f] lg:hidden" onclick="openMenu()" aria-controls="sideMenu" aria-expanded="false" aria-label="Open menu"><span class="space-y-1"><span class="block h-px w-4 bg-current"></span><span class="block h-px w-4 bg-current"></span></span></button>
         </div>
         
         <!-- ----- mobile menu ------  -->
-        <ul id="sideMenu"
-            class="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-white/95 dark:bg-[#030014]/95 backdrop-blur-2xl shadow-2xl border-l border-white/20 transition-all duration-500 font-Ovo dark:text-white">
+        <ul id="sideMenu" aria-label="Mobile navigation" inert
+            class="font-Outfit">
 
-            <div class="absolute right-6 top-6 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-white/10" onclick="closeMenu()">
-                <i class="fas fa-times text-gray-900 dark:text-white text-sm cursor-pointer"></i>
-            </div>            
-            <li><a href="index.html" onclick="closeMenu()" class="text-xl font-bold tracking-wide">Home</a></li>
+            <li><button type="button" class="menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button></li>
+            <li><a href="index.html#top" onclick="closeMenu()" class="text-xl font-bold tracking-wide">Home</a></li>
             <li><a href="index.html#about" onclick="closeMenu()" class="text-xl font-bold tracking-wide">About</a></li>
             <li><a href="index.html#work" onclick="closeMenu()" class="text-xl font-bold tracking-wide">Work</a></li>
             <li><a href="index.html#blog" onclick="closeMenu()" class="text-xl font-bold tracking-wide">Blogs</a></li>
@@ -154,12 +131,12 @@
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 perspective-1000">
             <!-- Blog 1 -->
             <a href="https://www.analyticsvidhya.com/blog/2025/03/building-a-custom-website-chatbot-using-qwen-2-5-32b/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-0 lg:translate-y-0 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
-                <img src="blogs/webs.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <img loading="lazy" decoding="async" src="blogs/webs.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
                 <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
                 
                 <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
                     <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <img loading="lazy" decoding="async" src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
                         <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
                     <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">Build a Custom Website Chatbot</h3>
@@ -171,12 +148,12 @@
             </a>
             <!-- Blog 2 -->
             <a href="https://www.analyticsvidhya.com/blog/2025/03/negotiation-agent-using-deepseek-r1/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-12 lg:translate-y-24 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
-                <img src="blogs/nego.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <img loading="lazy" decoding="async" src="blogs/nego.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
                 <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
                 
                 <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
                     <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <img loading="lazy" decoding="async" src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
                         <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
                     <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">Build a Negotiation Agent</h3>
@@ -188,12 +165,12 @@
             </a>
             <!-- Blog 3 -->
             <a href="https://www.analyticsvidhya.com/blog/2025/03/writing-assistant/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-0 lg:translate-y-12 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
-                <img src="blogs/write.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <img loading="lazy" decoding="async" src="blogs/write.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
                 <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
                 
                 <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
                     <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <img loading="lazy" decoding="async" src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
                         <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
                     <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">Build a Writing Assistant</h3>
@@ -205,12 +182,12 @@
             </a>
             <!-- Blog 4 -->
             <a href="https://www.analyticsvidhya.com/blog/2025/02/nvidia-cosmos-1-0-diffusion/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-0 lg:translate-y-0 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
-                <img src="blogs/cosmos.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <img loading="lazy" decoding="async" src="blogs/cosmos.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
                 <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
                 
                 <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
                     <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <img loading="lazy" decoding="async" src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
                         <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
                     <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">Generate Videos with NVIDIA</h3>
@@ -222,12 +199,12 @@
             </a>
             <!-- Blog 5 -->
             <a href="https://www.analyticsvidhya.com/blog/2025/02/running-olmo-2-locally-with-gradio-and-langchain/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-12 lg:translate-y-24 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
-                <img src="blogs/ollmo.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <img loading="lazy" decoding="async" src="blogs/ollmo.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
                 <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
                 
                 <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
                     <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <img loading="lazy" decoding="async" src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
                         <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
                     <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">Running OLMo-2 Locally</h3>
@@ -239,12 +216,12 @@
             </a>
             <!-- Blog 6 -->
             <a href="https://www.analyticsvidhya.com/blog/2025/01/medical-chatbot-with-gemini-2-0-flask-and-vector-embedding/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-0 lg:translate-y-12 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
-                <img src="blogs/med.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <img loading="lazy" decoding="async" src="blogs/med.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
                 <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
                 
                 <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
                     <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <img loading="lazy" decoding="async" src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
                         <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
                     <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">Build a Medical AI Chatbot</h3>
@@ -256,12 +233,12 @@
             </a>
             <!-- Blog 7 -->
             <a href="https://www.analyticsvidhya.com/blog/2024/12/building-a-web-searching-agent/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-0 lg:translate-y-0 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
-                <img src="blogs/Web.jpeg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <img loading="lazy" decoding="async" src="blogs/Web.jpeg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
                 <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
                 
                 <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
                     <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <img loading="lazy" decoding="async" src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
                         <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
                     <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">Search Web with LangChain</h3>
@@ -273,12 +250,12 @@
             </a>
             <!-- Blog 8 -->
             <a href="https://www.analyticsvidhya.com/blog/2024/11/build-your-own-yt-and-web-summarizer/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-12 lg:translate-y-24 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
-                <img src="blogs/Yt.jpeg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <img loading="lazy" decoding="async" src="blogs/Yt.jpeg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
                 <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
                 
                 <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
                     <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <img loading="lazy" decoding="async" src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
                         <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
                     <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">Your Own YT and Web Summarizer</h3>
@@ -290,12 +267,12 @@
             </a>
             <!-- Blog 9 -->
             <a href="https://www.analyticsvidhya.com/blog/2024/10/image-generator-with-bria-2-3-model/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-0 lg:translate-y-12 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
-                <img src="blogs/bria2.3.jpeg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <img loading="lazy" decoding="async" src="blogs/bria2.3.jpeg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
                 <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
                 
                 <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
                     <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <img loading="lazy" decoding="async" src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
                         <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
                     <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">AI Image Generator with Bria 2.3 Model</h3>
@@ -307,12 +284,12 @@
             </a>
             <!-- Blog 10 -->
             <a href="https://www.analyticsvidhya.com/blog/2024/10/nvidia-nim/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-0 lg:translate-y-0 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
-                <img src="blogs/nvidia.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <img loading="lazy" decoding="async" src="blogs/nvidia.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
                 <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
                 
                 <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
                     <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <img loading="lazy" decoding="async" src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
                         <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
                     <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">NVIDIA NIM: The Future of Inferencing</h3>
@@ -324,12 +301,12 @@
             </a>
             <!-- Blog 11 -->
             <a href="https://www.analyticsvidhya.com/blog/2024/10/methods-to-run-llama-3-2/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-12 lg:translate-y-24 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
-                <img src="blogs/llama3.2.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <img loading="lazy" decoding="async" src="blogs/llama3.2.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
                 <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
                 
                 <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
                     <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <img loading="lazy" decoding="async" src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
                         <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
                     <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">3 Ways to Run Llama 3.2 on Your Device</h3>
@@ -341,12 +318,12 @@
             </a>
             <!-- Blog 12 -->
             <a href="https://www.analyticsvidhya.com/blog/2024/09/ai-sql-assistant/" target="_blank" class="blog-card group block relative w-full h-[450px] lg:h-[550px] md:translate-y-0 lg:translate-y-12 rounded-[2.5rem] overflow-hidden transform-gpu transition-all duration-700 hover:z-20">
-                <img src="blogs/sql.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
+                <img loading="lazy" decoding="async" src="blogs/sql.jpg" alt="Blog Image" class="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] filter grayscale-[30%] group-hover:grayscale-0">
                 <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 group-hover:to-black/95 transition-colors duration-500"></div>
                 
                 <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out text-white">
                     <div class="flex items-center gap-3 mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                        <img src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
+                        <img loading="lazy" decoding="async" src="blogs/analytics.jpg" alt="Publisher" class="w-8 h-8 rounded-full ring-2 ring-purple-500 shadow-lg shadow-purple-500/30">
                         <span class="text-xs font-bold tracking-widest uppercase bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">Analytics Vidhya</span>
                     </div>
                     <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight group-hover:text-purple-300 transition-colors duration-500">AI SQL Assistant with LangChain</h3>

@@ -1,314 +1,274 @@
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const desktopPointer = window.matchMedia('(hover: hover) and (pointer: fine)');
 const sideMenu = document.querySelector('#sideMenu');
 const navBar = document.querySelector('#dynamic-navbar');
-
-function openMenu(){
-    if (!sideMenu) return;
-    sideMenu.style.transform = 'translateX(-16rem)';
-}
-function closeMenu(){
-    if (!sideMenu) return;
-    sideMenu.style.transform = 'translateX(16rem)';
-}
-
-// -------- 2026 Navbar Dynamic Scroll Logic -----------
+const menuTrigger = document.querySelector('[aria-controls="sideMenu"]');
 const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+const scrollProgress = document.createElement('div');
+scrollProgress.className = 'scroll-progress';
+scrollProgress.setAttribute('aria-hidden', 'true');
+document.body.appendChild(scrollProgress);
+let menuReturnFocus = null;
+let menuBackdrop;
 
+if (sideMenu) {
+    // Keep the drawer outside the navbar's backdrop-filter containing block.
+    document.body.appendChild(sideMenu);
+    menuBackdrop = document.createElement('div');
+    menuBackdrop.className = 'menu-backdrop';
+    menuBackdrop.hidden = true;
+    menuBackdrop.addEventListener('click', () => closeMenu());
+    document.body.appendChild(menuBackdrop);
+}
+
+function openMenu() {
+    if (!sideMenu) return;
+    menuReturnFocus = document.activeElement;
+    sideMenu.inert = false;
+    sideMenu.dataset.open = 'true';
+    menuTrigger?.setAttribute('aria-expanded', 'true');
+    menuBackdrop.hidden = false;
+    document.documentElement.classList.add('menu-open');
+    requestAnimationFrame(() => {
+        if (sideMenu.dataset.open === 'true') sideMenu.querySelector('button, a')?.focus({ preventScroll: true });
+    });
+}
+
+function closeMenu(restoreFocus = true) {
+    if (!sideMenu || sideMenu.dataset.open !== 'true') return;
+    sideMenu.dataset.open = 'false';
+    sideMenu.inert = true;
+    menuTrigger?.setAttribute('aria-expanded', 'false');
+    menuBackdrop.hidden = true;
+    document.documentElement.classList.remove('menu-open');
+    if (restoreFocus) menuReturnFocus?.focus({ preventScroll: true });
+}
+
+document.addEventListener('keydown', (event) => {
+    if (sideMenu?.dataset.open !== 'true') return;
+    if (event.key === 'Escape') closeMenu();
+    if (event.key !== 'Tab') return;
+    const items = [...sideMenu.querySelectorAll('button, a[href]')];
+    const first = items[0], last = items[items.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault(); last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault(); first.focus();
+    }
+});
+window.addEventListener('resize', () => {
+    if (menuTrigger && getComputedStyle(menuTrigger).display === 'none') closeMenu(false);
+}, { passive: true });
+
+// Only update navigation styles when a threshold changes, at most once per frame.
+let scrollFrame = 0;
+let previousScrolled, previousTopVisible;
+function updateScrollUI() {
+    scrollFrame = 0;
+    const scrolled = window.scrollY > 50;
+    const topVisible = window.scrollY > 500;
+    const scrollRange = document.documentElement.scrollHeight - window.innerHeight;
+    scrollProgress.style.transform = `scaleX(${scrollRange > 0 ? Math.min(1, window.scrollY / scrollRange) : 0})`;
+    if (scrolled !== previousScrolled) {
+        navBar?.classList.toggle('shadow-lg', scrolled);
+        previousScrolled = scrolled;
+    }
+    if (scrollToTopBtn && topVisible !== previousTopVisible) {
+        ['opacity-0', 'translate-y-20', 'pointer-events-none'].forEach(name => scrollToTopBtn.classList.toggle(name, !topVisible));
+        scrollToTopBtn.classList.toggle('opacity-100', topVisible);
+        scrollToTopBtn.inert = !topVisible;
+        previousTopVisible = topVisible;
+    }
+}
 window.addEventListener('scroll', () => {
-    if (navBar) {
-        navBar.classList.toggle('shadow-[0_10px_30px_rgba(0,0,0,0.08)]', window.scrollY > 50);
-        navBar.classList.toggle('dark:shadow-[0_10px_30px_rgba(0,0,0,0.25)]', window.scrollY > 50);
-    }
+    if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScrollUI);
+}, { passive: true });
+updateScrollUI();
+scrollToTopBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth' }));
 
-    if (scrollToTopBtn) {
-        if (window.scrollY > 500) {
-            scrollToTopBtn.classList.remove('opacity-0', 'translate-y-20', 'pointer-events-none');
-            scrollToTopBtn.classList.add('opacity-100', 'translate-y-0');
-        } else {
-            scrollToTopBtn.classList.add('opacity-0', 'translate-y-20', 'pointer-events-none');
-            scrollToTopBtn.classList.remove('opacity-100', 'translate-y-0');
-        }
-    }
-});
-
-if (scrollToTopBtn) {
-    scrollToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
-
-// -------- Magnetic Hover Pill logic for Desktop Nav -----------
-const navContainer = document.getElementById('nav-links-container');
-const navHoverPill = document.getElementById('nav-hover-pill');
-const navLinksItems = document.querySelectorAll('#nav-links-container li');
-
-if (navContainer && navHoverPill) {
-    navLinksItems.forEach(link => {
-        link.addEventListener('mouseenter', () => {
-            const rect = link.getBoundingClientRect();
-            const containerRect = navContainer.getBoundingClientRect();
-
-            navHoverPill.style.width = `${rect.width}px`;
-            navHoverPill.style.transform = `translateX(${rect.left - containerRect.left}px)`;
-            navHoverPill.style.opacity = '1';
-        });
-    });
-
-    navContainer.addEventListener('mouseleave', () => {
-        navHoverPill.style.opacity = '0';
-    });
-}
-
-// -------- light mode and dark mode -----------
-
-// Always start in the portfolio's light theme. Visitors can still switch themes
-// for their current visit using the toggle below.
+// Preserve the existing light-first theme, and expose the toggle state.
 document.documentElement.classList.remove('dark');
-
-// Function to toggle the theme
 function toggleTheme() {
-    document.documentElement.classList.toggle('dark');
-
+    const dark = document.documentElement.classList.toggle('dark');
+    document.querySelectorAll('[onclick="toggleTheme()"]').forEach(button => button.setAttribute('aria-pressed', String(dark)));
+    document.dispatchEvent(new Event('portfolio:theme'));
 }
 
-// -------- Drag to Scroll functionality -----------
-const dragScrollContainers = document.querySelectorAll('.drag-scroll');
-
-dragScrollContainers.forEach(container => {
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    container.addEventListener('mousedown', (e) => {
-        isDown = true;
-        container.classList.add('active');
-        // Temporarily disable snapping while dragging
-        container.classList.remove('snap-x', 'snap-mandatory');
-        startX = e.pageX - container.offsetLeft;
-        scrollLeft = container.scrollLeft;
+// One reveal per block. No text splitting, scroll hijacking, or hidden fallback content.
+function reveal(element, keyframes, options = {}) {
+    if (reducedMotion.matches || !element.animate) return;
+    element.animate(keyframes, { duration: 650, easing: 'cubic-bezier(.22, 1, .36, 1)', ...options });
+}
+const revealObserver = new IntersectionObserver(entries => {
+    entries.filter(entry => entry.isIntersecting).forEach((entry, index) => {
+        reveal(entry.target, [{ opacity: 0, transform: 'translateY(24px)' }, { opacity: 1, transform: 'translateY(0)' }], { delay: Math.min(index * 65, 180), fill: 'backwards' });
+        revealObserver.unobserve(entry.target);
     });
+}, { threshold: .08 });
+function observeSections() {
+    document.querySelectorAll('#about h2, #timeline h2, #work-header, #blog h2, #contact h2, #about-info-col, #about .group.relative, #experience-col, #education-col, .project-card, .article-card, .blog-card, #contact form').forEach(element => revealObserver.observe(element));
+}
+if (window.portfolioIntro?.active) document.addEventListener('portfolio:intro-end', observeSections, { once: true });
+else observeSections();
 
-    container.addEventListener('mouseleave', () => {
-        isDown = false;
-        container.classList.remove('active');
-        container.classList.add('snap-x', 'snap-mandatory');
+// Short overlapping entrances keep the headline and calls to action responsive.
+function animateHero() {
+    document.querySelectorAll('#hero-statement .hero-line > span').forEach((line, index) => {
+        reveal(line, [{ transform: 'translateY(110%)' }, { transform: 'translateY(0)' }], { duration: 850, delay: index * 75, fill: 'backwards' });
     });
-
-    container.addEventListener('mouseup', () => {
-        isDown = false;
-        container.classList.remove('active');
-        container.classList.add('snap-x', 'snap-mandatory');
+    document.querySelectorAll('#hero-eyebrow, #hero-identity, .hero-manifesto, #hero-description, #hero-actions, .hero-artwork, #hero-meta').forEach((element, index) => {
+        reveal(element, [{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'translateY(0)' }], { delay: Math.min(index * 65, 260), fill: 'backwards' });
     });
+}
+document.addEventListener('portfolio:intro-reveal', animateHero);
+if (!window.portfolioIntro?.active) animateHero();
 
-    container.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault(); // Prevent text selection
-        const x = e.pageX - container.offsetLeft;
-        const walk = (x - startX) * 2; // The multiplier determines scroll speed
-        container.scrollLeft = scrollLeft - walk;
+// A measured typewriter loop keeps the statement alive without shifting its layout.
+(() => {
+    const word = document.querySelector('#hero-rotating-word');
+    if (!word || reducedMotion.matches) return;
+    const words = ['useful.', 'reliable.', 'clear.', 'practical.'];
+    let wordIndex = 0;
+    let characterIndex = words[0].length;
+    let deleting = false;
+    let visible = true;
+    let timer = 0;
+
+    function schedule(delay) {
+        clearTimeout(timer);
+        if (visible && !document.hidden && !window.portfolioIntro?.active) timer = setTimeout(type, delay);
+    }
+
+    function type() {
+        const current = words[wordIndex];
+        if (deleting) {
+            characterIndex--;
+            word.textContent = current.slice(0, Math.max(0, characterIndex));
+            if (characterIndex <= 0) {
+                deleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                schedule(260);
+            } else schedule(48);
+            return;
+        }
+
+        const next = words[wordIndex];
+        characterIndex++;
+        word.textContent = next.slice(0, characterIndex);
+        if (characterIndex >= next.length) {
+            deleting = true;
+            schedule(1750);
+        } else schedule(82);
+    }
+
+    new IntersectionObserver(entries => {
+        visible = entries[0].isIntersecting;
+        if (visible) schedule(900);
+        else clearTimeout(timer);
+    }, { threshold: .15 }).observe(word);
+    document.addEventListener('visibilitychange', () => document.hidden ? clearTimeout(timer) : schedule(700));
+    document.addEventListener('portfolio:intro-start', () => clearTimeout(timer));
+    document.addEventListener('portfolio:intro-end', () => schedule(1100));
+})();
+reducedMotion.addEventListener('change', () => {
+    if (!reducedMotion.matches) return;
+    // Include CSS transitions already in progress when the OS preference changes.
+    document.getAnimations().forEach(animation => {
+        if (animation.effect?.getTiming().iterations !== Infinity) animation.finish();
     });
 });
 
-// About section animations will be initialized via GSAP ScrollTrigger below.
+// Pause repeating CSS motion outside the viewport and while the tab is hidden.
+const motionSections = [...document.querySelectorAll('#about, #timeline, #top')];
+const visibleMotionSections = new Set();
+const motionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) visibleMotionSections.add(entry.target);
+        else visibleMotionSections.delete(entry.target);
+        entry.target.classList.toggle('motion-paused', !entry.isIntersecting || document.hidden);
+    });
+});
+motionSections.forEach(section => motionObserver.observe(section));
+document.addEventListener('visibilitychange', () => {
+    motionSections.forEach(section => section.classList.toggle('motion-paused', document.hidden || !visibleMotionSections.has(section)));
+});
 
-// -------- Initialize Lenis Smooth Scroll & GSAP 3D Hero Animations -----------
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Lenis Smooth Scroll Initialization
-    let lenis = null;
-
-    if (typeof Lenis !== 'undefined') {
-        lenis = new Lenis({
-            lerp: 0.05, 
-            wheelMultiplier: 1,
-            smoothTouch: false
+// Deterministic Fibonacci particles create an organic, breathing neural sculpture.
+(() => {
+    const canvas = document.querySelector('#intelligence-canvas');
+    const context = canvas?.getContext('2d', { alpha: true });
+    if (!context) return;
+    let width = 0, height = 0, frame = 0, time = 0, lastTime = 0;
+    let visible = false, dark = false;
+    let pointerX = 0, pointerY = 0, tiltX = 0, tiltY = 0;
+    let particles = [];
+    const hero = document.querySelector('#top');
+    function resize() {
+        width = canvas.clientWidth; height = canvas.clientHeight;
+        const ratio = Math.min(window.devicePixelRatio || 1, 1.75);
+        canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio);
+        context.setTransform(ratio, 0, 0, ratio, 0, 0);
+        const count = desktopPointer.matches && width > 360 ? 850 : 380;
+        particles = Array.from({ length: count }, (_, index) => {
+            const y = 1 - (index / (count - 1)) * 2;
+            const radius = Math.sqrt(1 - y * y);
+            const theta = index * Math.PI * (3 - Math.sqrt(5));
+            return { x: Math.cos(theta) * radius, y, z: Math.sin(theta) * radius, phase: theta };
         });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
+        draw();
     }
-
-    // 2. Shared GSAP animations for all pages
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        gsap.registerPlugin(ScrollTrigger);
-
-        if (lenis) {
-            lenis.on('scroll', ScrollTrigger.update);
-        }
-
-        // Project card reveal
-        const workCards = document.querySelectorAll('.project-card');
-        if (workCards.length > 0) {
-            gsap.from(workCards, {
-                scrollTrigger: {
-                    trigger: '#work-cards-container',
-                    start: 'top 78%',
-                    toggleActions: 'play none none reverse'
-                },
-                y: 42,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.12,
-                ease: 'power3.out'
-            });
-        }
-
-        // Project Title Reveal
-        if (document.querySelector('.work-title') && document.querySelector('#work-header')) {
-            gsap.from('.work-title', {
-                scrollTrigger: {
-                    trigger: '#work-header',
-                    start: 'top 80%',
-                },
-                y: "100%",
-                opacity: 0,
-                duration: 1,
-                ease: "power4.out"
-            });
-        }
-
-        // Blog Section Animation
-        const blogCards = document.querySelectorAll('.article-card');
-        if(blogCards.length > 0) {
-            gsap.from('.article-card', {
-                scrollTrigger: {
-                    trigger: '#blog',
-                    start: 'top 70%',
-                    toggleActions: "play none none reverse"
-                },
-                immediateRender: false,
-                y: 100,
-                opacity: 0,
-                duration: 1,
-                stagger: 0.2,
-                ease: "power4.out"
-            });
-        }
-
-        // About Me Section Scroll Reveal Animation
-        if (document.querySelector('#about') && document.querySelector('#about-info-col')) {
-            gsap.fromTo('#about-info-col', 
-                { y: 45, opacity: 0 },
-                {
-                    scrollTrigger: {
-                        trigger: '#about',
-                        start: 'top 80%',
-                        toggleActions: 'play none none reverse'
-                    },
-                    y: 0,
-                    opacity: 1,
-                    duration: 1.0,
-                    ease: 'power3.out'
-                }
-            );
-
-            const portrait = document.querySelector('#about .group');
-            if (portrait) {
-                gsap.fromTo(portrait,
-                    { y: 55, opacity: 0, scale: 0.95 },
-                    {
-                        scrollTrigger: {
-                            trigger: '#about',
-                            start: 'top 75%',
-                            toggleActions: 'play none none reverse'
-                        },
-                        y: 0,
-                        opacity: 1,
-                        scale: 1,
-                        duration: 1.1,
-                        ease: 'power3.out'
-                    }
-                );
-            }
-        }
-
-        // Timeline Section (Experience & Education) Scroll Reveal Animation
-        if (document.querySelector('#timeline') && document.querySelector('#experience-col') && document.querySelector('#education-col')) {
-            gsap.fromTo(['#experience-col', '#education-col'],
-                { y: 45, opacity: 0 },
-                {
-                    scrollTrigger: {
-                        trigger: '#timeline',
-                        start: 'top 80%',
-                        toggleActions: 'play none none reverse'
-                    },
-                    y: 0,
-                    opacity: 1,
-                    duration: 1.0,
-                    stagger: 0.2,
-                    ease: 'power3.out'
-                }
-            );
-        }
-
-        // Word-by-word reveals make the supporting copy feel responsive to scroll
-        // without affecting controls, links, or the independently animated hero.
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!reduceMotion && typeof SplitType !== 'undefined') {
-            const textSelector = [
-                '#about h2', '#about h3', '#about h4', '#about p',
-                '#timeline h2', '#timeline h3', '#timeline h4', '#timeline h5', '#timeline p',
-                '#work h2', '#work h3', '#work h4', '#work p',
-                '#blog h2', '#blog h3', '#blog h4', '#blog p',
-                '#contact h2', '#contact h3', '#contact h4', '#contact p',
-                'footer p'
-            ].join(', ');
-
-            document.querySelectorAll(textSelector).forEach((element) => {
-                if (element.closest('[aria-hidden="true"]')) return;
-
-                const split = new SplitType(element, { types: 'words', tagName: 'span' });
-                gsap.set(split.words, { yPercent: 110, autoAlpha: 0, willChange: 'transform, opacity' });
-                gsap.to(split.words, {
-                    scrollTrigger: { trigger: element, start: 'top 88%', once: true },
-                    yPercent: 0,
-                    autoAlpha: 1,
-                    duration: 0.62,
-                    stagger: 0.014,
-                    ease: 'power3.out',
-                    onComplete: () => gsap.set(split.words, { willChange: 'auto' })
-                });
-            });
-        }
-
-        ScrollTrigger.refresh();
-    }
-
-    // 3. Signal / Systems hero entrance
-    if (typeof gsap !== 'undefined' && document.querySelector('#hero-statement')) {
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const heroTargets = ['#hero-eyebrow', '#hero-identity', '#hero-description', '#hero-actions', '#hero-meta'];
-        const heroLines = gsap.utils.toArray('#hero-statement .hero-line > span');
-
-        if (reduceMotion) {
-            gsap.set([...heroTargets, ...heroLines], { autoAlpha: 1, y: 0, clearProps: 'all' });
-        } else {
-            const heroTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
-
-            gsap.set(heroTargets, {
-                y: 28,
-                autoAlpha: 0,
-                filter: 'blur(6px)',
-                willChange: 'transform, opacity, filter'
-            });
-            gsap.set(heroLines, { yPercent: 115, willChange: 'transform' });
-
-            heroTl
-                .to('#hero-eyebrow', { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.55 })
-                .to('#hero-identity', { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.65 }, '-=0.25')
-                .to(heroLines, { yPercent: 0, duration: 0.9, stagger: 0.11 }, '-=0.38')
-                .to(['#hero-description', '#hero-actions', '#hero-meta'], { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.65, stagger: 0.08 }, '-=0.35')
-                .add(() => {
-                    gsap.set(heroTargets, { willChange: 'auto' });
-                    gsap.set(heroLines, { willChange: 'auto' });
-                });
+    function draw() {
+        context.clearRect(0, 0, width, height);
+        const radius = Math.min(width, height) * .33;
+        const rotation = time * .13 + tiltX;
+        const cos = Math.cos(rotation), sin = Math.sin(rotation);
+        const pitch = -.18 + tiltY, cp = Math.cos(pitch), sp = Math.sin(pitch);
+        for (const point of particles) {
+            const breathing = 1 + .075 * Math.sin(point.y * 5 + time * .65) + .035 * Math.cos(point.phase * 3 + time * .4);
+            const x = (point.x * cos - point.z * sin) * breathing;
+            const z = (point.z * cos + point.x * sin) * breathing;
+            const y = point.y * cp - z * sp;
+            const depth = point.y * sp + z * cp;
+            const perspective = 3.5 / (3.5 - depth);
+            const alpha = .18 + ((depth + 1.2) / 2.4) * .72;
+            context.fillStyle = dark ? `rgba(213,190,112,${alpha})` : `rgba(133,109,43,${alpha})`;
+            context.beginPath();
+            context.arc(width / 2 + x * radius * perspective, height / 2 + y * radius * perspective, (.65 + (depth + 1) * .65) * perspective, 0, Math.PI * 2);
+            context.fill();
         }
     }
-});
+    function tick(now) {
+        frame = 0;
+        if (!visible || document.hidden || reducedMotion.matches || window.portfolioIntro?.active) return;
+        const interval = desktopPointer.matches ? 1000 / 60 : 1000 / 30;
+        if (now - lastTime >= interval - 1) {
+            const delta = Math.min((now - lastTime) / 1000, .05);
+            time += delta;
+            tiltX += (pointerX - tiltX) * .06;
+            tiltY += (pointerY - tiltY) * .06;
+            draw(); lastTime = now;
+        }
+        frame = requestAnimationFrame(tick);
+    }
+    function sync() {
+        cancelAnimationFrame(frame); frame = 0; lastTime = performance.now();
+        if (visible && !document.hidden && !reducedMotion.matches && !window.portfolioIntro?.active) frame = requestAnimationFrame(tick);
+        else draw();
+    }
+    new ResizeObserver(resize).observe(canvas);
+    new IntersectionObserver(entries => { visible = entries[0].isIntersecting; sync(); }).observe(canvas);
+    hero.addEventListener('pointermove', event => {
+        if (!desktopPointer.matches || reducedMotion.matches) return;
+        pointerX = (event.clientX / window.innerWidth - .5) * .55;
+        pointerY = (event.clientY / window.innerHeight - .5) * .35;
+    }, { passive: true });
+    hero.addEventListener('pointerleave', () => { pointerX = 0; pointerY = 0; });
+    document.addEventListener('visibilitychange', sync);
+    document.addEventListener('portfolio:intro-start', sync);
+    document.addEventListener('portfolio:intro-end', sync);
+    reducedMotion.addEventListener('change', sync);
+    document.addEventListener('portfolio:theme', () => { dark = document.documentElement.classList.contains('dark'); draw(); });
+})();
 
 // -------- Dev Terminal Simulation Engine -----------
 let isTerminalTyping = false;

@@ -1,4 +1,5 @@
-tailwind.config = {
+module.exports = {
+    content: ['./index.html', './blogs.html', './script.js'],
     theme: {
         extend: {
             gridTemplateColumns: {

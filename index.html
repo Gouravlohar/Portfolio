@@ -3,10 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Gourav</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="./tailwind.config.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Ovo&display=swap" rel="stylesheet">
@@ -16,82 +14,15 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
     
-    <!-- Lenis Smooth Scroll CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.9/dist/lenis.css">
     
-    <!-- GSAP & SplitType -->
-    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/split-type"></script>
 
+    <link rel="stylesheet" href="./styles/utilities.css">
     <style>
         @media (max-width: 767px) {
             #dynamic-navbar {
                 width: 100%;
                 top: 0;
                 padding: 0.9rem 1rem;
-            }
-
-            #top {
-                min-height: auto;
-                padding-top: 5.75rem;
-                padding-bottom: 2rem;
-            }
-
-            #hero-statement {
-                font-size: clamp(2.85rem, 12.5vw, 4.3rem);
-                line-height: 0.93;
-                letter-spacing: -0.06em;
-            }
-
-            .hero-mobile-break {
-                display: block;
-            }
-
-            #hero-eyebrow {
-                margin-bottom: 1.35rem;
-                font-size: 9px;
-                letter-spacing: .17em;
-            }
-
-            #hero-identity {
-                margin-bottom: 1rem;
-                font-size: 10px;
-                letter-spacing: .13em;
-            }
-
-            #hero-footer {
-                margin-top: 1.1rem;
-                gap: 0.25rem;
-                padding-bottom: 1.4rem;
-            }
-
-            #hero-description {
-                margin-top: 1.25rem;
-                font-size: .94rem;
-                line-height: 1.6;
-            }
-
-            #hero-actions {
-                margin-top: 1.5rem;
-            }
-
-            #hero-meta {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: .9rem;
-                font-size: 9px;
-                letter-spacing: .12em;
-            }
-
-            #hero-meta a:last-child {
-                grid-column: span 2;
-                text-align: left;
-            }
-
-            #hero-actions a {
-                width: 100%;
-                justify-content: center;
             }
 
             #about,
@@ -374,115 +305,8 @@
             }
         }
 
-        .hero-grid {
-            background-image: linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
-            background-size: 42px 42px;
-            mask-image: linear-gradient(to bottom, black 0%, transparent 78%);
-        }
-
-        @keyframes signal-sweep {
-            0% { transform: translateX(-130%); opacity: 0; }
-            18%, 72% { opacity: 1; }
-            100% { transform: translateX(130%); opacity: 0; }
-        }
-
-        .hero-signal-sweep {
-            animation: signal-sweep 4.8s cubic-bezier(.65, 0, .35, 1) infinite;
-        }
-
-        /* Kinetic hero type: each statement line reveals independently. */
-        .hero-line {
-            display: block;
-            overflow: hidden;
-            padding-bottom: .10em;
-            margin-bottom: .02em;
-        }
-
-        .hero-line > span {
-            display: inline-block;
-        }
-
-        .hero-mobile-break {
-            display: none;
-        }
-
-        #top .hero-accent {
-            position: relative;
-            color: transparent !important;
-            background: linear-gradient(105deg, var(--accent) 0%, var(--accent) 38%, #f5f4ef 50%, var(--accent) 62%, var(--accent) 100%);
-            background-size: 240% 100%;
-            background-position: 100% 0;
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: hero-text-flow 6.5s cubic-bezier(.65, 0, .35, 1) infinite;
-        }
-
-        .hero-accent::after {
-            content: '';
-            position: absolute;
-            bottom: .02em;
-            left: .03em;
-            height: .055em;
-            width: calc(100% - .06em);
-            transform: scaleX(.28);
-            transform-origin: left;
-            background: var(--accent);
-            opacity: .55;
-            animation: hero-accent-line 3.6s cubic-bezier(.65, 0, .35, 1) infinite;
-        }
-
-        @keyframes hero-accent-line {
-            0%, 100% { transform: scaleX(.72); opacity: .32; }
-            50% { transform: scaleX(1); opacity: .78; }
-        }
-
-        @keyframes hero-text-flow {
-            0%, 28% { background-position: 100% 0; }
-            58%, 100% { background-position: 0 0; }
-        }
-
-        /* Hero light theme: the page's default theme needs its own editorial palette. */
-        html:not(.dark) #top {
-            background: #f5f4ef;
-            color: #151713;
-        }
-
-        html:not(.dark) #top .hero-grid {
-            background-image: linear-gradient(rgba(21, 23, 19, .08) 1px, transparent 1px), linear-gradient(90deg, rgba(21, 23, 19, .08) 1px, transparent 1px);
-        }
-
-        html:not(.dark) #top .bg-white\/10 {
-            background-color: rgba(21, 23, 19, .10);
-        }
-
-        html:not(.dark) #top .border-white\/15,
-        html:not(.dark) #top .border-white\/20 {
-            border-color: rgba(21, 23, 19, .16);
-        }
-
-        html:not(.dark) #top .text-\[\#F5F3EE\],
-        html:not(.dark) #top .text-white {
-            color: #151713;
-        }
-
-        html:not(.dark) #top .text-white\/60,
-        html:not(.dark) #top .text-white\/55,
-        html:not(.dark) #top .text-white\/45 {
-            color: rgba(21, 23, 19, .62);
-        }
-
-        html:not(.dark) #top .text-white\/30 {
-            color: rgba(21, 23, 19, .28);
-        }
-
-        html:not(.dark) #top .bg-\[\#101113\] {
-            background-color: #151713;
-            color: #f5f4ef;
-        }
-
-        html:not(.dark) #top .hero-signal-sweep {
-            box-shadow: 0 0 18px rgba(161, 139, 63, .55);
-        }
+        .hero-line { display: block; overflow: hidden; }
+        .hero-line > span { display: inline-block; }
 
         /* One accent system for the entire portfolio. */
         :root { --accent: #a18b3f; --accent-ink: #151713; --accent-soft: rgba(161, 139, 63, .13); }
@@ -558,13 +382,16 @@
         }
     </style>
 
+    <link rel="stylesheet" href="./site.css">
+    <link rel="stylesheet" href="./intro.css">
+    <script src="./intro.js"></script>
 </head>
 
 <body class="overflow-x-hidden font-Outfit leading-8 dark:bg-darkTheme dark:text-white">
 
     <div class="fixed top-0 right-0 w-11/12 -z-10 translate-y-[-80%]
     dark:hidden">
-        <img src="./images/header-bg-color.png" alt="" class="w-full">
+        <img loading="lazy" decoding="async" src="./images/header-bg-color.png" alt="" class="w-full">
     </div>
 
 
@@ -584,19 +411,17 @@
         <div class="flex items-center gap-3">
             <a href="cv/resume.pdf" class="hidden text-[11px] font-bold uppercase tracking-[.14em] opacity-60 transition hover:opacity-100 sm:block">Résumé ↓</a>
             <a href="#contact" class="hidden items-center gap-2 bg-[#151713] px-4 py-2.5 text-[10px] font-bold uppercase tracking-[.14em] text-[#f5f4ef] transition hover:bg-[#a18b3f] hover:text-[#151713] dark:bg-[#f5f4ef] dark:text-[#151713] md:flex">Start a project <i class="fas fa-arrow-up-right-from-square text-[9px]"></i></a>
-            <button onclick="toggleTheme()" aria-label="Toggle theme" class="flex h-9 w-9 items-center justify-center border border-current/15 transition hover:border-[#a18b3f] hover:text-[#a18b3f]">
+            <button onclick="toggleTheme()" aria-pressed="false" aria-label="Toggle theme" class="flex h-9 w-9 items-center justify-center border border-current/15 transition hover:border-[#a18b3f] hover:text-[#a18b3f]">
                 <i class="fas fa-sun hidden text-xs dark:block"></i><i class="fas fa-moon text-xs dark:hidden"></i>
             </button>
-            <button class="flex h-9 w-9 items-center justify-center border border-current/15 transition hover:border-[#a18b3f] hover:text-[#a18b3f] lg:hidden" onclick="openMenu()" aria-label="Open menu"><span class="space-y-1"><span class="block h-px w-4 bg-current"></span><span class="block h-px w-4 bg-current"></span></span></button>
+            <button class="flex h-9 w-9 items-center justify-center border border-current/15 transition hover:border-[#a18b3f] hover:text-[#a18b3f] lg:hidden" onclick="openMenu()" aria-controls="sideMenu" aria-expanded="false" aria-label="Open menu"><span class="space-y-1"><span class="block h-px w-4 bg-current"></span><span class="block h-px w-4 bg-current"></span></span></button>
         </div>
         
         <!-- ----- mobile menu ------  -->
-        <ul id="sideMenu"
-            class="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-white/95 dark:bg-[#030014]/95 backdrop-blur-2xl shadow-2xl border-l border-white/20 transition-all duration-500 font-Ovo dark:text-white">
+        <ul id="sideMenu" aria-label="Mobile navigation" inert
+            class="font-Outfit">
 
-            <div class="absolute right-6 top-6 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-white/10" onclick="closeMenu()">
-                <i class="fas fa-times text-gray-900 dark:text-white text-sm cursor-pointer"></i>
-            </div>            
+            <li><button type="button" class="menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button></li>
             <li><a href="#top" onclick="closeMenu()" class="text-xl font-bold tracking-wide">Home</a></li>
             <li><a href="#about" onclick="closeMenu()" class="text-xl font-bold tracking-wide">About</a></li>
             <li><a href="#work" onclick="closeMenu()" class="text-xl font-bold tracking-wide">Work</a></li>
@@ -607,54 +432,52 @@
 
     <!-- ------ header --------------  -->
 
-    <!-- Signal / Systems hero -->
-    <section id="top" class="relative isolate overflow-hidden bg-[#101113] text-[#F5F3EE]">
-        <div class="hero-grid absolute inset-0 -z-10 opacity-60 pointer-events-none"></div>
-        <div class="absolute top-0 left-[7%] h-px w-[86%] bg-white/10"></div>
-        <div class="absolute -right-24 top-24 h-80 w-80 rounded-full bg-[#C8FF3D]/10 blur-[120px] pointer-events-none"></div>
-
-        <div class="mx-auto grid min-h-[calc(100svh-1rem)] w-full max-w-[96rem] grid-cols-1 items-center px-6 pb-12 pt-28 lg:grid-cols-12 lg:px-10 lg:pt-24">
-            <div class="lg:col-span-12">
-                <div id="hero-eyebrow" class="mb-7 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.22em] text-[#C8FF3D] sm:text-xs">
-                    <span class="h-2 w-2 rounded-full bg-[#C8FF3D] shadow-[0_0_18px_#C8FF3D]"></span>
-                    Available for meaningful work
+    <!-- A living intelligence field: native canvas, no rendering library. -->
+    <section id="top" class="hero relative isolate overflow-hidden">
+        <div class="hero-shell">
+            <div class="hero-layout">
+                <div class="hero-copy">
+                    <div class="hero-intro-row">
+                        <div id="hero-eyebrow"><span class="status-dot" aria-hidden="true"></span>Available for meaningful work</div>
+                        <p id="hero-identity">Gourav Lohar &nbsp;/&nbsp; AI &amp; ML Engineer</p>
+                    </div>
+                    <h1 id="hero-statement">
+                        <span class="hero-line"><span>I teach</span></span>
+                        <span class="hero-line hero-line-indent"><span>machines to become</span></span>
+                        <span class="hero-line hero-line-last"><span><em class="hero-accent"><span id="hero-rotating-word" aria-hidden="true">useful.</span><span class="visually-hidden">useful.</span></em></span></span>
+                    </h1>
+                    <div class="hero-support">
+                        <p class="hero-manifesto">Because a model nobody can use<br>is just a very expensive experiment.</p>
+                        <div>
+                            <p id="hero-description">I turn complex data into clear, reliable products—combining machine learning, backend engineering, and thoughtful interfaces.</p>
+                            <div id="hero-actions">
+                                <a href="#work" class="hero-primary">See what I’ve built <span aria-hidden="true">↘</span></a>
+                                <a href="#contact" class="hero-secondary">Start a conversation <span aria-hidden="true">↗</span></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <p id="hero-identity" class="mb-5 text-xs font-medium uppercase tracking-[0.16em] text-white/55 sm:text-sm">Gourav Lohar <span class="mx-2 text-[#C8FF3D]">/</span> AI &amp; ML Engineer</p>
-                <h1 id="hero-statement" class="max-w-none text-[clamp(4.4rem,9.6vw,9.7rem)] font-black leading-[0.93] tracking-[-0.065em] text-[#F5F3EE]">
-                    <span class="hero-line"><span>I build</span></span>
-                    <span class="hero-line"><span>intelligent<span class="hero-mobile-break"></span> products</span></span>
-                    <span class="hero-line"><span class="hero-accent text-[#C8FF3D]">that matter.</span></span>
-                </h1>
-                <div id="hero-footer" class="mt-2 grid max-w-[72rem] grid-cols-1 gap-5 border-b border-white/15 pb-7 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-14">
-                <p class="mt-8 text-[10px] font-bold uppercase tracking-[.2em] text-[#C8FF3D]/80">Intelligence, made useful <span class="mx-2 text-white/30">/</span> Since 2021</p>
-
-
-                <div id="hero-actions" class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center lg:col-span-2">
-                    <a href="#work" class="group inline-flex h-14 items-center justify-center gap-3 rounded-full bg-[#C8FF3D] px-7 text-sm font-bold text-[#101113] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(200,255,61,0.25)]">
-                        View selected work <i class="fas fa-arrow-down text-xs transition-transform duration-300 group-hover:translate-y-1"></i>
-                    </a>
-                    <a href="#contact" class="group inline-flex h-14 items-center justify-center gap-3 rounded-full border border-white/20 px-7 text-sm font-bold text-white transition-colors duration-300 hover:border-[#C8FF3D] hover:text-[#C8FF3D]">
-                        Let’s work together <i class="fas fa-arrow-up-right-from-square text-[11px] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
-                    </a>
-                </div>
-
-                </div>
-                <div id="hero-meta" class="mt-5 grid max-w-[72rem] grid-cols-3 pt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/45 sm:text-xs">
-                    <a href="https://github.com/Gouravlohar" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#C8FF3D]">GitHub ↗</a>
-                    <a href="https://www.linkedin.com/in/gouravlohar/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#C8FF3D]">LinkedIn ↗</a>
-                    <a href="cv/resume.pdf" class="text-right transition-colors hover:text-[#C8FF3D]">Résumé ↓</a>
+                <div class="hero-artwork" aria-label="Live generative intelligence field">
+                    <div class="hero-lab-head"><span>Live system / 01</span><span class="lab-live"><i></i>Thinking</span></div>
+                    <div class="hero-art" aria-hidden="true">
+                        <canvas id="intelligence-canvas"></canvas>
+                        <span class="art-axis axis-x">X / intention</span>
+                        <span class="art-axis axis-y">Y / intelligence</span>
+                        <span class="art-cross art-cross-one">+</span><span class="art-cross art-cross-two">+</span>
+                        <div class="lab-readout"><span>Input</span><strong>Unstructured data</strong><i></i><span>Output</span><strong>Useful decisions</strong></div>
+                    </div>
+                    <div class="hero-caption"><span>Move your cursor to perturb the model</span><span>Python / AI / ML</span></div>
                 </div>
             </div>
-
-        </div>
-        <aside aria-label="Portfolio highlights" class="absolute bottom-14 right-10 hidden w-44 border-l border-white/15 pl-5 lg:block">
-            <p class="text-[10px] font-bold uppercase tracking-[.2em] text-[#C8FF3D]">Selected work</p>
-            <p class="mt-2 text-4xl font-black leading-none tracking-[-.08em] text-white">03</p>
-            <p class="mt-5 text-[10px] font-bold uppercase leading-6 tracking-[.18em] text-white/45">AI systems<br>Python products<br>Kolkata, India</p>
-        </aside>
-        <div aria-hidden="true" class="absolute bottom-0 left-0 h-px w-full overflow-hidden bg-white/10">
-            <div class="hero-signal-sweep h-full w-2/5 bg-[#C8FF3D] shadow-[0_0_18px_#C8FF3D]"></div>
+            <div id="hero-meta">
+                <div class="hero-socials">
+                    <a href="https://github.com/Gouravlohar" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                    <a href="https://www.linkedin.com/in/gouravlohar/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+                    <a href="cv/resume.pdf">Résumé ↓</a>
+                </div>
+                <button type="button" data-replay-intro hidden>Replay intro <span aria-hidden="true">↺</span></button>
+                <span class="hero-location">Based in Kolkata, India &nbsp;·&nbsp; Building beyond borders</span>
+            </div>
         </div>
     </section>
 
@@ -670,7 +493,7 @@
 
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-20 mb-24 relative z-10">
             <!-- Left Side: Editorial Bio & Highlights -->
-            <div id="about-info-col" class="flex-1 w-full relative pl-2 md:pl-6 lg:pr-10 text-left opacity-0 translate-y-6">
+            <div id="about-info-col" class="flex-1 w-full relative pl-2 md:pl-6 lg:pr-10 text-left">
                 <div class="pointer-events-none absolute left-0 top-0 -z-10 h-40 w-40 rounded-full bg-[#a18b3f]/10 blur-3xl"></div>
                 
                 <!-- Editorial Layout -->
@@ -731,7 +554,7 @@
                 <div class="group relative w-64 sm:w-72 lg:w-80">
                     <div class="relative aspect-[4/5] overflow-hidden border border-[#151713]/20 bg-[#e8e5da] p-2 shadow-[16px_18px_0_rgba(21,23,19,.10)] transition-transform duration-500 group-hover:-translate-y-2 dark:border-white/15 dark:bg-[#24251f] dark:shadow-[16px_18px_0_rgba(0,0,0,.25)]">
                         <div class="relative h-full overflow-hidden bg-[#151713]">
-                            <img src="profile/blob.png" alt="Portrait of Gourav Lohar" class="h-full w-full object-cover object-center transition duration-700 group-hover:scale-105">
+                            <img loading="lazy" decoding="async" src="profile/blob.png" alt="Portrait of Gourav Lohar" class="h-full w-full object-cover object-center transition duration-700 group-hover:scale-105">
                             <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#151713]/30 via-transparent to-transparent"></div>
                         </div>
                     </div>
@@ -1275,7 +1098,7 @@
                     <span class="text-sm font-bold tracking-[.12em] text-[#a18b3f] md:col-span-1">01</span>
                     <div class="md:col-span-4"><p class="mb-2 text-[10px] font-bold uppercase tracking-[.18em] text-white/45">Conversational data</p><h3 class="text-4xl font-black leading-none tracking-[-.06em] md:text-6xl">AI SQL Assistant</h3></div>
                     <p class="max-w-sm text-sm leading-relaxed text-white/55 md:col-span-3">Natural-language database querying built with Llama 3.1 and LangChain.</p>
-                    <div class="relative h-32 overflow-hidden md:col-span-2 md:h-24"><img src="project/mysql.jpg" alt="AI SQL Assistant" class="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-110 group-hover:grayscale-0"></div>
+                    <div class="relative h-32 overflow-hidden md:col-span-2 md:h-24"><img loading="lazy" decoding="async" src="project/mysql.jpg" alt="AI SQL Assistant" class="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-110 group-hover:grayscale-0"></div>
                     <div class="md:col-span-2"><p class="mb-2 text-[9px] font-bold uppercase tracking-[.18em] text-white/35">Explore</p><a href="https://github.com/Gouravlohar/AI-SQL-Assistant" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.12em] text-[#a18b3f] transition hover:text-white">View repository <i class="fa-brands fa-github text-sm"></i></a></div>
                 </article>
 
@@ -1283,7 +1106,7 @@
                     <span class="text-sm font-bold tracking-[.12em] text-[#a18b3f] md:col-span-1">02</span>
                     <div class="md:col-span-4"><p class="mb-2 text-[10px] font-bold uppercase tracking-[.18em] text-white/45">AI healthcare</p><h3 class="text-4xl font-black leading-none tracking-[-.06em] md:text-6xl">Arogyam</h3></div>
                     <p class="max-w-sm text-sm leading-relaxed text-white/55 md:col-span-3">Vertex AI disease prediction and nutritional intelligence in one health platform.</p>
-                    <div class="relative h-32 overflow-hidden md:col-span-2 md:h-24"><img src="project/arogyam.jpeg" alt="Arogyam" class="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-110 group-hover:grayscale-0"></div>
+                    <div class="relative h-32 overflow-hidden md:col-span-2 md:h-24"><img loading="lazy" decoding="async" src="project/arogyam.jpeg" alt="Arogyam" class="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-110 group-hover:grayscale-0"></div>
                     <div class="flex flex-col gap-2 text-xs font-bold uppercase tracking-[.12em] md:col-span-2"><p class="text-[9px] tracking-[.18em] text-white/35">Explore</p><a href="https://arogyam-bgend5hsfua6axa6.eastus-01.azurewebsites.net/" target="_blank" rel="noopener noreferrer" class="text-[#a18b3f] transition hover:text-white">Live demo <i class="fas fa-arrow-up-right-from-square ml-1 text-[10px]"></i></a><a href="https://github.com/Gouravlohar/Arogyam" target="_blank" rel="noopener noreferrer" class="text-white/55 transition hover:text-[#a18b3f]">Repository <i class="fa-brands fa-github ml-1 text-sm"></i></a></div>
                 </div>
 
@@ -1291,7 +1114,7 @@
                     <span class="text-sm font-bold tracking-[.12em] text-[#a18b3f] md:col-span-1">03</span>
                     <div class="md:col-span-4"><p class="mb-2 text-[10px] font-bold uppercase tracking-[.18em] text-white/45">People analytics</p><h3 class="text-4xl font-black leading-none tracking-[-.06em] md:text-6xl">AttriSense</h3></div>
                     <p class="max-w-sm text-sm leading-relaxed text-white/55 md:col-span-3">An ML pipeline that turns employee attrition data into decision-ready insight.</p>
-                    <div class="relative h-32 overflow-hidden md:col-span-2 md:h-24"><img src="project/attrisense.jpeg" alt="AttriSense" class="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-110 group-hover:grayscale-0"></div>
+                    <div class="relative h-32 overflow-hidden md:col-span-2 md:h-24"><img loading="lazy" decoding="async" src="project/attrisense.jpeg" alt="AttriSense" class="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-110 group-hover:grayscale-0"></div>
                     <div class="flex flex-col gap-2 text-xs font-bold uppercase tracking-[.12em] md:col-span-2"><p class="text-[9px] tracking-[.18em] text-white/35">Explore</p><a href="https://attrisense.onrender.com/" target="_blank" rel="noopener noreferrer" class="text-[#a18b3f] transition hover:text-white">Live demo <i class="fas fa-arrow-up-right-from-square ml-1 text-[10px]"></i></a><a href="https://github.com/Gouravlohar/AttriSense" target="_blank" rel="noopener noreferrer" class="text-white/55 transition hover:text-[#a18b3f]">Repository <i class="fa-brands fa-github ml-1 text-sm"></i></a></div>
                 </div>
             </div>
@@ -1357,7 +1180,7 @@
                         </div>
                         <span class="mt-8 inline-flex items-center gap-2 text-sm font-bold text-[#a18b3f]">Read article <i class="fas fa-arrow-up-right-from-square text-xs transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"></i></span>
                     </div>
-                    <div class="relative min-h-[250px] overflow-hidden lg:min-h-0"><img src="blogs/webs.jpg" alt="Website chatbot article" class="h-full w-full object-cover grayscale-[35%] transition duration-700 group-hover:scale-105 group-hover:grayscale-0"><div class="absolute inset-0 bg-gradient-to-r from-[#151713] via-[#151713]/15 to-transparent"></div></div>
+                    <div class="relative min-h-[250px] overflow-hidden lg:min-h-0"><img loading="lazy" decoding="async" src="blogs/webs.jpg" alt="Website chatbot article" class="h-full w-full object-cover grayscale-[35%] transition duration-700 group-hover:scale-105 group-hover:grayscale-0"><div class="absolute inset-0 bg-gradient-to-r from-[#151713] via-[#151713]/15 to-transparent"></div></div>
                 </a>
 
                 <a href="https://www.analyticsvidhya.com/blog/2025/03/negotiation-agent-using-deepseek-r1/" target="_blank" rel="noopener noreferrer" class="article-card group flex min-h-[300px] flex-col justify-between rounded-[1.5rem] border border-black/15 bg-[#f5f4ef] p-7 transition-transform hover:-translate-y-1 dark:border-white/15 dark:bg-white/5 lg:col-span-6 md:p-9">
@@ -1367,7 +1190,7 @@
                 </a>
 
                 <a href="https://www.analyticsvidhya.com/blog/2025/03/writing-assistant/" target="_blank" rel="noopener noreferrer" class="article-card group relative min-h-[300px] overflow-hidden rounded-[1.5rem] bg-[#a18b3f] p-7 text-[#151713] transition-transform hover:-translate-y-1 lg:col-span-6 md:p-9">
-                    <img src="blogs/write.jpg" alt="Writing assistant article" class="absolute inset-0 h-full w-full object-cover mix-blend-multiply opacity-25 transition duration-700 group-hover:scale-105">
+                    <img loading="lazy" decoding="async" src="blogs/write.jpg" alt="Writing assistant article" class="absolute inset-0 h-full w-full object-cover mix-blend-multiply opacity-25 transition duration-700 group-hover:scale-105">
                     <div class="relative flex h-full flex-col justify-between"><div class="flex items-center justify-between text-[10px] font-bold uppercase tracking-[.18em]"><span>LLM tools</span><span>8 min</span></div><h3 class="max-w-md text-3xl font-black leading-[.95] tracking-[-.05em] md:text-4xl">Designing a more useful writing assistant.</h3><span class="flex items-center justify-between border-t border-black/20 pt-4 text-sm font-bold">Read on Analytics Vidhya <i class="fas fa-arrow-right transition-transform group-hover:translate-x-2"></i></span></div>
                 </a>
             </div>
@@ -1428,9 +1251,9 @@
                     <div class="text-center space-y-8">
                         <!-- Logo with enhanced styling -->
                         <div class="group">
-                            <img src="icons/gou.png" alt="Gourav Lohar Logo" 
+                            <img loading="lazy" decoding="async" src="icons/gou.png" alt="Gourav Lohar Logo"
                                  class="w-40 mx-auto mb-4 dark:hidden transition-transform duration-300 group-hover:scale-105 drop-shadow-lg">
-                            <img src="icons/gouw.png" alt="Gourav Lohar Logo" 
+                            <img loading="lazy" decoding="async" src="icons/gouw.png" alt="Gourav Lohar Logo"
                                  class="w-40 mx-auto mb-4 hidden dark:block transition-transform duration-300 group-hover:scale-105 drop-shadow-lg">
                         </div>
     
@@ -1448,8 +1271,8 @@
                         <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
                             <div class="group flex items-center gap-3 px-6 py-3 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-full border border-gray-200/50 dark:border-gray-700/50 hover:shadow-lg hover:scale-105 transition-all duration-300">
                                 <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
-                                    <img src="./images/mail_icon.png" alt="Email" class="w-5 dark:hidden">
-                                    <img src="./images/mail_icon_dark.png" alt="Email" class="w-5 hidden dark:block">
+                                    <img loading="lazy" decoding="async" src="./images/mail_icon.png" alt="Email" class="w-5 dark:hidden">
+                                    <img loading="lazy" decoding="async" src="./images/mail_icon_dark.png" alt="Email" class="w-5 hidden dark:block">
                                 </div>
                                 <a href="mailto:gouravlohar640@gmail.com" 
                                    class="font-medium text-gray-700 dark:text-gray-300 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
@@ -1577,7 +1400,7 @@
     </footer>
 
     <!-- Floating Go to Top Widget -->
-    <button id="scrollToTopBtn" class="fixed bottom-6 left-6 md:bottom-10 md:left-10 z-[100] w-12 h-12 flex items-center justify-center rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-xl opacity-0 translate-y-20 transition-all duration-500 hover:scale-110 focus:outline-none pointer-events-none">
+    <button id="scrollToTopBtn" aria-label="Back to top" class="fixed bottom-6 left-6 md:bottom-10 md:left-10 z-[100] w-12 h-12 flex items-center justify-center rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-xl opacity-0 translate-y-20 transition-all duration-500 hover:scale-110 focus:outline-none pointer-events-none">
         <i class="fas fa-arrow-up"></i>
     </button>
 
