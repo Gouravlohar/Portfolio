@@ -1,0 +1,90 @@
+@font-face {
+    font-family: 'Bamboly Demo';
+    src: url('./Font/Bamboly-Demo.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face { font-family: Poppins; src: url('./Font/Poppins-500.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: Inter; src: url('./Font/Inter-400.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: Inter; src: url('./Font/Inter-600.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+
+.beyond-portfolio { background: #f5f4ef; }
+.beyond-hero {
+    --hero-orange: #ec612c;
+    --scroll-progress: 0;
+    --word-scale: 1;
+    position: relative;
+    height: 120vh;
+    width: 100%;
+    overflow: clip;
+    isolation: isolate;
+    background: var(--hero-orange);
+    color: white;
+    font-family: Inter, sans-serif;
+}
+.beyond-sticky { position: sticky; top: 0; height: 100vh; width: 100%; z-index: 5; }
+.beyond-title-wrap { position: absolute; inset: 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 3vh; }
+.beyond-title-stack { position: relative; }
+.beyond-title {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    font: 400 clamp(7.5rem, 30vw, 28rem) / .85 'Bamboly Demo', Impact, sans-serif;
+    letter-spacing: -.025em;
+    white-space: nowrap;
+    user-select: none;
+}
+.beyond-title-blue { color: #89cff0; transform: translateY(36px); }
+.beyond-title-gap { color: var(--hero-orange); transform: translateY(24px); }
+.beyond-title-green { color: #90ee90; transform: translateY(12px); }
+.beyond-title-front { position: relative; color: white; }
+.beyond-portrait { position: absolute; inset: 0; z-index: 10; pointer-events: none; }
+.beyond-portrait img {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    height: 82%;
+    width: auto;
+    max-width: none;
+}
+.beyond-word-columns { position: absolute; inset: 0 0 -8vh; display: flex; align-items: flex-end; justify-content: space-between; padding-inline: 6vw; pointer-events: none; }
+.beyond-words { display: flex; flex-direction: column; gap: 8px; opacity: calc(.35 + var(--scroll-progress) * .65); }
+.beyond-words-right { align-items: flex-end; text-align: right; }
+.beyond-words span {
+    display: block;
+    color: rgb(255 255 255 / .8);
+    font: 500 clamp(1.6rem, 7vw, 9rem) / 1.1 Poppins, sans-serif;
+    text-transform: uppercase;
+    user-select: none;
+    transition: transform .05s linear;
+    transform: translateX(calc(-1px * (60 + var(--word-index) * 40) * var(--word-scale) * (1 - var(--scroll-progress))));
+}
+.beyond-words-right span { transform: translateX(calc(1px * (60 + var(--word-index) * 40) * var(--word-scale) * (1 - var(--scroll-progress)))); }
+.beyond-signature { position: absolute; bottom: 1.5rem; inset-inline: 6vw; z-index: 11; display: flex; justify-content: space-between; gap: 1rem; font: 600 .65rem / 1.4 Inter, sans-serif; letter-spacing: .15em; text-transform: uppercase; }
+.beyond-marquee { overflow: hidden; width: 100%; padding-block: 2rem; background: #fff; color: #ec612c; }
+.beyond-marquee-track { display: flex; width: max-content; white-space: nowrap; animation: beyond-marquee-scroll 18s linear infinite; }
+.beyond-marquee-track span { flex-shrink: 0; padding-right: .25em; font: 400 clamp(2.5rem, 6vw, 5rem) / 1 'Bamboly Demo', Impact, sans-serif; text-transform: uppercase; user-select: none; }
+@keyframes beyond-marquee-scroll { to { transform: translateX(-50%); } }
+.beyond-portfolio #dynamic-navbar { position: sticky; top: 0; }
+.beyond-portfolio .scroll-progress { background: #ec612c; }
+@media (max-width: 767px) {
+    .beyond-hero { --word-scale: .5; }
+    .beyond-title-wrap { padding-top: 2vh; }
+    .beyond-title { font-size: 32vw; }
+    .beyond-title-blue { transform: translateY(18px); }
+    .beyond-title-gap { transform: translateY(12px); }
+    .beyond-title-green { transform: translateY(6px); }
+    .beyond-word-columns { inset: 23vh 0 auto; align-items: flex-start; padding-inline: 6vw; }
+    .beyond-words { gap: 4px; }
+    .beyond-portrait img { width: min(195vw, 850px); height: auto; }
+    .beyond-signature { inset-inline: 5vw; bottom: 1rem; font-size: .5rem; letter-spacing: .08em; }
+    .beyond-marquee { padding-block: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .beyond-hero { --scroll-progress: 1; }
+    .beyond-marquee-track { animation: none; }
+    .beyond-words span { transition: none; }
+}
